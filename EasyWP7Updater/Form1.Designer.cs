@@ -69,12 +69,22 @@
             this.downloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.downloadPage = new System.Windows.Forms.TabPage();
+            this.catSelectBox = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.subCatSelectBox = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.versionBox = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.selectLangBox = new System.Windows.Forms.ListBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.firstPage.SuspendLayout();
             this.predownloadedSelectionPage.SuspendLayout();
             this.sendCabsPage.SuspendLayout();
+            this.downloadPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -187,6 +197,7 @@
             this.tabControl1.Controls.Add(this.firstPage);
             this.tabControl1.Controls.Add(this.predownloadedSelectionPage);
             this.tabControl1.Controls.Add(this.sendCabsPage);
+            this.tabControl1.Controls.Add(this.downloadPage);
             this.tabControl1.Location = new System.Drawing.Point(13, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -231,13 +242,13 @@
             // 
             // downloadfromMSbutton
             // 
-            this.downloadfromMSbutton.Enabled = false;
             this.downloadfromMSbutton.Location = new System.Drawing.Point(10, 36);
             this.downloadfromMSbutton.Name = "downloadfromMSbutton";
             this.downloadfromMSbutton.Size = new System.Drawing.Size(238, 23);
             this.downloadfromMSbutton.TabIndex = 2;
             this.downloadfromMSbutton.Text = "Download official cabs from Microsoft servers";
             this.downloadfromMSbutton.UseVisualStyleBackColor = true;
+            this.downloadfromMSbutton.Click += new System.EventHandler(this.downloadfromMSbutton_Click);
             // 
             // label1
             // 
@@ -460,6 +471,92 @@
             this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
             this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
             // 
+            // downloadPage
+            // 
+            this.downloadPage.BackColor = System.Drawing.SystemColors.Control;
+            this.downloadPage.Controls.Add(this.label7);
+            this.downloadPage.Controls.Add(this.selectLangBox);
+            this.downloadPage.Controls.Add(this.label6);
+            this.downloadPage.Controls.Add(this.versionBox);
+            this.downloadPage.Controls.Add(this.label5);
+            this.downloadPage.Controls.Add(this.subCatSelectBox);
+            this.downloadPage.Controls.Add(this.label4);
+            this.downloadPage.Controls.Add(this.catSelectBox);
+            this.downloadPage.Location = new System.Drawing.Point(4, 22);
+            this.downloadPage.Name = "downloadPage";
+            this.downloadPage.Padding = new System.Windows.Forms.Padding(3);
+            this.downloadPage.Size = new System.Drawing.Size(669, 274);
+            this.downloadPage.TabIndex = 3;
+            this.downloadPage.Text = "Download Page";
+            // 
+            // catSelectBox
+            // 
+            this.catSelectBox.FormattingEnabled = true;
+            this.catSelectBox.Location = new System.Drawing.Point(7, 28);
+            this.catSelectBox.Name = "catSelectBox";
+            this.catSelectBox.Size = new System.Drawing.Size(175, 238);
+            this.catSelectBox.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Select category";
+            // 
+            // subCatSelectBox
+            // 
+            this.subCatSelectBox.FormattingEnabled = true;
+            this.subCatSelectBox.Location = new System.Drawing.Point(189, 28);
+            this.subCatSelectBox.Name = "subCatSelectBox";
+            this.subCatSelectBox.Size = new System.Drawing.Size(171, 238);
+            this.subCatSelectBox.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(189, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Select Subcategory";
+            // 
+            // versionBox
+            // 
+            this.versionBox.FormattingEnabled = true;
+            this.versionBox.Location = new System.Drawing.Point(367, 28);
+            this.versionBox.Name = "versionBox";
+            this.versionBox.Size = new System.Drawing.Size(146, 238);
+            this.versionBox.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(367, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Select Version";
+            // 
+            // selectLangBox
+            // 
+            this.selectLangBox.FormattingEnabled = true;
+            this.selectLangBox.Location = new System.Drawing.Point(520, 28);
+            this.selectLangBox.Name = "selectLangBox";
+            this.selectLangBox.Size = new System.Drawing.Size(143, 238);
+            this.selectLangBox.TabIndex = 6;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(520, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(128, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Select ALL installed langs";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,6 +581,8 @@
             this.predownloadedSelectionPage.PerformLayout();
             this.sendCabsPage.ResumeLayout(false);
             this.sendCabsPage.PerformLayout();
+            this.downloadPage.ResumeLayout(false);
+            this.downloadPage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -531,6 +630,15 @@
         private System.Windows.Forms.ToolStripMenuItem downloadsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changelogToolStripMenuItem;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.TabPage downloadPage;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListBox versionBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox subCatSelectBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox catSelectBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ListBox selectLangBox;
     }
 }
 

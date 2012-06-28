@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using EasyWP7Updater.Properties;
 using System.IO;
 using System.Diagnostics;
+using System.Xml;
 
 namespace EasyWP7Updater
 {
@@ -248,6 +249,15 @@ namespace EasyWP7Updater
                 Process.Start(e.Url.ToString());
                 e.Cancel = true;
             }
+        }
+        private void downloadfromMSbutton_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = downloadPage;
+            UpdateDownloadLists("sources.xml");
+        }
+        public void UpdateDownloadLists(string cablisturl)
+        {
+            //TODO: Parse an XML file containing all updates here
         }
     }
 }
