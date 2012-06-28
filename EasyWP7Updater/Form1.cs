@@ -23,11 +23,6 @@ namespace EasyWP7Updater
             webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
         }
 
-        private void viewOnGitHubToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/jessenic/EasyWP7Updater");
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Dispose();
@@ -205,6 +200,11 @@ namespace EasyWP7Updater
         {
             MessageBox.Show(this, "Current version is " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString(), "Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        #region Links
+        private void viewOnGitHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/jessenic/EasyWP7Updater");
+        }
 
         private void viewHomepageToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -240,7 +240,7 @@ namespace EasyWP7Updater
         {
             Process.Start("https://github.com/jessenic/EasyWP7Updater/commits/master");
         }
-
+        #endregion
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             if (!e.Url.ToString().StartsWith("http://jessenic.github.com/"))
