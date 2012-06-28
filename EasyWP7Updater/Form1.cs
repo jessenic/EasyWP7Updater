@@ -257,7 +257,7 @@ namespace EasyWP7Updater
         }
         public void UpdateDownloadLists(string cablisturl)
         {
-            //TODO: Parse an XML file containing all updates here
+            //TODO: Parse an XML file containing all updates here (sources.xml for testing, layout can be changed)
         }
     }
 }
