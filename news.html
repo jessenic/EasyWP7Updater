@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta name="description" content="EasyWP7Updater : Easily update your Windows Phone 7.x device without using Zune" />
+    <title>EasyWP7Updater</title>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22594028-4']);
+	 _gaq.push(['_setCustomVar',
+		  1,                   // This custom var is set to slot #1.  Required parameter.
+		  'Version',     // The name acts as a kind of category for the user activity.  Required parameter.
+		  window.location.hash.replace("#",""),               // This value of the custom variable.  Required parameter.
+		  2                    // Sets the scope to session-level.  Optional parameter.
+	   ]);
+	 _gaq.push(['_trackEvent',
+		  'General', // category of activity
+		  'Page load', // Action
+	   ]);
+	  _gaq.push(['_trackPageview']);
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+</script>
+  </head>
+
+  <body>
+	<p>Version 1.0: Initial release</p>
+	<p>Your version: <script type="text/javascript">document.write(window.location.hash.replace("#","")); </script></p>
+  </body>
+</html>
