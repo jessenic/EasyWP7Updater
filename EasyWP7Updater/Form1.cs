@@ -20,6 +20,7 @@ namespace EasyWP7Updater
             InitializeComponent();
             Version ver = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             this.Text = this.Text + " - Version " + ver.Major + "." + ver.Minor;
+            webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
         }
 
         private void viewOnGitHubToolStripMenuItem_Click(object sender, EventArgs e)
@@ -238,6 +239,15 @@ namespace EasyWP7Updater
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/jessenic/EasyWP7Updater/commits/master");
+        }
+
+        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            if (!e.Url.ToString().StartsWith("http://jessenic.github.com/"))
+            {
+                Process.Start(e.Url.ToString());
+                e.Cancel = true;
+            }
         }
     }
 }

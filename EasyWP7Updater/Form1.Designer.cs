@@ -68,6 +68,7 @@
             this.wikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -121,7 +122,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -167,7 +168,7 @@
             // startOverToolStripMenuItem
             // 
             this.startOverToolStripMenuItem.Name = "startOverToolStripMenuItem";
-            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.startOverToolStripMenuItem.Text = "Start over";
             this.startOverToolStripMenuItem.Click += new System.EventHandler(this.startOverToolStripMenuItem_Click);
             // 
@@ -195,6 +196,7 @@
             // firstPage
             // 
             this.firstPage.BackColor = System.Drawing.SystemColors.Control;
+            this.firstPage.Controls.Add(this.webBrowser1);
             this.firstPage.Controls.Add(this.label3);
             this.firstPage.Controls.Add(this.InstallDownloadedCabsButton);
             this.firstPage.Controls.Add(this.downloadFromROMProviderButton);
@@ -375,7 +377,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(264, 56);
+            this.label3.Location = new System.Drawing.Point(7, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(291, 13);
             this.label3.TabIndex = 5;
@@ -445,6 +447,18 @@
             this.changelogToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.changelogToolStripMenuItem.Text = "Changelog";
             this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser1.Location = new System.Drawing.Point(319, 4);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(344, 264);
+            this.webBrowser1.TabIndex = 6;
+            this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
+            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
             // 
             // Form1
             // 
@@ -516,6 +530,7 @@
         private System.Windows.Forms.ToolStripMenuItem wikiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downloadsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changelogToolStripMenuItem;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
 
