@@ -257,7 +257,10 @@ namespace EasyWP7Updater
         }
         public void UpdateDownloadLists(string cablisturl)
         {
-            //TODO: Parse an XML file containing all updates here (sources.xml for testing, layout can be changed)
+            //TODO: Further testing for parsing function required
+            //TODO: Set the itemsource for the category control
+            string filename = Directory.GetCurrentDirectory()+@"\sources.xml";
+            List<Packages.Category> categories = Packages.Packages.GetFromXml(filename);
         }
     }
 }

@@ -1,4 +1,38 @@
 <Categories>
+  <Category>
+    <Name>Testcategory</Name>
+    <Type>Test</Type>
+    <Subcategory>
+			<Name>SC1</Name>
+			<FromVersion>7.10.8107.79</FromVersion>
+			<Version>7.10.8112.7</Version>
+			<Item>
+				<Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft-pluspkr.pks_d500a10eeb11fb6c1913adac4759d67185474d3e.cab</Download>
+				<Description></Description>
+				<Type>os</Type>
+			</Item>
+			<Item>
+				<Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.dpi_262.pks_24bb20423e86130365686c1796577d4b22343be9.cab</Download>
+				<Description></Description>
+				<Type>os</Type>
+			</Item>
+    </Subcategory>
+    <Subcategory>
+			<Name>SC2</Name>
+			<FromVersion>7.10.8107.79</FromVersion>
+			<Version>7.10.8112.7</Version>
+			<Item>
+				<Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft-pluspkr.pks_d500a10eeb11fb6c1913adac4759d67185474d3e.cab</Download>
+				<Description></Description>
+				<Type>os</Type>
+			</Item>
+			<Item>
+				<Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.dpi_262.pks_24bb20423e86130365686c1796577d4b22343be9.cab</Download>
+				<Description></Description>
+				<Type>os</Type>
+			</Item>
+    </Subcategory>
+  </Category>
 	<Category>
 		<Name>OS Updates</Name>
 		<Type>os</Type>
@@ -149,5 +183,5 @@
 				<LangId></LangId>
 			</Item>-->
 		</Subcategory>
-	<Category>
+	</Category>
 </Categories>
