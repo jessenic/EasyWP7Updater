@@ -12,7 +12,8 @@ namespace EasyWP7Updater.Update
         {
             Error,
             Warning,
-            Info
+            Info,
+            Log
         }
 
         public string Message { get; private set; }

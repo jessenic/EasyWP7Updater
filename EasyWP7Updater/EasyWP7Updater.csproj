@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EasyWP7Updater</RootNamespace>
     <AssemblyName>EasyWP7Updater</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -27,6 +27,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>EasyWP7Updater.Program</StartupObject>
@@ -64,6 +65,11 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsMobile.DeviceUpdate, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tools\x64\Microsoft.WindowsMobile.DeviceUpdate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -75,6 +81,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DeviceMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\ErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,9 +104,11 @@
     <Compile Include="Packages\Info\VersionInformation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Update\BindableDeviceInformation.cs" />
     <Compile Include="Update\DeviceInfo.cs" />
+    <Compile Include="Update\DeviceManagerSingleton.cs" />
     <Compile Include="Update\UpdateMessageEventArgs.cs" />
-    <Compile Include="Update\UpdateWP.cs" />
+    <Compile Include="Update\DeviceService.cs" />
     <Compile Include="Forms\WarningForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +132,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Forms\WarningForm.resx">
       <DependentUpon>WarningForm.cs</DependentUpon>

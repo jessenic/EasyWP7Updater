@@ -32,6 +32,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.devicesSelectMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +97,8 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripProgressBar1});
+            this.toolStripProgressBar1,
+            this.devicesSelectMenu});
             this.statusStrip1.Location = new System.Drawing.Point(0, 367);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(704, 22);
@@ -113,6 +115,15 @@
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
+            // devicesSelectMenu
+            // 
+            this.devicesSelectMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.devicesSelectMenu.Image = ((System.Drawing.Image)(resources.GetObject("devicesSelectMenu.Image")));
+            this.devicesSelectMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.devicesSelectMenu.Name = "devicesSelectMenu";
+            this.devicesSelectMenu.Size = new System.Drawing.Size(60, 20);
+            this.devicesSelectMenu.Text = "Devices";
             // 
             // menuStrip1
             // 
@@ -315,7 +326,7 @@
             this.firstPage.Location = new System.Drawing.Point(4, 22);
             this.firstPage.Name = "firstPage";
             this.firstPage.Padding = new System.Windows.Forms.Padding(3);
-            this.firstPage.Size = new System.Drawing.Size(669, 274);
+            this.firstPage.Size = new System.Drawing.Size(671, 310);
             this.firstPage.TabIndex = 0;
             this.firstPage.Text = "Selection page";
             // 
@@ -390,7 +401,7 @@
             this.predownloadedSelectionPage.Location = new System.Drawing.Point(4, 22);
             this.predownloadedSelectionPage.Name = "predownloadedSelectionPage";
             this.predownloadedSelectionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.predownloadedSelectionPage.Size = new System.Drawing.Size(669, 274);
+            this.predownloadedSelectionPage.Size = new System.Drawing.Size(671, 310);
             this.predownloadedSelectionPage.TabIndex = 1;
             this.predownloadedSelectionPage.Text = "Select downloaded cabs";
             // 
@@ -633,6 +644,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Easy WP7.x Updater";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -708,6 +720,7 @@
         private System.Windows.Forms.ToolStripMenuItem twitterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem xDAToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ToolStripDropDownButton devicesSelectMenu;
     }
 }
 

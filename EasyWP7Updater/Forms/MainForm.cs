@@ -16,7 +16,7 @@ namespace EasyWP7Updater.Forms
 {
     public partial class MainForm : Form
     {
-        UpdateWP updateHelper;
+        DeviceService deviceService;
         public bool doBackup = true;
         public static string[] cabsToSend;
 
@@ -26,8 +26,31 @@ namespace EasyWP7Updater.Forms
             Version ver = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             this.Text = this.Text + " - Version " + ver.Major + "." + ver.Minor;
             webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
-            updateHelper = new UpdateWP();
-            updateHelper.OnUpdateWPMessageSent += new UpdateWP.UpdateWPMessageEventhandler(handleUpdateMessage);
+            deviceService = new DeviceService();
+            deviceService.OnUpdateWPMessageSent += new DeviceService.UpdateWPMessageEventhandler(handleUpdateMessage);
+            deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
+            refreshDevices();
+        }
+
+        private void updateHelper_OnDevicesChanged(object sender, List<BindableDeviceInformation> Devices)
+        {
+            refreshDevices();
+        }
+
+        private void refreshDevices()
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(refreshDevices));
+            }
+            else
+            {
+                devicesSelectMenu.DropDownItems.Clear();
+                foreach (BindableDeviceInformation device in deviceService.Devices)
+                {
+                    devicesSelectMenu.DropDownItems.Add(new Controls.DeviceMenuItem(device));
+                }
+            }
         }
 
         private void handleUpdateMessage(object sender, UpdateMessageEventArgs args)
@@ -43,12 +66,15 @@ namespace EasyWP7Updater.Forms
                 case UpdateMessageEventArgs.MessageType.Warning:
                     MessageBox.Show(args.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
+                case UpdateMessageEventArgs.MessageType.Log:
+                    AppendLog(args.Message);
+                    break;
             }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -86,8 +112,8 @@ namespace EasyWP7Updater.Forms
             if (selectedCabsView.Items.Count > 0)
             {
                 tabControl1.SelectedTab = sendCabsPage;
-                DeviceInfo di = updateHelper.getDeviceInfo();
-                AppendLog("Ready to send cabs to " + di.Name + " (" + di.Make + " " + di.Model + ").");
+                /*DeviceInfo di = updateHelper.getDeviceInfo();
+                AppendLog("Ready to send cabs to " + di.Name + " (" + di.Make + " " + di.Model + ").");*/
             }
             else
             {
@@ -179,7 +205,7 @@ namespace EasyWP7Updater.Forms
 
         private void sendCabThread_DoWork(object sender, DoWorkEventArgs e)
         {
-            Process p = UpdateWP.sendCabs(doBackup, cabsToSend);
+            Process p = DeviceService.sendCabs(doBackup, cabsToSend);
             p.OutputDataReceived += DataReceived;
             p.ErrorDataReceived += ErrorReceived;
             p.Start();
@@ -343,6 +369,13 @@ namespace EasyWP7Updater.Forms
         private void selectLangBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            deviceService.Dispose();
+            DeviceManagerSingleton.Cleanup();
+            deviceService = null;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace EasyWP7Updater.Update
     /// <summary>
     /// Contains information about a device
     /// </summary>
-    public struct DeviceInfo
+    /*public struct DeviceInfo
     {
         // Properties
         public bool DeviceConnected { get; set; }
@@ -26,5 +26,5 @@ namespace EasyWP7Updater.Update
         public string OSVersion { get; set; }
         public string PnPPath { get; set; }
         //public string UniqueIdentifier { get; set; }
-    }
+    }*/
 }
