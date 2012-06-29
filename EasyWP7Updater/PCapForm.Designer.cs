@@ -36,6 +36,8 @@
             this.testButton = new System.Windows.Forms.Button();
             this.captureWorker = new System.ComponentModel.BackgroundWorker();
             this.foundCabsBox = new System.Windows.Forms.ListBox();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // label1
@@ -72,6 +74,7 @@
             // deviceBox
             // 
             this.deviceBox.FormattingEnabled = true;
+            this.deviceBox.HorizontalExtent = 10000;
             this.deviceBox.HorizontalScrollbar = true;
             this.deviceBox.Location = new System.Drawing.Point(12, 52);
             this.deviceBox.Name = "deviceBox";
@@ -95,7 +98,7 @@
             this.testButton.Name = "testButton";
             this.testButton.Size = new System.Drawing.Size(75, 23);
             this.testButton.TabIndex = 5;
-            this.testButton.Text = "Test";
+            this.testButton.Text = "Test device";
             this.testButton.UseVisualStyleBackColor = true;
             this.testButton.Click += new System.EventHandler(this.testButton_Click);
             // 
@@ -107,16 +110,38 @@
             // foundCabsBox
             // 
             this.foundCabsBox.FormattingEnabled = true;
+            this.foundCabsBox.HorizontalExtent = 10000;
+            this.foundCabsBox.HorizontalScrollbar = true;
             this.foundCabsBox.Location = new System.Drawing.Point(12, 128);
             this.foundCabsBox.Name = "foundCabsBox";
+            this.foundCabsBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.foundCabsBox.Size = new System.Drawing.Size(697, 108);
             this.foundCabsBox.TabIndex = 6;
+            this.foundCabsBox.SelectedIndexChanged += new System.EventHandler(this.foundCabsBox_SelectedIndexChanged);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Enabled = false;
+            this.saveButton.Location = new System.Drawing.Point(458, 247);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(89, 23);
+            this.saveButton.TabIndex = 7;
+            this.saveButton.Text = "Save selected";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "txt";
+            this.saveFileDialog1.FileName = "CabSniffLog";
+            this.saveFileDialog1.Title = "Save Cab Sniff logs";
             // 
             // PCapForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 282);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.foundCabsBox);
             this.Controls.Add(this.testButton);
             this.Controls.Add(this.label2);
@@ -126,6 +151,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PCapForm";
             this.Text = "Zune Update sniffer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PCapForm_FormClosing);
             this.Load += new System.EventHandler(this.PCapForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -142,5 +168,7 @@
         private System.Windows.Forms.Button testButton;
         private System.ComponentModel.BackgroundWorker captureWorker;
         private System.Windows.Forms.ListBox foundCabsBox;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

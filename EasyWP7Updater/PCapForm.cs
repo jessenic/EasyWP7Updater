@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using SharpPcap;
 using System.Threading;
 using PacketDotNet;
+using System.Net;
+using System.IO;
 
 namespace EasyWP7Updater
 {
@@ -21,33 +23,47 @@ namespace EasyWP7Updater
 
         private void PCapForm_Load(object sender, EventArgs e)
         {
-            // Print SharpPcap version 
-            string ver = SharpPcap.Version.VersionString;
-            Console.WriteLine("SharpPcap {0}, Example1.IfList.cs", ver);
-
-            // Retrieve the device list
-            CaptureDeviceList devices = CaptureDeviceList.Instance;
-
-            // If no devices were found print an error
-            if (devices.Count < 1)
+            try
             {
-                Console.WriteLine("No devices were found on this machine");
-            }
-            else
-            {
-                foreach (ICaptureDevice dev in devices)
+                // Print SharpPcap version 
+                string ver = SharpPcap.Version.VersionString;
+                Console.WriteLine("SharpPcap {0}, Example1.IfList.cs", ver);
+
+                // Retrieve the device list
+                CaptureDeviceList devices = CaptureDeviceList.Instance;
+
+                // If no devices were found print an error
+                if (devices.Count < 1)
                 {
-                    deviceBox.Items.Add(dev);
+                    Console.WriteLine("No devices were found on this machine");
+                    MessageBox.Show(this, "Error accessing network cards. Make sure you have latest version of WinPcap installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else
+                {
+                    foreach (ICaptureDevice dev in devices)
+                    {
+                        deviceBox.Items.Add(dev);
+                    }
+                }
+                runWorker = true;
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Error accessing network cards. Make sure you have latest version of WinPcap installed. Error description: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void deviceBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            startButton.Enabled = true;
-            testButton.Enabled = true;
-            selectedCaptureDevice = (ICaptureDevice)deviceBox.SelectedItem;
+            if (deviceBox.SelectedItem != null)
+            {
+                if (!captureWorker.IsBusy)
+                {
+                    startButton.Enabled = true;
+                    testButton.Enabled = true;
+                    selectedCaptureDevice = (ICaptureDevice)deviceBox.SelectedItem;
+                }
+            }
         }
 
         private delegate void AddCabToBoxCallback(string cab);
@@ -61,37 +77,48 @@ namespace EasyWP7Updater
         private void AddCabToBox(string cab)
         {
             foundCabsBox.Items.Add(cab);
+            foundCabsBox.SelectedItems.Add(cab);
+            if (testing)
+            {
+                runWorker = false;
+                testing = false;
+                MessageBox.Show(this, "This adapter is the one you use for internet! Please use this when sniffing Zune updates.", "Testing done!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
-
+        private static bool runWorker = true;
+        private static bool testing = false;
         private static ICaptureDevice selectedCaptureDevice;
         private void captureWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            // Extract a device from the list
-            ICaptureDevice device = selectedCaptureDevice;
+            try
+            {
+                // Extract a device from the list
+                ICaptureDevice device = selectedCaptureDevice;
 
-            // Register our handler function to the
-            // 'packet arrival' event
-            device.OnPacketArrival +=
-                new SharpPcap.PacketArrivalEventHandler(device_OnPacketArrival);
+                // Register our handler function to the
+                // 'packet arrival' event
+                device.OnPacketArrival +=
+                    new SharpPcap.PacketArrivalEventHandler(device_OnPacketArrival);
 
-            // Open the device for capturing
-            int readTimeoutMilliseconds = 1000;
-            device.Open(DeviceMode.Promiscuous, readTimeoutMilliseconds);
+                // Open the device for capturing
+                int readTimeoutMilliseconds = 1000;
+                device.Open(DeviceMode.Promiscuous, readTimeoutMilliseconds);
 
-            Console.WriteLine("-- Listening on {0} for 10 seconds",
-                device.Description);
+                Console.WriteLine("-- Listening on {0}", device.Description);
 
-            // Start the capturing process
-            device.StartCapture();
+                // Start the capturing process
+                device.StartCapture();
 
-            //Wait 60s
-            Thread.Sleep(60000);
+                //Loop until cancelled
+                while (runWorker) { }
 
-            // Stop the capturing process
-            device.StopCapture();
+                // Stop the capturing process
+                device.StopCapture();
 
-            // Close the pcap device
-            device.Close();
+                // Close the pcap device
+                device.Close();
+            }
+            catch (Exception) { }
         }
 
         /// <summary>
@@ -120,25 +147,89 @@ namespace EasyWP7Updater
 
         private void captureWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Console.WriteLine("captureWorked done.");
+            Console.WriteLine("captureWorker done.");
+            testButton.Enabled = true;
+            startButton.Text = "Start sniffing";
+            deviceBox.Enabled = true;
+            runWorker = true;
         }
 
         private void testButton_Click(object sender, EventArgs e)
         {
             if (!captureWorker.IsBusy)
             {
+                testing = true;
+                runWorker = true;
                 captureWorker.RunWorkerAsync();
+                testButton.Enabled = false;
+                startButton.Text = "Stop testing";
+                deviceBox.Enabled = false;
+                WebClient wc = new WebClient();
+                wc.DownloadDataCompleted += new DownloadDataCompletedEventHandler(wc_DownloadDataCompleted);
+                wc.DownloadDataAsync(new Uri(@"http://download.windowsupdate.com/msdownload/update/software/dflt/2011/05/311983_ak7004_uldr.pks_afd84eaa79b0fbca528675950d3203820e457a4f.cab"));
             }
+        }
+        private void wc_DownloadDataCompleted(object sender, EventArgs e)
+        {
+            Console.WriteLine("Test done.");
+            runWorker = false;
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Use the test button and it will sniff cabs for 60s, this feature is not fully implemented yet!");
+            if (!captureWorker.IsBusy)
+            {
+                runWorker = true;
+                captureWorker.RunWorkerAsync();
+                testButton.Enabled = false;
+                startButton.Text = "Stop sniffing";
+                deviceBox.Enabled = false;
+            }
+            else
+            {
+                runWorker = false;
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.winpcap.org/install/");
+        }
+
+        private void PCapForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            runWorker = false;
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+            string file = saveFileDialog1.FileName;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Please post this on http://forum.xda-developers.com/showthread.php?t=1739638");
+            int i = 0;
+            foreach (string item in foundCabsBox.Items)
+            {
+                sb.AppendLine("=== Sniffed cab " + i + " ===");
+                sb.AppendLine(item);
+                sb.AppendLine();
+                sb.AppendLine();
+                i++;
+            }
+            using (StreamWriter outfile =
+                new StreamWriter(file))
+            {
+                outfile.Write(sb.ToString());
+            }
+
+        }
+
+        private void foundCabsBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (foundCabsBox.SelectedItems != null)
+            {
+                saveButton.Enabled = true;
+            }
         }
     }
 }
