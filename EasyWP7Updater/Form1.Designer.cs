@@ -78,6 +78,7 @@
             this.subCatSelectBox = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.catSelectBox = new System.Windows.Forms.ListBox();
+            this.captureZuneUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -124,6 +125,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startOverToolStripMenuItem,
+            this.captureZuneUpdatesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -132,14 +134,14 @@
             // startOverToolStripMenuItem
             // 
             this.startOverToolStripMenuItem.Name = "startOverToolStripMenuItem";
-            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.startOverToolStripMenuItem.Text = "Start over";
             this.startOverToolStripMenuItem.Click += new System.EventHandler(this.startOverToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -560,6 +562,13 @@
             this.catSelectBox.TabIndex = 0;
             this.catSelectBox.SelectedIndexChanged += new System.EventHandler(this.catSelectBox_SelectedIndexChanged);
             // 
+            // captureZuneUpdatesToolStripMenuItem
+            // 
+            this.captureZuneUpdatesToolStripMenuItem.Name = "captureZuneUpdatesToolStripMenuItem";
+            this.captureZuneUpdatesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.captureZuneUpdatesToolStripMenuItem.Text = "Capture Zune Updates";
+            this.captureZuneUpdatesToolStripMenuItem.Click += new System.EventHandler(this.captureZuneUpdatesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -642,6 +651,7 @@
         private System.Windows.Forms.ListBox catSelectBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox selectLangBox;
+        private System.Windows.Forms.ToolStripMenuItem captureZuneUpdatesToolStripMenuItem;
     }
 }
 

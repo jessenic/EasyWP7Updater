@@ -288,5 +288,11 @@ namespace EasyWP7Updater
         {
             //TODO: Fill this part too
         }
+
+        private void captureZuneUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PCapForm pcform = new PCapForm();
+            pcform.Show();
+        }
     }
 }
