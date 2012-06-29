@@ -10,11 +10,11 @@ namespace EasyWP7Updater.Update
     class UpdateWP
     {
         public static string updateWPPath;
-        public System.Windows.Forms.Form parentForm;
+        public delegate void UpdateWPMessageEventhandler(object sender, UpdateMessageEventArgs args);
+        public event UpdateWPMessageEventhandler OnUpdateWPMessageSent;
 
-        public UpdateWP(System.Windows.Forms.Form parentForm)
+        public UpdateWP()
         {
-            this.parentForm = parentForm;
             updateWPPath = Path.Combine(Path.GetDirectoryName(new Uri(base.GetType().Assembly.CodeBase).LocalPath), (Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE") == "x86") ? "tools\\x86" : "tools\\x64");
         }
 
@@ -95,16 +95,28 @@ namespace EasyWP7Updater.Update
                 }
                 else if (line.ToLower().StartsWith("error"))
                 {
-                    System.Windows.Forms.MessageBox.Show(parentForm, line, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    raiseMessageSent(line, UpdateMessageEventArgs.MessageType.Error);
                 }
             }
             line = null;
             while ((line = p.StandardError.ReadLine()) != null)
             {
-                System.Windows.Forms.MessageBox.Show(parentForm, line, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                raiseMessageSent(line, UpdateMessageEventArgs.MessageType.Error);
             }
             di.DeviceConnected = true;
             return di;
+        }
+
+        private void raiseMessageSent(string message)
+        {
+            if (OnUpdateWPMessageSent != null)
+                OnUpdateWPMessageSent(this, new UpdateMessageEventArgs(message));
+        }
+
+        private void raiseMessageSent(string message, UpdateMessageEventArgs.MessageType type)
+        {
+            if(OnUpdateWPMessageSent != null)
+                OnUpdateWPMessageSent(this, new UpdateMessageEventArgs(message, type));
         }
     }
 }

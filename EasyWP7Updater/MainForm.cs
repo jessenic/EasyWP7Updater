@@ -17,6 +17,8 @@ namespace EasyWP7Updater
     public partial class MainForm : Form
     {
         UpdateWP updateHelper;
+        public bool doBackup = true;
+        public static string[] cabsToSend;
 
         public MainForm()
         {
@@ -24,6 +26,8 @@ namespace EasyWP7Updater
             Version ver = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             this.Text = this.Text + " - Version " + ver.Major + "." + ver.Minor;
             webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
+            updateHelper = new UpdateWP();
+            updateHelper.OnUpdateWPMessageSent += new UpdateWP.UpdateWPMessageEventhandler(handleUpdateMessage);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,7 +53,22 @@ namespace EasyWP7Updater
                 }
             }
 #endif
-            updateHelper = new UpdateWP(this);
+        }
+
+        private void handleUpdateMessage(object sender, UpdateMessageEventArgs args)
+        {
+            switch (args.Type)
+            {
+                case UpdateMessageEventArgs.MessageType.Error:
+                    MessageBox.Show(args.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case UpdateMessageEventArgs.MessageType.Info:
+                    MessageBox.Show(args.Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case UpdateMessageEventArgs.MessageType.Warning:
+                    MessageBox.Show(args.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+            }
         }
 
         private void InstallDownloadedCabsButton_Click(object sender, EventArgs e)
@@ -85,7 +104,6 @@ namespace EasyWP7Updater
             }
         }
 
-
         private void addCabToList(string file)
         {
             bool has = false;
@@ -106,6 +124,7 @@ namespace EasyWP7Updater
             }
 
         }
+
         private void removeSelectedButton_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem lvi in selectedCabsView.SelectedItems)
@@ -126,8 +145,7 @@ namespace EasyWP7Updater
         {
             SendCabs(true);
         }
-        public bool doBackup = true;
-        public static string[] cabsToSend;
+
         private void SendCabs(bool backup)
         {
             if (!sendCabThread.IsBusy)
@@ -144,17 +162,19 @@ namespace EasyWP7Updater
                 sendCabThread.RunWorkerAsync();
             }
         }
+
         public void DataReceived(object sender, DataReceivedEventArgs e)
         {
             // e.Data is the line which was written to standard output
             System.Console.WriteLine(e.Data);
-            AppendLogFromThread(e.Data);
+            AppendLog(e.Data);
         }
+
         public void ErrorReceived(object sender, DataReceivedEventArgs e)
         {
             // e.Data is the line which was written to standard output
             System.Console.Error.WriteLine(e.Data);
-            AppendLogFromThread("ERROR: " + e.Data);
+            AppendLog("ERROR: " + e.Data);
         }
 
         private void sendCabThread_DoWork(object sender, DoWorkEventArgs e)
@@ -172,21 +192,21 @@ namespace EasyWP7Updater
         {
             AppendLog("Done!");
         }
-        private delegate void AppendLogCallback(string line);
-        private void AppendLogFromThread(string line)
-        {
-            AppendLogCallback callback = new AppendLogCallback(AppendLog);
-            this.Invoke(callback, new object[] { line });
-
-        }
 
         private void AppendLog(string line)
         {
-            StringBuilder sb = new StringBuilder(logBox.Text);
-            sb.AppendLine(line);
-            logBox.Text = sb.ToString();
-            logBox.SelectionStart = logBox.Text.Length;
-            logBox.ScrollToCaret();
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action<string>(AppendLog), line);
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder(logBox.Text);
+                sb.AppendLine(line);
+                logBox.Text = sb.ToString();
+                logBox.SelectionStart = logBox.Text.Length;
+                logBox.ScrollToCaret();
+            }
         }
 
         private void selectedCabsView_DragEnter(object sender, DragEventArgs e)
@@ -266,16 +286,18 @@ namespace EasyWP7Updater
                 e.Cancel = true;
             }
         }
+
         private void downloadfromMSbutton_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = downloadPage;
             UpdateDownloadLists("sources.xml");
         }
-        public void UpdateDownloadLists(string cablisturl)
+
+        private void UpdateDownloadLists(string cablisturl)
         {
             //TODO: Further testing for parsing function required
             //TODO: Set the itemsource for the category control
-            string filename = Directory.GetCurrentDirectory()+@"\sources.xml";
+            string filename = Directory.GetCurrentDirectory() + @"\sources.xml";
             List<Packages.Info.Category> categories = Packages.Packages.GetFromXml(filename);
             catSelectBox.Items.Clear();
             catSelectBox.Items.AddRange(categories.ToArray());
