@@ -34,15 +34,27 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewHomepageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewOnGitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sourceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.issuesBugReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jessenicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xDAForumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.sendCabThread = new System.ComponentModel.BackgroundWorker();
             this.tabControl1 = new EasyWP7Updater.WizardPages();
             this.firstPage = new System.Windows.Forms.TabPage();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.label3 = new System.Windows.Forms.Label();
             this.InstallDownloadedCabsButton = new System.Windows.Forms.Button();
             this.downloadFromROMProviderButton = new System.Windows.Forms.Button();
             this.downloadfromMSbutton = new System.Windows.Forms.Button();
@@ -57,27 +69,15 @@
             this.logBox = new System.Windows.Forms.TextBox();
             this.sendWithoutBackupButton = new System.Windows.Forms.Button();
             this.sendWithBackupButton = new System.Windows.Forms.Button();
-            this.sendCabThread = new System.ComponentModel.BackgroundWorker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.jessenicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xDAForumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewHomepageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sourceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.issuesBugReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.downloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.downloadPage = new System.Windows.Forms.TabPage();
-            this.catSelectBox = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.subCatSelectBox = new System.Windows.Forms.ListBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.versionBox = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.selectLangBox = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.selectLangBox = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.versionBox = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.subCatSelectBox = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.catSelectBox = new System.Windows.Forms.ListBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -129,10 +129,17 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // startOverToolStripMenuItem
+            // 
+            this.startOverToolStripMenuItem.Name = "startOverToolStripMenuItem";
+            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.startOverToolStripMenuItem.Text = "Start over";
+            this.startOverToolStripMenuItem.Click += new System.EventHandler(this.startOverToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -147,6 +154,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             // 
+            // viewHomepageToolStripMenuItem
+            // 
+            this.viewHomepageToolStripMenuItem.Name = "viewHomepageToolStripMenuItem";
+            this.viewHomepageToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.viewHomepageToolStripMenuItem.Text = "View homepage";
+            this.viewHomepageToolStripMenuItem.Click += new System.EventHandler(this.viewHomepageToolStripMenuItem_Click);
+            // 
             // viewOnGitHubToolStripMenuItem
             // 
             this.viewOnGitHubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -160,6 +174,41 @@
             this.viewOnGitHubToolStripMenuItem.Text = "View on GitHub";
             this.viewOnGitHubToolStripMenuItem.Click += new System.EventHandler(this.viewOnGitHubToolStripMenuItem_Click);
             // 
+            // sourceCodeToolStripMenuItem
+            // 
+            this.sourceCodeToolStripMenuItem.Name = "sourceCodeToolStripMenuItem";
+            this.sourceCodeToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.sourceCodeToolStripMenuItem.Text = "Source Code";
+            this.sourceCodeToolStripMenuItem.Click += new System.EventHandler(this.viewOnGitHubToolStripMenuItem_Click);
+            // 
+            // changelogToolStripMenuItem
+            // 
+            this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
+            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.changelogToolStripMenuItem.Text = "Changelog";
+            this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click);
+            // 
+            // issuesBugReportsToolStripMenuItem
+            // 
+            this.issuesBugReportsToolStripMenuItem.Name = "issuesBugReportsToolStripMenuItem";
+            this.issuesBugReportsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.issuesBugReportsToolStripMenuItem.Text = "Issues and Bug reports";
+            this.issuesBugReportsToolStripMenuItem.Click += new System.EventHandler(this.issuesBugReportsToolStripMenuItem_Click);
+            // 
+            // wikiToolStripMenuItem
+            // 
+            this.wikiToolStripMenuItem.Name = "wikiToolStripMenuItem";
+            this.wikiToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.wikiToolStripMenuItem.Text = "Wiki";
+            this.wikiToolStripMenuItem.Click += new System.EventHandler(this.wikiToolStripMenuItem_Click);
+            // 
+            // downloadsToolStripMenuItem
+            // 
+            this.downloadsToolStripMenuItem.Name = "downloadsToolStripMenuItem";
+            this.downloadsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.downloadsToolStripMenuItem.Text = "Downloads";
+            this.downloadsToolStripMenuItem.Click += new System.EventHandler(this.downloadsToolStripMenuItem_Click);
+            // 
             // creditsToolStripMenuItem
             // 
             this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -168,6 +217,29 @@
             this.creditsToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.creditsToolStripMenuItem.Text = "Made by...";
             // 
+            // jessenicToolStripMenuItem
+            // 
+            this.jessenicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.twitterToolStripMenuItem,
+            this.xDAForumsToolStripMenuItem});
+            this.jessenicToolStripMenuItem.Name = "jessenicToolStripMenuItem";
+            this.jessenicToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.jessenicToolStripMenuItem.Text = "jessenic";
+            // 
+            // twitterToolStripMenuItem
+            // 
+            this.twitterToolStripMenuItem.Name = "twitterToolStripMenuItem";
+            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.twitterToolStripMenuItem.Text = "Twitter";
+            this.twitterToolStripMenuItem.Click += new System.EventHandler(this.twitterToolStripMenuItem_Click);
+            // 
+            // xDAForumsToolStripMenuItem
+            // 
+            this.xDAForumsToolStripMenuItem.Name = "xDAForumsToolStripMenuItem";
+            this.xDAForumsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.xDAForumsToolStripMenuItem.Text = "XDA Forums";
+            this.xDAForumsToolStripMenuItem.Click += new System.EventHandler(this.xDAForumsToolStripMenuItem_Click);
+            // 
             // versionToolStripMenuItem
             // 
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
@@ -175,19 +247,17 @@
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.versionToolStripMenuItem_Click);
             // 
-            // startOverToolStripMenuItem
-            // 
-            this.startOverToolStripMenuItem.Name = "startOverToolStripMenuItem";
-            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.startOverToolStripMenuItem.Text = "Start over";
-            this.startOverToolStripMenuItem.Click += new System.EventHandler(this.startOverToolStripMenuItem_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.DefaultExt = "cab";
             this.openFileDialog1.Filter = "CAB files|*.cab|All Files|*.*";
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.Title = "Select cabs";
+            // 
+            // sendCabThread
+            // 
+            this.sendCabThread.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sendCabThread_DoWork);
+            this.sendCabThread.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.sendCabThread_RunWorkerCompleted);
             // 
             // tabControl1
             // 
@@ -219,6 +289,27 @@
             this.firstPage.Size = new System.Drawing.Size(669, 274);
             this.firstPage.TabIndex = 0;
             this.firstPage.Text = "Selection page";
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser1.Location = new System.Drawing.Point(319, 4);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(344, 264);
+            this.webBrowser1.TabIndex = 6;
+            this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
+            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(291, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Downloading is not implemented yet, but it will be super easy";
             // 
             // InstallDownloadedCabsButton
             // 
@@ -380,97 +471,6 @@
             this.sendWithBackupButton.UseVisualStyleBackColor = true;
             this.sendWithBackupButton.Click += new System.EventHandler(this.sendWithBackupButton_Click);
             // 
-            // sendCabThread
-            // 
-            this.sendCabThread.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sendCabThread_DoWork);
-            this.sendCabThread.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.sendCabThread_RunWorkerCompleted);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(291, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Downloading is not implemented yet, but it will be super easy";
-            // 
-            // jessenicToolStripMenuItem
-            // 
-            this.jessenicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.twitterToolStripMenuItem,
-            this.xDAForumsToolStripMenuItem});
-            this.jessenicToolStripMenuItem.Name = "jessenicToolStripMenuItem";
-            this.jessenicToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.jessenicToolStripMenuItem.Text = "jessenic";
-            // 
-            // twitterToolStripMenuItem
-            // 
-            this.twitterToolStripMenuItem.Name = "twitterToolStripMenuItem";
-            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.twitterToolStripMenuItem.Text = "Twitter";
-            this.twitterToolStripMenuItem.Click += new System.EventHandler(this.twitterToolStripMenuItem_Click);
-            // 
-            // xDAForumsToolStripMenuItem
-            // 
-            this.xDAForumsToolStripMenuItem.Name = "xDAForumsToolStripMenuItem";
-            this.xDAForumsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xDAForumsToolStripMenuItem.Text = "XDA Forums";
-            this.xDAForumsToolStripMenuItem.Click += new System.EventHandler(this.xDAForumsToolStripMenuItem_Click);
-            // 
-            // viewHomepageToolStripMenuItem
-            // 
-            this.viewHomepageToolStripMenuItem.Name = "viewHomepageToolStripMenuItem";
-            this.viewHomepageToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.viewHomepageToolStripMenuItem.Text = "View homepage";
-            this.viewHomepageToolStripMenuItem.Click += new System.EventHandler(this.viewHomepageToolStripMenuItem_Click);
-            // 
-            // sourceCodeToolStripMenuItem
-            // 
-            this.sourceCodeToolStripMenuItem.Name = "sourceCodeToolStripMenuItem";
-            this.sourceCodeToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.sourceCodeToolStripMenuItem.Text = "Source Code";
-            this.sourceCodeToolStripMenuItem.Click += new System.EventHandler(this.viewOnGitHubToolStripMenuItem_Click);
-            // 
-            // issuesBugReportsToolStripMenuItem
-            // 
-            this.issuesBugReportsToolStripMenuItem.Name = "issuesBugReportsToolStripMenuItem";
-            this.issuesBugReportsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.issuesBugReportsToolStripMenuItem.Text = "Issues and Bug reports";
-            this.issuesBugReportsToolStripMenuItem.Click += new System.EventHandler(this.issuesBugReportsToolStripMenuItem_Click);
-            // 
-            // wikiToolStripMenuItem
-            // 
-            this.wikiToolStripMenuItem.Name = "wikiToolStripMenuItem";
-            this.wikiToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.wikiToolStripMenuItem.Text = "Wiki";
-            this.wikiToolStripMenuItem.Click += new System.EventHandler(this.wikiToolStripMenuItem_Click);
-            // 
-            // downloadsToolStripMenuItem
-            // 
-            this.downloadsToolStripMenuItem.Name = "downloadsToolStripMenuItem";
-            this.downloadsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.downloadsToolStripMenuItem.Text = "Downloads";
-            this.downloadsToolStripMenuItem.Click += new System.EventHandler(this.downloadsToolStripMenuItem_Click);
-            // 
-            // changelogToolStripMenuItem
-            // 
-            this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.changelogToolStripMenuItem.Text = "Changelog";
-            this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(319, 4);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(344, 264);
-            this.webBrowser1.TabIndex = 6;
-            this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
-            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
-            // 
             // downloadPage
             // 
             this.downloadPage.BackColor = System.Drawing.SystemColors.Control;
@@ -489,47 +489,23 @@
             this.downloadPage.TabIndex = 3;
             this.downloadPage.Text = "Download Page";
             // 
-            // catSelectBox
+            // label7
             // 
-            this.catSelectBox.FormattingEnabled = true;
-            this.catSelectBox.Location = new System.Drawing.Point(7, 28);
-            this.catSelectBox.Name = "catSelectBox";
-            this.catSelectBox.Size = new System.Drawing.Size(175, 238);
-            this.catSelectBox.TabIndex = 0;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(520, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(128, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Select ALL installed langs";
             // 
-            // label4
+            // selectLangBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Select category";
-            // 
-            // subCatSelectBox
-            // 
-            this.subCatSelectBox.FormattingEnabled = true;
-            this.subCatSelectBox.Location = new System.Drawing.Point(189, 28);
-            this.subCatSelectBox.Name = "subCatSelectBox";
-            this.subCatSelectBox.Size = new System.Drawing.Size(171, 238);
-            this.subCatSelectBox.TabIndex = 2;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(189, 7);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Select Subcategory";
-            // 
-            // versionBox
-            // 
-            this.versionBox.FormattingEnabled = true;
-            this.versionBox.Location = new System.Drawing.Point(367, 28);
-            this.versionBox.Name = "versionBox";
-            this.versionBox.Size = new System.Drawing.Size(146, 238);
-            this.versionBox.TabIndex = 4;
+            this.selectLangBox.FormattingEnabled = true;
+            this.selectLangBox.Location = new System.Drawing.Point(520, 28);
+            this.selectLangBox.Name = "selectLangBox";
+            this.selectLangBox.Size = new System.Drawing.Size(143, 238);
+            this.selectLangBox.TabIndex = 6;
+            this.selectLangBox.SelectedIndexChanged += new System.EventHandler(this.selectLangBox_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -540,22 +516,49 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Select Version";
             // 
-            // selectLangBox
+            // versionBox
             // 
-            this.selectLangBox.FormattingEnabled = true;
-            this.selectLangBox.Location = new System.Drawing.Point(520, 28);
-            this.selectLangBox.Name = "selectLangBox";
-            this.selectLangBox.Size = new System.Drawing.Size(143, 238);
-            this.selectLangBox.TabIndex = 6;
+            this.versionBox.FormattingEnabled = true;
+            this.versionBox.Location = new System.Drawing.Point(367, 28);
+            this.versionBox.Name = "versionBox";
+            this.versionBox.Size = new System.Drawing.Size(146, 238);
+            this.versionBox.TabIndex = 4;
             // 
-            // label7
+            // label5
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(520, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(128, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Select ALL installed langs";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(189, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Select Subcategory";
+            // 
+            // subCatSelectBox
+            // 
+            this.subCatSelectBox.FormattingEnabled = true;
+            this.subCatSelectBox.Location = new System.Drawing.Point(189, 28);
+            this.subCatSelectBox.Name = "subCatSelectBox";
+            this.subCatSelectBox.Size = new System.Drawing.Size(171, 238);
+            this.subCatSelectBox.TabIndex = 2;
+            this.subCatSelectBox.SelectedIndexChanged += new System.EventHandler(this.subCatSelectBox_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Select category";
+            // 
+            // catSelectBox
+            // 
+            this.catSelectBox.FormattingEnabled = true;
+            this.catSelectBox.Location = new System.Drawing.Point(7, 28);
+            this.catSelectBox.Name = "catSelectBox";
+            this.catSelectBox.Size = new System.Drawing.Size(175, 238);
+            this.catSelectBox.TabIndex = 0;
+            this.catSelectBox.SelectedIndexChanged += new System.EventHandler(this.catSelectBox_SelectedIndexChanged);
             // 
             // Form1
             // 

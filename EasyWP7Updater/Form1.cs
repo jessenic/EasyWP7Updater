@@ -261,6 +261,30 @@ namespace EasyWP7Updater
             //TODO: Set the itemsource for the category control
             string filename = Directory.GetCurrentDirectory()+@"\sources.xml";
             List<Packages.Category> categories = Packages.Packages.GetFromXml(filename);
+            catSelectBox.Items.Clear();
+            foreach (Packages.Category cat in categories)
+            {
+                catSelectBox.Items.Add(cat);
+            }
+        }
+
+        private void catSelectBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            subCatSelectBox.Items.Clear();
+            foreach (Packages.Subcategory subcat in ((Packages.Category)catSelectBox.SelectedItem).Subcategories)
+            {
+                subCatSelectBox.Items.Add(subcat);
+            }
+        }
+
+        private void subCatSelectBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: Maybe the XML file needs some modifications? This part is giving me a headache
+        }
+
+        private void selectLangBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: Fill this part too
         }
     }
 }
