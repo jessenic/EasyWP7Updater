@@ -7,16 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using EasyWP7Updater.Properties;
+using EasyWP7Updater.Update;
 using System.IO;
 using System.Diagnostics;
 using System.Xml;
 
 namespace EasyWP7Updater
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         UpdateWP updateHelper;
-        public Form1()
+
+        public MainForm()
         {
             InitializeComponent();
             Version ver = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
@@ -82,6 +84,8 @@ namespace EasyWP7Updater
                 addCabToList(file);
             }
         }
+
+
         private void addCabToList(string file)
         {
             bool has = false;
@@ -272,7 +276,7 @@ namespace EasyWP7Updater
             //TODO: Further testing for parsing function required
             //TODO: Set the itemsource for the category control
             string filename = Directory.GetCurrentDirectory()+@"\sources.xml";
-            List<Packages.Category> categories = Packages.Packages.GetFromXml(filename);
+            List<Packages.Info.Category> categories = Packages.Packages.GetFromXml(filename);
             catSelectBox.Items.Clear();
             catSelectBox.Items.AddRange(categories.ToArray());
 
@@ -283,7 +287,7 @@ namespace EasyWP7Updater
 
         private void catSelectBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Packages.Category selectedCat = catSelectBox.SelectedItem as Packages.Category;
+            Packages.Info.Category selectedCat = catSelectBox.SelectedItem as Packages.Info.Category;
             subCatSelectBox.Items.Clear();
             subCatSelectBox.Items.AddRange(selectedCat.Subcategories.ToArray());
 
@@ -293,7 +297,7 @@ namespace EasyWP7Updater
 
         private void subCatSelectBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Packages.Subcategory selectedSubcat = subCatSelectBox.SelectedItem as Packages.Subcategory;
+            Packages.Info.Subcategory selectedSubcat = subCatSelectBox.SelectedItem as Packages.Info.Subcategory;
             versionBox.Items.Clear();
             versionBox.Items.AddRange(selectedSubcat.Versions.ToArray());
 
@@ -303,11 +307,11 @@ namespace EasyWP7Updater
         private void versionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //filter out the languages
-            List<Packages.Item> items = new List<Packages.Item>();
-            Packages.Version selectedVersion = versionBox.SelectedItem as Packages.Version;
+            List<Packages.Info.Item> items = new List<Packages.Info.Item>();
+            Packages.Info.VersionInformation selectedVersion = versionBox.SelectedItem as Packages.Info.VersionInformation;
 
             for (int i = 0; i < selectedVersion.Items.Count; i++)
-                if (selectedVersion.Items[i].Type == Packages.ItemType.language)
+                if (selectedVersion.Items[i].Type == Packages.Info.ItemType.language)
                     items.Add(selectedVersion.Items[i]);
 
             selectLangBox.Items.Clear();

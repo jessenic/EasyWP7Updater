@@ -1,6 +1,6 @@
 ﻿namespace EasyWP7Updater
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -51,7 +51,7 @@
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.sendCabThread = new System.ComponentModel.BackgroundWorker();
-            this.tabControl1 = new EasyWP7Updater.WizardPages();
+            this.tabControl1 = new EasyWP7Updater.Controls.WizardPages();
             this.firstPage = new System.Windows.Forms.TabPage();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.label3 = new System.Windows.Forms.Label();
@@ -632,7 +632,7 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.TabPage firstPage;
         private System.Windows.Forms.TabPage predownloadedSelectionPage;
-        private WizardPages tabControl1;
+        private EasyWP7Updater.Controls.WizardPages tabControl1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button InstallDownloadedCabsButton;
         private System.Windows.Forms.Button downloadFromROMProviderButton;
