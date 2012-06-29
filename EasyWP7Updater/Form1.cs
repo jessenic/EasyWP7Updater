@@ -31,6 +31,7 @@ namespace EasyWP7Updater
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+#if !DEBUG
             if (!Settings.Default.HideWarningOnStartup)
             {
                 WarningForm wf = new WarningForm();
@@ -45,6 +46,7 @@ namespace EasyWP7Updater
                     wf.Dispose();
                 }
             }
+#endif
             updateHelper = new UpdateWP(this);
         }
 
