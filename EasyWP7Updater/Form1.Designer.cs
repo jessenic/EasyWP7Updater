@@ -78,6 +78,9 @@
             this.subCatSelectBox = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.catSelectBox = new System.Windows.Forms.ListBox();
+            this.chrisK91ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.twitterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.xDAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -212,7 +215,8 @@
             // creditsToolStripMenuItem
             // 
             this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jessenicToolStripMenuItem});
+            this.jessenicToolStripMenuItem,
+            this.chrisK91ToolStripMenuItem});
             this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
             this.creditsToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.creditsToolStripMenuItem.Text = "Made by...";
@@ -223,20 +227,20 @@
             this.twitterToolStripMenuItem,
             this.xDAForumsToolStripMenuItem});
             this.jessenicToolStripMenuItem.Name = "jessenicToolStripMenuItem";
-            this.jessenicToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.jessenicToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.jessenicToolStripMenuItem.Text = "jessenic";
             // 
             // twitterToolStripMenuItem
             // 
             this.twitterToolStripMenuItem.Name = "twitterToolStripMenuItem";
-            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.twitterToolStripMenuItem.Text = "Twitter";
             this.twitterToolStripMenuItem.Click += new System.EventHandler(this.twitterToolStripMenuItem_Click);
             // 
             // xDAForumsToolStripMenuItem
             // 
             this.xDAForumsToolStripMenuItem.Name = "xDAForumsToolStripMenuItem";
-            this.xDAForumsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.xDAForumsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.xDAForumsToolStripMenuItem.Text = "XDA Forums";
             this.xDAForumsToolStripMenuItem.Click += new System.EventHandler(this.xDAForumsToolStripMenuItem_Click);
             // 
@@ -505,7 +509,6 @@
             this.selectLangBox.Name = "selectLangBox";
             this.selectLangBox.Size = new System.Drawing.Size(143, 238);
             this.selectLangBox.TabIndex = 6;
-            this.selectLangBox.SelectedIndexChanged += new System.EventHandler(this.selectLangBox_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -523,6 +526,7 @@
             this.versionBox.Name = "versionBox";
             this.versionBox.Size = new System.Drawing.Size(146, 238);
             this.versionBox.TabIndex = 4;
+            this.versionBox.SelectedIndexChanged += new System.EventHandler(this.versionBox_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -559,6 +563,29 @@
             this.catSelectBox.Size = new System.Drawing.Size(175, 238);
             this.catSelectBox.TabIndex = 0;
             this.catSelectBox.SelectedIndexChanged += new System.EventHandler(this.catSelectBox_SelectedIndexChanged);
+            // 
+            // chrisK91ToolStripMenuItem
+            // 
+            this.chrisK91ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.twitterToolStripMenuItem1,
+            this.xDAToolStripMenuItem});
+            this.chrisK91ToolStripMenuItem.Name = "chrisK91ToolStripMenuItem";
+            this.chrisK91ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chrisK91ToolStripMenuItem.Text = "ChrisK91";
+            // 
+            // twitterToolStripMenuItem1
+            // 
+            this.twitterToolStripMenuItem1.Name = "twitterToolStripMenuItem1";
+            this.twitterToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.twitterToolStripMenuItem1.Text = "Twitter";
+            this.twitterToolStripMenuItem1.Click += new System.EventHandler(this.twitterToolStripMenuItem1_Click);
+            // 
+            // xDAToolStripMenuItem
+            // 
+            this.xDAToolStripMenuItem.Name = "xDAToolStripMenuItem";
+            this.xDAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xDAToolStripMenuItem.Text = "XDA Forums";
+            this.xDAToolStripMenuItem.Click += new System.EventHandler(this.xDAToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -642,6 +669,9 @@
         private System.Windows.Forms.ListBox catSelectBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox selectLangBox;
+        private System.Windows.Forms.ToolStripMenuItem chrisK91ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem twitterToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem xDAToolStripMenuItem;
     }
 }
 

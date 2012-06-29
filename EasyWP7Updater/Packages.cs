@@ -41,10 +41,9 @@ namespace EasyWP7Updater.Packages
                             if (subcatNode.Name == "Subcategory")
                             {
                                 string subcatName = "";
-                                string fromVersion = "";
-                                string version = "";
 
                                 List<Item> items = new List<Item>();
+                                List<Version> versions = new List<Version>();
 
                                 foreach (XmlNode subcatElement in subcatNode.ChildNodes)
                                 {
@@ -53,43 +52,59 @@ namespace EasyWP7Updater.Packages
                                         case "Name":
                                             subcatName = subcatElement.InnerText;
                                             continue;
-                                        case "FromVersion":
-                                            fromVersion = subcatElement.InnerText;
-                                            continue;
                                         case "Version":
-                                            version = subcatElement.InnerText;
-                                            continue;
-                                        case "Item":
-                                            string desc = "";
-                                            string itemType = "";
-                                            string language = "";
-                                            Uri download = null;
+                                            string fromVersion = "";
+                                            string toVersion = "";
 
-                                            //iterate over fourth level elements
-                                            foreach (XmlNode itemElement in subcatElement.ChildNodes)
+                                            if(subcatElement.Attributes.GetNamedItem("From") != null)
+                                                fromVersion = subcatElement.Attributes.GetNamedItem("From").InnerText;
+
+                                            if (subcatElement.Attributes.GetNamedItem("To") != null)
+                                                toVersion = subcatElement.Attributes.GetNamedItem("To").InnerText;
+
+                                            foreach (XmlNode versionElement in subcatElement.ChildNodes)
                                             {
-                                                switch (itemElement.Name)
+                                                switch (versionElement.Name)
                                                 {
-                                                    case "Description":
-                                                        desc = itemElement.InnerText;
+                                                    case "Item":
+                                                        string desc = "";
+                                                        string itemType = "";
+                                                        string language = "";
+                                                        Uri download = null;
+
+                                                        //iterate over fourth level elements
+                                                        foreach (XmlNode itemElement in versionElement.ChildNodes)
+                                                        {
+                                                            switch (itemElement.Name)
+                                                            {
+                                                                case "Description":
+                                                                    desc = itemElement.InnerText;
+                                                                    continue;
+                                                                case "Type":
+                                                                    itemType = itemElement.InnerText;
+                                                                    continue;
+                                                                case "LangId":
+                                                                    language = itemElement.InnerText;
+                                                                    continue;
+                                                                case "Download":
+                                                                    download = new Uri(itemElement.InnerText);
+                                                                    continue;
+                                                                default:
+                                                                    if (System.Diagnostics.Debugger.IsAttached)
+                                                                        System.Diagnostics.Debugger.Log(0, "XmlParser", "Element unrecognized and discarded: " + itemElement.Name);
+                                                                    break;
+                                                            }
+                                                        }
+
+                                                        items.Add(new Item(desc, itemType, language, download));
+
                                                         continue;
-                                                    case "Type":
-                                                        itemType = itemElement.InnerText;
-                                                        continue;
-                                                    case "LangId":
-                                                        language = itemElement.InnerText;
-                                                        continue;
-                                                    case "Download":
-                                                        download = new Uri(itemElement.InnerText);
-                                                        continue;
-                                                    default:
-                                                        if (System.Diagnostics.Debugger.IsAttached)
-                                                            System.Diagnostics.Debugger.Log(0, "XmlParser", "Element unrecognized and discarded: " + itemElement.Name);
-                                                        break;
                                                 }
                                             }
 
-                                            items.Add(new Item(desc, itemType, language, download));
+                                            Version v = new Version(fromVersion, toVersion);
+                                            v.AddItems(items);
+                                            versions.Add(v);
 
                                             continue;
                                         default:
@@ -98,8 +113,8 @@ namespace EasyWP7Updater.Packages
                                             break;
                                     }
                                 }
-                                sc = new Subcategory(subcatName, fromVersion, version);
-                                sc.AddItems(items);
+                                sc = new Subcategory(subcatName);
+                                sc.AddVersions(versions);
 
                                 c.AddSubcategory(sc);
                             }
@@ -168,24 +183,49 @@ namespace EasyWP7Updater.Packages
         /// The name of the subcategory
         /// </summary>
         public string Name { get; private set; }
-        /// <summary>
-        /// The fromversion 
-        /// </summary>
+        public List<Version> Versions { get; private set; }
+
+        public Subcategory(string name)
+        {
+            Name = name;
+            Versions = new List<Version>();
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public void AddVersion(Version v)
+        {
+            Versions.Add(v);
+        }
+
+        public void AddVersions(IEnumerable<Version> versions)
+        {
+            Versions.AddRange(versions);
+        }
+    }
+
+
+    public class Version
+    {
         public string FromVersion { get; private set; }
+        public string ToVersion { get; private set; }
+
         /// <summary>
-        /// The toversion
-        /// </summary>
-        public string Version { get; private set; }
-        /// <summary>
-        /// A list of all the items associated with this Subcategory
+        /// A list of all the items associated with this Version
         /// </summary>
         public List<Item> Items { get; private set; }
 
-        public Subcategory(string name, string fromVersion, string version)
+        public Version(string toVersion)
+            : this("", toVersion)
+        { }
+
+        public Version(string fromVersion, string toVersion)
         {
-            Name = name;
             FromVersion = fromVersion;
-            Version = version;
+            ToVersion = toVersion;
             Items = new List<Item>();
         }
 
@@ -209,7 +249,9 @@ namespace EasyWP7Updater.Packages
 
         public override string ToString()
         {
-            return Name;
+            if (FromVersion != "")
+                return String.Format("{0} to {1}", FromVersion, ToVersion);
+            return String.Format("to {0}", ToVersion);
         }
     }
 
@@ -225,7 +267,7 @@ namespace EasyWP7Updater.Packages
         /// <summary>
         /// The type
         /// </summary>
-        public string Type { get; private set; }
+        public ItemType Type { get; private set; }
         /// <summary>
         /// The language
         /// </summary>
@@ -238,7 +280,18 @@ namespace EasyWP7Updater.Packages
         public Item(string desc, string type, string lang, Uri download)
         {
             Description = desc;
-            Type = type;
+            switch (type)
+            {
+                case "os":
+                    Type = ItemType.os;
+                    break;
+                case "language":
+                    Type = ItemType.language;
+                    break;
+                default:
+                    Type = ItemType.other;
+                    break;
+            }
             LangId = lang;
             Download = download;
         }
@@ -247,5 +300,12 @@ namespace EasyWP7Updater.Packages
         {
             return Description;
         }
+    }
+
+    public enum ItemType
+    {
+        os,
+        language,
+        other
     }
 }

@@ -243,6 +243,16 @@ namespace EasyWP7Updater
         {
             Process.Start("https://github.com/jessenic/EasyWP7Updater/commits/master");
         }
+
+        private void twitterToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://www.twitter.com/ChrisK91");
+        }
+
+        private void xDAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://forum.xda-developers.com/member.php?u=1469777");
+        }
         #endregion
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
@@ -264,29 +274,49 @@ namespace EasyWP7Updater
             string filename = Directory.GetCurrentDirectory()+@"\sources.xml";
             List<Packages.Category> categories = Packages.Packages.GetFromXml(filename);
             catSelectBox.Items.Clear();
-            foreach (Packages.Category cat in categories)
-            {
-                catSelectBox.Items.Add(cat);
-            }
+            catSelectBox.Items.AddRange(categories.ToArray());
+
+            subCatSelectBox.Items.Clear();
+            versionBox.Items.Clear();
+            selectLangBox.Items.Clear();
         }
 
         private void catSelectBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Packages.Category selectedCat = catSelectBox.SelectedItem as Packages.Category;
             subCatSelectBox.Items.Clear();
-            foreach (Packages.Subcategory subcat in ((Packages.Category)catSelectBox.SelectedItem).Subcategories)
-            {
-                subCatSelectBox.Items.Add(subcat);
-            }
+            subCatSelectBox.Items.AddRange(selectedCat.Subcategories.ToArray());
+
+            versionBox.Items.Clear();
+            selectLangBox.Items.Clear();
         }
 
         private void subCatSelectBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO: Maybe the XML file needs some modifications? This part is giving me a headache
+            Packages.Subcategory selectedSubcat = subCatSelectBox.SelectedItem as Packages.Subcategory;
+            versionBox.Items.Clear();
+            versionBox.Items.AddRange(selectedSubcat.Versions.ToArray());
+
+            selectLangBox.Items.Clear();
+        }
+
+        private void versionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //filter out the languages
+            List<Packages.Item> items = new List<Packages.Item>();
+            Packages.Version selectedVersion = versionBox.SelectedItem as Packages.Version;
+
+            for (int i = 0; i < selectedVersion.Items.Count; i++)
+                if (selectedVersion.Items[i].Type == Packages.ItemType.language)
+                    items.Add(selectedVersion.Items[i]);
+
+            selectLangBox.Items.Clear();
+            selectLangBox.Items.AddRange(items.ToArray());
         }
 
         private void selectLangBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO: Fill this part too
+
         }
     }
 }
