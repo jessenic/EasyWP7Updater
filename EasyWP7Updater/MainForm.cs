@@ -30,6 +30,22 @@ namespace EasyWP7Updater
             updateHelper.OnUpdateWPMessageSent += new UpdateWP.UpdateWPMessageEventhandler(handleUpdateMessage);
         }
 
+        private void handleUpdateMessage(object sender, UpdateMessageEventArgs args)
+        {
+            switch (args.Type)
+            {
+                case UpdateMessageEventArgs.MessageType.Error:
+                    MessageBox.Show(args.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case UpdateMessageEventArgs.MessageType.Info:
+                    MessageBox.Show(args.Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case UpdateMessageEventArgs.MessageType.Warning:
+                    MessageBox.Show(args.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+            }
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Dispose();
@@ -53,22 +69,6 @@ namespace EasyWP7Updater
                 }
             }
 #endif
-        }
-
-        private void handleUpdateMessage(object sender, UpdateMessageEventArgs args)
-        {
-            switch (args.Type)
-            {
-                case UpdateMessageEventArgs.MessageType.Error:
-                    MessageBox.Show(args.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case UpdateMessageEventArgs.MessageType.Info:
-                    MessageBox.Show(args.Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break;
-                case UpdateMessageEventArgs.MessageType.Warning:
-                    MessageBox.Show(args.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
-            }
         }
 
         private void InstallDownloadedCabsButton_Click(object sender, EventArgs e)

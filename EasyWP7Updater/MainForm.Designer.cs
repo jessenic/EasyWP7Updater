@@ -48,6 +48,9 @@
             this.jessenicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xDAForumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chrisK91ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.twitterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.xDAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.sendCabThread = new System.ComponentModel.BackgroundWorker();
@@ -70,17 +73,15 @@
             this.sendWithoutBackupButton = new System.Windows.Forms.Button();
             this.sendWithBackupButton = new System.Windows.Forms.Button();
             this.downloadPage = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
-            this.selectLangBox = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.versionBox = new System.Windows.Forms.ListBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.subCatSelectBox = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.catSelectBox = new System.Windows.Forms.ListBox();
-            this.chrisK91ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.twitterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.xDAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subCatSelectBox = new System.Windows.Forms.ListBox();
+            this.versionBox = new System.Windows.Forms.ListBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.selectLangBox = new System.Windows.Forms.CheckedListBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -88,6 +89,7 @@
             this.predownloadedSelectionPage.SuspendLayout();
             this.sendCabsPage.SuspendLayout();
             this.downloadPage.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -95,9 +97,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 331);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 367);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(702, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(704, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -119,7 +121,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(702, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(704, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -227,22 +229,45 @@
             this.twitterToolStripMenuItem,
             this.xDAForumsToolStripMenuItem});
             this.jessenicToolStripMenuItem.Name = "jessenicToolStripMenuItem";
-            this.jessenicToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jessenicToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.jessenicToolStripMenuItem.Text = "jessenic";
             // 
             // twitterToolStripMenuItem
             // 
             this.twitterToolStripMenuItem.Name = "twitterToolStripMenuItem";
-            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.twitterToolStripMenuItem.Text = "Twitter";
             this.twitterToolStripMenuItem.Click += new System.EventHandler(this.twitterToolStripMenuItem_Click);
             // 
             // xDAForumsToolStripMenuItem
             // 
             this.xDAForumsToolStripMenuItem.Name = "xDAForumsToolStripMenuItem";
-            this.xDAForumsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xDAForumsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.xDAForumsToolStripMenuItem.Text = "XDA Forums";
             this.xDAForumsToolStripMenuItem.Click += new System.EventHandler(this.xDAForumsToolStripMenuItem_Click);
+            // 
+            // chrisK91ToolStripMenuItem
+            // 
+            this.chrisK91ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.twitterToolStripMenuItem1,
+            this.xDAToolStripMenuItem});
+            this.chrisK91ToolStripMenuItem.Name = "chrisK91ToolStripMenuItem";
+            this.chrisK91ToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.chrisK91ToolStripMenuItem.Text = "ChrisK91";
+            // 
+            // twitterToolStripMenuItem1
+            // 
+            this.twitterToolStripMenuItem1.Name = "twitterToolStripMenuItem1";
+            this.twitterToolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
+            this.twitterToolStripMenuItem1.Text = "Twitter";
+            this.twitterToolStripMenuItem1.Click += new System.EventHandler(this.twitterToolStripMenuItem1_Click);
+            // 
+            // xDAToolStripMenuItem
+            // 
+            this.xDAToolStripMenuItem.Name = "xDAToolStripMenuItem";
+            this.xDAToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.xDAToolStripMenuItem.Text = "XDA Forums";
+            this.xDAToolStripMenuItem.Click += new System.EventHandler(this.xDAToolStripMenuItem_Click);
             // 
             // versionToolStripMenuItem
             // 
@@ -275,7 +300,7 @@
             this.tabControl1.Location = new System.Drawing.Point(13, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(677, 300);
+            this.tabControl1.Size = new System.Drawing.Size(679, 336);
             this.tabControl1.TabIndex = 2;
             // 
             // firstPage
@@ -436,7 +461,7 @@
             this.sendCabsPage.Location = new System.Drawing.Point(4, 22);
             this.sendCabsPage.Name = "sendCabsPage";
             this.sendCabsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.sendCabsPage.Size = new System.Drawing.Size(669, 274);
+            this.sendCabsPage.Size = new System.Drawing.Size(671, 310);
             this.sendCabsPage.TabIndex = 2;
             this.sendCabsPage.Text = "Send cabs page";
             // 
@@ -450,13 +475,13 @@
             this.logBox.Name = "logBox";
             this.logBox.ReadOnly = true;
             this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logBox.Size = new System.Drawing.Size(656, 233);
+            this.logBox.Size = new System.Drawing.Size(658, 269);
             this.logBox.TabIndex = 3;
             // 
             // sendWithoutBackupButton
             // 
             this.sendWithoutBackupButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.sendWithoutBackupButton.Location = new System.Drawing.Point(7, 244);
+            this.sendWithoutBackupButton.Location = new System.Drawing.Point(7, 280);
             this.sendWithoutBackupButton.Name = "sendWithoutBackupButton";
             this.sendWithoutBackupButton.Size = new System.Drawing.Size(176, 23);
             this.sendWithoutBackupButton.TabIndex = 2;
@@ -467,7 +492,7 @@
             // sendWithBackupButton
             // 
             this.sendWithBackupButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendWithBackupButton.Location = new System.Drawing.Point(495, 245);
+            this.sendWithBackupButton.Location = new System.Drawing.Point(497, 281);
             this.sendWithBackupButton.Name = "sendWithBackupButton";
             this.sendWithBackupButton.Size = new System.Drawing.Size(168, 23);
             this.sendWithBackupButton.TabIndex = 1;
@@ -478,126 +503,135 @@
             // downloadPage
             // 
             this.downloadPage.BackColor = System.Drawing.SystemColors.Control;
-            this.downloadPage.Controls.Add(this.label7);
-            this.downloadPage.Controls.Add(this.selectLangBox);
-            this.downloadPage.Controls.Add(this.label6);
-            this.downloadPage.Controls.Add(this.versionBox);
-            this.downloadPage.Controls.Add(this.label5);
-            this.downloadPage.Controls.Add(this.subCatSelectBox);
-            this.downloadPage.Controls.Add(this.label4);
-            this.downloadPage.Controls.Add(this.catSelectBox);
+            this.downloadPage.Controls.Add(this.tableLayoutPanel1);
             this.downloadPage.Location = new System.Drawing.Point(4, 22);
             this.downloadPage.Name = "downloadPage";
             this.downloadPage.Padding = new System.Windows.Forms.Padding(3);
-            this.downloadPage.Size = new System.Drawing.Size(669, 274);
+            this.downloadPage.Size = new System.Drawing.Size(671, 310);
             this.downloadPage.TabIndex = 3;
             this.downloadPage.Text = "Download Page";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.catSelectBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.subCatSelectBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.versionBox, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.selectLangBox, 3, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 6);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(662, 308);
+            this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // catSelectBox
+            // 
+            this.catSelectBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.catSelectBox.FormattingEnabled = true;
+            this.catSelectBox.Location = new System.Drawing.Point(3, 23);
+            this.catSelectBox.Name = "catSelectBox";
+            this.catSelectBox.Size = new System.Drawing.Size(159, 277);
+            this.catSelectBox.TabIndex = 0;
+            this.catSelectBox.SelectedIndexChanged += new System.EventHandler(this.catSelectBox_SelectedIndexChanged);
+            // 
+            // subCatSelectBox
+            // 
+            this.subCatSelectBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.subCatSelectBox.FormattingEnabled = true;
+            this.subCatSelectBox.Location = new System.Drawing.Point(168, 23);
+            this.subCatSelectBox.Name = "subCatSelectBox";
+            this.subCatSelectBox.Size = new System.Drawing.Size(159, 277);
+            this.subCatSelectBox.TabIndex = 2;
+            this.subCatSelectBox.SelectedIndexChanged += new System.EventHandler(this.subCatSelectBox_SelectedIndexChanged);
+            // 
+            // versionBox
+            // 
+            this.versionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.versionBox.FormattingEnabled = true;
+            this.versionBox.Location = new System.Drawing.Point(333, 23);
+            this.versionBox.Name = "versionBox";
+            this.versionBox.Size = new System.Drawing.Size(159, 277);
+            this.versionBox.TabIndex = 4;
+            this.versionBox.SelectedIndexChanged += new System.EventHandler(this.versionBox_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(520, 9);
+            this.label7.Location = new System.Drawing.Point(498, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(128, 13);
             this.label7.TabIndex = 7;
             this.label7.Text = "Select ALL installed langs";
             // 
-            // selectLangBox
-            // 
-            this.selectLangBox.FormattingEnabled = true;
-            this.selectLangBox.Location = new System.Drawing.Point(520, 28);
-            this.selectLangBox.Name = "selectLangBox";
-            this.selectLangBox.Size = new System.Drawing.Size(143, 238);
-            this.selectLangBox.TabIndex = 6;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(367, 7);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Select Version";
-            // 
-            // versionBox
-            // 
-            this.versionBox.FormattingEnabled = true;
-            this.versionBox.Location = new System.Drawing.Point(367, 28);
-            this.versionBox.Name = "versionBox";
-            this.versionBox.Size = new System.Drawing.Size(146, 238);
-            this.versionBox.TabIndex = 4;
-            this.versionBox.SelectedIndexChanged += new System.EventHandler(this.versionBox_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(189, 7);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Select Subcategory";
-            // 
-            // subCatSelectBox
-            // 
-            this.subCatSelectBox.FormattingEnabled = true;
-            this.subCatSelectBox.Location = new System.Drawing.Point(189, 28);
-            this.subCatSelectBox.Name = "subCatSelectBox";
-            this.subCatSelectBox.Size = new System.Drawing.Size(171, 238);
-            this.subCatSelectBox.TabIndex = 2;
-            this.subCatSelectBox.SelectedIndexChanged += new System.EventHandler(this.subCatSelectBox_SelectedIndexChanged);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 7);
+            this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "Select category";
             // 
-            // catSelectBox
+            // label6
             // 
-            this.catSelectBox.FormattingEnabled = true;
-            this.catSelectBox.Location = new System.Drawing.Point(7, 28);
-            this.catSelectBox.Name = "catSelectBox";
-            this.catSelectBox.Size = new System.Drawing.Size(175, 238);
-            this.catSelectBox.TabIndex = 0;
-            this.catSelectBox.SelectedIndexChanged += new System.EventHandler(this.catSelectBox_SelectedIndexChanged);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(333, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Select Version";
             // 
-            // chrisK91ToolStripMenuItem
+            // label5
             // 
-            this.chrisK91ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.twitterToolStripMenuItem1,
-            this.xDAToolStripMenuItem});
-            this.chrisK91ToolStripMenuItem.Name = "chrisK91ToolStripMenuItem";
-            this.chrisK91ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.chrisK91ToolStripMenuItem.Text = "ChrisK91";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(168, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Select Subcategory";
             // 
-            // twitterToolStripMenuItem1
+            // selectLangBox
             // 
-            this.twitterToolStripMenuItem1.Name = "twitterToolStripMenuItem1";
-            this.twitterToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.twitterToolStripMenuItem1.Text = "Twitter";
-            this.twitterToolStripMenuItem1.Click += new System.EventHandler(this.twitterToolStripMenuItem1_Click);
+            this.selectLangBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectLangBox.CheckOnClick = true;
+            this.selectLangBox.FormattingEnabled = true;
+            this.selectLangBox.Location = new System.Drawing.Point(498, 23);
+            this.selectLangBox.Name = "selectLangBox";
+            this.selectLangBox.Size = new System.Drawing.Size(161, 274);
+            this.selectLangBox.TabIndex = 6;
             // 
-            // xDAToolStripMenuItem
-            // 
-            this.xDAToolStripMenuItem.Name = "xDAToolStripMenuItem";
-            this.xDAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xDAToolStripMenuItem.Text = "XDA Forums";
-            this.xDAToolStripMenuItem.Click += new System.EventHandler(this.xDAToolStripMenuItem_Click);
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 353);
+            this.ClientSize = new System.Drawing.Size(704, 389);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Easy WP7.x Updater";
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.statusStrip1.ResumeLayout(false);
@@ -612,7 +646,8 @@
             this.sendCabsPage.ResumeLayout(false);
             this.sendCabsPage.PerformLayout();
             this.downloadPage.ResumeLayout(false);
-            this.downloadPage.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -668,10 +703,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox catSelectBox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ListBox selectLangBox;
+        private System.Windows.Forms.CheckedListBox selectLangBox;
         private System.Windows.Forms.ToolStripMenuItem chrisK91ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem twitterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem xDAToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 
