@@ -12,7 +12,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Xml;
 
-namespace EasyWP7Updater
+namespace EasyWP7Updater.Forms
 {
     public partial class MainForm : Form
     {

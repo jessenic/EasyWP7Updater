@@ -1,4 +1,4 @@
-﻿namespace EasyWP7Updater
+﻿namespace EasyWP7Updater.Forms
 {
     partial class MainForm
     {
