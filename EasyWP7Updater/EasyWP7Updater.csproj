@@ -119,7 +119,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="README.md" />
     <Content Include="sources.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
