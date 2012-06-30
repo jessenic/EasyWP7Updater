@@ -9,9 +9,9 @@ namespace EasyWP7Updater.Update
     /// <summary>
     /// Use this class to access the DeviceManager. 
     /// </summary>
-    /// TODO: Make threadsafe
     public static class DeviceManagerSingleton
     {
+        [ThreadStatic]
         private static IDeviceManager _manager;
 
         /// <summary>

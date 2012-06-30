@@ -64,6 +64,7 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Microsoft.WindowsMobile.DeviceUpdate, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -97,11 +98,11 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Packages\Info\Category.cs" />
-    <Compile Include="Packages\Info\Item.cs" />
-    <Compile Include="Packages\Packages.cs" />
-    <Compile Include="Packages\Info\Subcategory.cs" />
-    <Compile Include="Packages\Info\VersionInformation.cs" />
+    <Compile Include="PackagesNamespace\Info\Category.cs" />
+    <Compile Include="PackagesNamespace\Info\Item.cs" />
+    <Compile Include="PackagesNamespace\Packages.cs" />
+    <Compile Include="PackagesNamespace\Info\Subcategory.cs" />
+    <Compile Include="PackagesNamespace\Info\VersionInformation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Update\BindableDeviceInformation.cs" />

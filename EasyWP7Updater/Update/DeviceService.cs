@@ -61,26 +61,55 @@ namespace EasyWP7Updater.Update
             return Devices;
         }
 
-        public static Process sendCabs(bool backup, string[] cabs)
+        //Does not work, COM Error
+        public void UpdateCAB(IDeviceInfo device, List<string> updates, bool withBackup)
         {
-            Process p = new Process();
-            StringBuilder args = new StringBuilder();
-            args.Append("/iu");
-            foreach (string cab in cabs)
+            IDevice d = (IDevice)null;
+            try
             {
-                args.Append(" \"" + cab + "\"");
+                d = DeviceManagerSingleton.Manager.AcquireDevice(device.UniqueIdentifier);
+                if (d != null)
+                {
+                    raiseMessageSent(String.Format("Applying updates to device {0} ({1})", device.Name, device.UniqueIdentifier), UpdateMessageEventArgs.MessageType.Log);
+                    UpdateType type = UpdateType.IU;
+                    if (withBackup)
+                        type = UpdateType.IU | UpdateType.BACKUP;
+
+                    IErrorInfo error = d.Update(updates.ToArray(), type, new Action<IUpdateProgress>(handleProgress), (object)null);
+
+                    if (error != null)
+                    {
+                        raiseMessageSent(String.Format("Update on device {0} completed with error {1} - {2}", device.UniqueIdentifier, error.Code.ToString(), error.Description.ToString()), UpdateMessageEventArgs.MessageType.Log); 
+                    }
+
+                    DeviceManagerSingleton.Manager.ReleaseDevice(d);
+                }
             }
-            if (backup)
+            catch (Exception ex)
             {
-                args.Append(" /enablebackup");
+                raiseMessageSent(ex.Message, UpdateMessageEventArgs.MessageType.Log);
+                if (d != null)
+                    DeviceManagerSingleton.Manager.ReleaseDevice(d);
             }
-            p.StartInfo.Arguments = args.ToString();
-            p.StartInfo.FileName = updateWPPath + "\\UpdateWP.exe";
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.CreateNoWindow = true;
-            return p;
+        }
+
+        private void handleProgress(IUpdateProgress progress)
+        {
+            if (progress.CurrentStep.StepCompleted)
+            {
+                raiseMessageSent(String.Format("Step {0} completed", progress.CurrentStep.Name));
+            }
+            else
+            {
+                if (progress.CurrentStep.PercentageAvailable)
+                {
+                    raiseMessageSent(String.Format("Step {0}: {1}%", progress.CurrentStep.Name, progress.CurrentStep.Percentage));
+                }
+                else
+                {
+                    raiseMessageSent(String.Format("{0} - {1}: working", progress.CurrentStep.Name, DateTime.Now.ToShortTimeString()), UpdateMessageEventArgs.MessageType.Log);
+                }
+            }
         }
 
         private void raiseMessageSent(string message)
