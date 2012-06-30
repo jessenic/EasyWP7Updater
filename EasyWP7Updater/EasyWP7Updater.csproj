@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?> 
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EasyWP7Updater</RootNamespace>
     <AssemblyName>EasyWP7Updater</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -27,6 +27,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>EasyWP7Updater.Program</StartupObject>
@@ -63,7 +64,22 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>7E0535F49657290AC786C7B55FB5F02FF8435837</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>EasyWP7Updater_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsMobile.DeviceUpdate, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tools\x64\Microsoft.WindowsMobile.DeviceUpdate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PacketDotNet, Version=0.12.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\PacketDotNet.dll</HintPath>
@@ -83,13 +99,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DeviceMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\ErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Packages.cs" />
     <Compile Include="PCapForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,16 +121,17 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Packages\Info\Category.cs" />
-    <Compile Include="Packages\Info\Item.cs" />
-    <Compile Include="Packages\Packages.cs" />
-    <Compile Include="Packages\Info\Subcategory.cs" />
-    <Compile Include="Packages\Info\VersionInformation.cs" />
+    <Compile Include="PackagesNamespace\Info\Category.cs" />
+    <Compile Include="PackagesNamespace\Info\Item.cs" />
+    <Compile Include="PackagesNamespace\Packages.cs" />
+    <Compile Include="PackagesNamespace\Info\Subcategory.cs" />
+    <Compile Include="PackagesNamespace\Info\VersionInformation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Update\DeviceInfo.cs" />
+    <Compile Include="Update\BindableDeviceInformation.cs" />
+    <Compile Include="Update\DeviceManagerSingleton.cs" />
     <Compile Include="Update\UpdateMessageEventArgs.cs" />
-    <Compile Include="Update\UpdateWP.cs" />
+    <Compile Include="Update\DeviceService.cs" />
     <Compile Include="Forms\WarningForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +158,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Forms\WarningForm.resx">
       <DependentUpon>WarningForm.cs</DependentUpon>

@@ -16,7 +16,7 @@ namespace EasyWP7Updater.Forms
 {
     public partial class MainForm : Form
     {
-        UpdateWP updateHelper;
+        DeviceService deviceService;
         public bool doBackup = true;
         public static string[] cabsToSend;
 
@@ -26,8 +26,48 @@ namespace EasyWP7Updater.Forms
             Version ver = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             this.Text = this.Text + " - Version " + ver.Major + "." + ver.Minor;
             webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
-            updateHelper = new UpdateWP();
-            updateHelper.OnUpdateWPMessageSent += new UpdateWP.UpdateWPMessageEventhandler(handleUpdateMessage);
+            deviceService = new DeviceService();
+            deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
+            deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
+            refreshDevices();
+        }
+
+        private void updateHelper_OnDevicesChanged(object sender, List<BindableDeviceInformation> Devices)
+        {
+            refreshDevices();
+        }
+
+        private void refreshDevices()
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(refreshDevices));
+            }
+            else
+            {
+                devicesSelectMenu.DropDownItems.Clear();
+                foreach (BindableDeviceInformation device in deviceService.Devices)
+                {
+                    EasyWP7Updater.Controls.DeviceMenuItem i = new Controls.DeviceMenuItem(device, devicesSelectMenu);
+                    devicesSelectMenu.DropDownItems.Add(i);
+                }
+            }
+        }
+
+        private BindableDeviceInformation getSelectedDevice()
+        {
+            BindableDeviceInformation d = null;
+
+            foreach (Controls.DeviceMenuItem i in devicesSelectMenu.DropDownItems)
+            {
+                if (i.Checked)
+                {
+                    d = i.Device;
+                    break;
+                }
+            }
+
+            return d;
         }
 
         private void handleUpdateMessage(object sender, UpdateMessageEventArgs args)
@@ -43,12 +83,15 @@ namespace EasyWP7Updater.Forms
                 case UpdateMessageEventArgs.MessageType.Warning:
                     MessageBox.Show(args.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
+                case UpdateMessageEventArgs.MessageType.Log:
+                    AppendLog(args.Message);
+                    break;
             }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -86,8 +129,8 @@ namespace EasyWP7Updater.Forms
             if (selectedCabsView.Items.Count > 0)
             {
                 tabControl1.SelectedTab = sendCabsPage;
-                DeviceInfo di = updateHelper.getDeviceInfo();
-                AppendLog("Ready to send cabs to " + di.Name + " (" + di.Make + " " + di.Model + ").");
+                /*DeviceInfo di = updateHelper.getDeviceInfo();
+                AppendLog("Ready to send cabs to " + di.Name + " (" + di.Make + " " + di.Model + ").");*/
             }
             else
             {
@@ -135,69 +178,43 @@ namespace EasyWP7Updater.Forms
 
         private void sendWithoutBackupButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Do you really want to send cabs WITHOUT TAKING A BACKUP?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            BindableDeviceInformation d = getSelectedDevice();
+            if (d != null)
             {
-                SendCabs(false);
-            }
-        }
+                bool takeBackup = takeBackupCheckbox.Checked;
+                List<string> cabs = new List<string>();
 
-        private void sendWithBackupButton_Click(object sender, EventArgs e)
-        {
-            SendCabs(true);
-        }
+                foreach (ListViewItem i in selectedCabsView.Items)
+                    cabs.Add(i.Name);
 
-        private void SendCabs(bool backup)
-        {
-            if (!sendCabThread.IsBusy)
-            {
-                doBackup = backup;
-                string[] cabs = new string[selectedCabsView.Items.Count];
-                int i = 0;
-                foreach (ListViewItem lvi in selectedCabsView.Items)
+                bool proceed = takeBackup;
+
+                if (!takeBackup && (MessageBox.Show("Do you really want to continue WITHOUT taking a backup?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
                 {
-                    cabs[i] = lvi.Name;
-                    i++;
+                    proceed = true;
                 }
-                cabsToSend = cabs;
-                sendCabThread.RunWorkerAsync();
+
+                if (proceed)
+                {
+                    AppendLog("Updating");
+                    deviceService.UpdateImageUpdate(d.DeviceInfo, cabs, takeBackup);
+                }
+                else
+                {
+                    AppendLog("Aborted by user");
+                }
             }
-        }
-
-        public void DataReceived(object sender, DataReceivedEventArgs e)
-        {
-            // e.Data is the line which was written to standard output
-            System.Console.WriteLine(e.Data);
-            AppendLog(e.Data);
-        }
-
-        public void ErrorReceived(object sender, DataReceivedEventArgs e)
-        {
-            // e.Data is the line which was written to standard output
-            System.Console.Error.WriteLine(e.Data);
-            AppendLog("ERROR: " + e.Data);
-        }
-
-        private void sendCabThread_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Process p = UpdateWP.sendCabs(doBackup, cabsToSend);
-            p.OutputDataReceived += DataReceived;
-            p.ErrorDataReceived += ErrorReceived;
-            p.Start();
-            p.BeginOutputReadLine();
-            p.BeginErrorReadLine();
-            p.WaitForExit();
-        }
-
-        private void sendCabThread_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            AppendLog("Done!");
+            else
+            {
+                AppendLog("No device selected");
+            }
         }
 
         private void AppendLog(string line)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action<string>(AppendLog), line);
+                this.BeginInvoke(new Action<string>(AppendLog), line);
             }
             else
             {
@@ -295,8 +312,6 @@ namespace EasyWP7Updater.Forms
 
         private void UpdateDownloadLists(string cablisturl)
         {
-            //TODO: Further testing for parsing function required
-            //TODO: Set the itemsource for the category control
             string filename = Directory.GetCurrentDirectory() + @"\sources.xml";
             List<Packages.Info.Category> categories = Packages.Packages.GetFromXml(filename);
             catSelectBox.Items.Clear();
@@ -343,6 +358,13 @@ namespace EasyWP7Updater.Forms
         private void selectLangBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            deviceService.Dispose();
+            DeviceManagerSingleton.Cleanup();
+            deviceService = null;
         }
 
         private void captureZuneUpdatesToolStripMenuItem_Click(object sender, EventArgs e)

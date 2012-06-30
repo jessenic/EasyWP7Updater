@@ -1,4 +1,4 @@
-namespace EasyWP7Updater.Forms
+﻿namespace EasyWP7Updater.Forms
 {
     partial class MainForm
     {
@@ -32,6 +32,7 @@ namespace EasyWP7Updater.Forms
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.devicesSelectMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,6 @@ namespace EasyWP7Updater.Forms
             this.xDAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.sendCabThread = new System.ComponentModel.BackgroundWorker();
             this.tabControl1 = new EasyWP7Updater.Controls.WizardPages();
             this.firstPage = new System.Windows.Forms.TabPage();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -69,9 +69,9 @@ namespace EasyWP7Updater.Forms
             this.selectedCabsView = new System.Windows.Forms.ListView();
             this.sendSelectedCabsButton = new System.Windows.Forms.Button();
             this.sendCabsPage = new System.Windows.Forms.TabPage();
+            this.takeBackupCheckbox = new System.Windows.Forms.CheckBox();
             this.logBox = new System.Windows.Forms.TextBox();
-            this.sendWithoutBackupButton = new System.Windows.Forms.Button();
-            this.sendWithBackupButton = new System.Windows.Forms.Button();
+            this.sendCABsButton = new System.Windows.Forms.Button();
             this.downloadPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.catSelectBox = new System.Windows.Forms.ListBox();
@@ -97,7 +97,8 @@ namespace EasyWP7Updater.Forms
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripProgressBar1});
+            this.toolStripProgressBar1,
+            this.devicesSelectMenu});
             this.statusStrip1.Location = new System.Drawing.Point(0, 367);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(704, 22);
@@ -115,11 +116,20 @@ namespace EasyWP7Updater.Forms
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
+            // devicesSelectMenu
+            // 
+            this.devicesSelectMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.devicesSelectMenu.Image = ((System.Drawing.Image)(resources.GetObject("devicesSelectMenu.Image")));
+            this.devicesSelectMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.devicesSelectMenu.Name = "devicesSelectMenu";
+            this.devicesSelectMenu.Size = new System.Drawing.Size(60, 20);
+            this.devicesSelectMenu.Text = "Devices";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
             this.captureZuneUpdatesToolStripMenuItem,
+            this.fileToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -285,11 +295,6 @@ namespace EasyWP7Updater.Forms
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.Title = "Select cabs";
             // 
-            // sendCabThread
-            // 
-            this.sendCabThread.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sendCabThread_DoWork);
-            this.sendCabThread.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.sendCabThread_RunWorkerCompleted);
-            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -317,7 +322,7 @@ namespace EasyWP7Updater.Forms
             this.firstPage.Location = new System.Drawing.Point(4, 22);
             this.firstPage.Name = "firstPage";
             this.firstPage.Padding = new System.Windows.Forms.Padding(3);
-            this.firstPage.Size = new System.Drawing.Size(669, 274);
+            this.firstPage.Size = new System.Drawing.Size(671, 310);
             this.firstPage.TabIndex = 0;
             this.firstPage.Text = "Selection page";
             // 
@@ -392,7 +397,7 @@ namespace EasyWP7Updater.Forms
             this.predownloadedSelectionPage.Location = new System.Drawing.Point(4, 22);
             this.predownloadedSelectionPage.Name = "predownloadedSelectionPage";
             this.predownloadedSelectionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.predownloadedSelectionPage.Size = new System.Drawing.Size(669, 274);
+            this.predownloadedSelectionPage.Size = new System.Drawing.Size(671, 310);
             this.predownloadedSelectionPage.TabIndex = 1;
             this.predownloadedSelectionPage.Text = "Select downloaded cabs";
             // 
@@ -457,15 +462,28 @@ namespace EasyWP7Updater.Forms
             // sendCabsPage
             // 
             this.sendCabsPage.BackColor = System.Drawing.SystemColors.Control;
+            this.sendCabsPage.Controls.Add(this.takeBackupCheckbox);
             this.sendCabsPage.Controls.Add(this.logBox);
-            this.sendCabsPage.Controls.Add(this.sendWithoutBackupButton);
-            this.sendCabsPage.Controls.Add(this.sendWithBackupButton);
+            this.sendCabsPage.Controls.Add(this.sendCABsButton);
             this.sendCabsPage.Location = new System.Drawing.Point(4, 22);
             this.sendCabsPage.Name = "sendCabsPage";
             this.sendCabsPage.Padding = new System.Windows.Forms.Padding(3);
             this.sendCabsPage.Size = new System.Drawing.Size(671, 310);
             this.sendCabsPage.TabIndex = 2;
             this.sendCabsPage.Text = "Send cabs page";
+            // 
+            // takeBackupCheckbox
+            // 
+            this.takeBackupCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.takeBackupCheckbox.AutoSize = true;
+            this.takeBackupCheckbox.Checked = true;
+            this.takeBackupCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.takeBackupCheckbox.Location = new System.Drawing.Point(94, 284);
+            this.takeBackupCheckbox.Name = "takeBackupCheckbox";
+            this.takeBackupCheckbox.Size = new System.Drawing.Size(96, 17);
+            this.takeBackupCheckbox.TabIndex = 4;
+            this.takeBackupCheckbox.Text = "Create backup";
+            this.takeBackupCheckbox.UseVisualStyleBackColor = true;
             // 
             // logBox
             // 
@@ -480,27 +498,16 @@ namespace EasyWP7Updater.Forms
             this.logBox.Size = new System.Drawing.Size(658, 269);
             this.logBox.TabIndex = 3;
             // 
-            // sendWithoutBackupButton
+            // sendCABsButton
             // 
-            this.sendWithoutBackupButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.sendWithoutBackupButton.Location = new System.Drawing.Point(7, 280);
-            this.sendWithoutBackupButton.Name = "sendWithoutBackupButton";
-            this.sendWithoutBackupButton.Size = new System.Drawing.Size(176, 23);
-            this.sendWithoutBackupButton.TabIndex = 2;
-            this.sendWithoutBackupButton.Text = "Send cabs without backing up";
-            this.sendWithoutBackupButton.UseVisualStyleBackColor = true;
-            this.sendWithoutBackupButton.Click += new System.EventHandler(this.sendWithoutBackupButton_Click);
-            // 
-            // sendWithBackupButton
-            // 
-            this.sendWithBackupButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendWithBackupButton.Location = new System.Drawing.Point(497, 281);
-            this.sendWithBackupButton.Name = "sendWithBackupButton";
-            this.sendWithBackupButton.Size = new System.Drawing.Size(168, 23);
-            this.sendWithBackupButton.TabIndex = 1;
-            this.sendWithBackupButton.Text = "Send cabs and take a backup";
-            this.sendWithBackupButton.UseVisualStyleBackColor = true;
-            this.sendWithBackupButton.Click += new System.EventHandler(this.sendWithBackupButton_Click);
+            this.sendCABsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sendCABsButton.Location = new System.Drawing.Point(7, 280);
+            this.sendCABsButton.Name = "sendCABsButton";
+            this.sendCABsButton.Size = new System.Drawing.Size(81, 23);
+            this.sendCABsButton.TabIndex = 2;
+            this.sendCABsButton.Text = "Send CABs";
+            this.sendCABsButton.UseVisualStyleBackColor = true;
+            this.sendCABsButton.Click += new System.EventHandler(this.sendWithoutBackupButton_Click);
             // 
             // downloadPage
             // 
@@ -550,7 +557,7 @@ namespace EasyWP7Updater.Forms
             this.catSelectBox.Size = new System.Drawing.Size(159, 277);
             this.catSelectBox.TabIndex = 0;
             this.catSelectBox.SelectedIndexChanged += new System.EventHandler(this.catSelectBox_SelectedIndexChanged);
-            // 
+            //
             // captureZuneUpdatesToolStripMenuItem
             // 
             this.captureZuneUpdatesToolStripMenuItem.Name = "captureZuneUpdatesToolStripMenuItem";
@@ -642,6 +649,7 @@ namespace EasyWP7Updater.Forms
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Easy WP7.x Updater";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -689,10 +697,8 @@ namespace EasyWP7Updater.Forms
         private System.Windows.Forms.ListView selectedCabsView;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button removeSelectedButton;
-        private System.Windows.Forms.Button sendWithoutBackupButton;
-        private System.Windows.Forms.Button sendWithBackupButton;
+        private System.Windows.Forms.Button sendCABsButton;
         private System.Windows.Forms.TextBox logBox;
-        private System.ComponentModel.BackgroundWorker sendCabThread;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem viewHomepageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jessenicToolStripMenuItem;
@@ -711,12 +717,14 @@ namespace EasyWP7Updater.Forms
         private System.Windows.Forms.ListBox subCatSelectBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox catSelectBox;
+        private System.Windows.Forms.ToolStripMenuItem captureZuneUpdatesToolStripMenuItem;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckedListBox selectLangBox;
-        private System.Windows.Forms.ToolStripMenuItem captureZuneUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chrisK91ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem twitterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem xDAToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ToolStripDropDownButton devicesSelectMenu;
+        private System.Windows.Forms.CheckBox takeBackupCheckbox;
     }
 }
