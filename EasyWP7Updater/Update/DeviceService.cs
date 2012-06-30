@@ -6,33 +6,90 @@ using System.IO;
 using System.Diagnostics;
 using Microsoft.WindowsMobile.DeviceUpdate;
 using System.Runtime.InteropServices;
-
+using System.ComponentModel;
+using System.Threading;
 
 namespace EasyWP7Updater.Update
 {
+    /// <summary>
+    /// Provides communication with a connected device.
+    /// </summary>
     class DeviceService : IDisposable
     {
-        public static string updateWPPath;
-
-        public delegate void UpdateWPMessageEventhandler(object sender, UpdateMessageEventArgs args);
-        public event UpdateWPMessageEventhandler OnUpdateWPMessageSent;
+        public delegate void ServiceMessageEventhandler(object sender, UpdateMessageEventArgs args);
+        /// <summary>
+        /// Event that occures when the DeviceService sends a message, e.g. an error, a status update, etc.
+        /// </summary>
+        public event ServiceMessageEventhandler OnServiceMessageSent;
 
         public delegate void DevicesChangedEventhandler(object sender, List<BindableDeviceInformation> Devices);
+        /// <summary>
+        /// Fires when devices are connected or disconnected
+        /// </summary>
         public event DevicesChangedEventhandler OnDevicesChanged;
 
         private EventHandler<DeviceConnectionChangedEventArgs> changedHandler;
 
+        /// <summary>
+        /// Contains a list of all present devices. Updated when devices are connected/disconnnected
+        /// </summary>
         public List<BindableDeviceInformation> Devices;
 
+        private Thread updateThread;
+
+        /// <summary>
+        /// Initializes the DeviceService
+        /// </summary>
         public DeviceService()
         {
-            updateWPPath = Path.Combine(Path.GetDirectoryName(new Uri(base.GetType().Assembly.CodeBase).LocalPath), (Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE") == "x86") ? "tools\\x86" : "tools\\x64");
             changedHandler = new EventHandler<DeviceConnectionChangedEventArgs>(manager_DeviceConnectionChanged);
             DeviceManagerSingleton.Manager.DeviceConnectionChanged += changedHandler;
             UpdateDevices();
         }
 
-        void manager_DeviceConnectionChanged(object sender, DeviceConnectionChangedEventArgs e)
+        private class doUpdateArgs
+        {
+            public List<string> updates;
+            public IDeviceInfo device;
+            public bool withBackup;
+        }
+
+        private void doUpdate(object args)
+        {
+            doUpdateArgs arguments = args as doUpdateArgs;
+            if (arguments != null)
+            {
+                IDevice d = (IDevice)null;
+                try
+                {
+                    d = DeviceManagerSingleton.Manager.AcquireDevice(arguments.device.UniqueIdentifier);
+                    if (d != null)
+                    {
+                        raiseMessageSent(String.Format("Applying updates to device {0} ({1})", arguments.device.Name, arguments.device.UniqueIdentifier), UpdateMessageEventArgs.MessageType.Log);
+                        UpdateType type = UpdateType.IU;
+                        if (arguments.withBackup)
+                            type = UpdateType.IU | UpdateType.BACKUP;
+
+                        IErrorInfo error = d.Update(arguments.updates.ToArray(), type, new Action<IUpdateProgress>(handleProgress), (object)null);
+
+                        if (error != null)
+                        {
+                            raiseMessageSent(String.Format("Update on device {0} completed with error {1} - {2}", arguments.device.UniqueIdentifier, error.Code.ToString(), error.Description.ToString()), UpdateMessageEventArgs.MessageType.Log);
+                        }
+
+                        DeviceManagerSingleton.Manager.ReleaseDevice(d);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    raiseMessageSent(ex.Message, UpdateMessageEventArgs.MessageType.Log);
+                    if (d != null)
+                        DeviceManagerSingleton.Manager.ReleaseDevice(d);
+                }
+            }
+        }
+
+        private void manager_DeviceConnectionChanged(object sender, DeviceConnectionChangedEventArgs e)
         {
             switch (e.ChangeType)
             {
@@ -50,6 +107,10 @@ namespace EasyWP7Updater.Update
                 OnDevicesChanged(this, this.Devices);
         }
 
+        /// <summary>
+        /// Forces the DeviceService to update the device list
+        /// </summary>
+        /// <returns>A copy of DeviceService.Devices</returns>
         public List<BindableDeviceInformation> UpdateDevices()
         {
             Devices = new List<BindableDeviceInformation>();
@@ -61,35 +122,23 @@ namespace EasyWP7Updater.Update
             return Devices;
         }
 
-        //Does not work, COM Error
-        public void UpdateCAB(IDeviceInfo device, List<string> updates, bool withBackup)
+        /// <summary>
+        /// Updates the given device with the specified Images (CAB)
+        /// </summary>
+        /// <param name="device">The device that will be updated</param>
+        /// <param name="updates">A list of the updates</param>
+        /// <param name="withBackup">True when a backup should be created, otherwise false</param>
+        public void UpdateImageUpdate(IDeviceInfo device, List<string> updates, bool withBackup)
         {
-            IDevice d = (IDevice)null;
-            try
+            if (updateThread == null || !updateThread.IsAlive)
             {
-                d = DeviceManagerSingleton.Manager.AcquireDevice(device.UniqueIdentifier);
-                if (d != null)
-                {
-                    raiseMessageSent(String.Format("Applying updates to device {0} ({1})", device.Name, device.UniqueIdentifier), UpdateMessageEventArgs.MessageType.Log);
-                    UpdateType type = UpdateType.IU;
-                    if (withBackup)
-                        type = UpdateType.IU | UpdateType.BACKUP;
-
-                    IErrorInfo error = d.Update(updates.ToArray(), type, new Action<IUpdateProgress>(handleProgress), (object)null);
-
-                    if (error != null)
-                    {
-                        raiseMessageSent(String.Format("Update on device {0} completed with error {1} - {2}", device.UniqueIdentifier, error.Code.ToString(), error.Description.ToString()), UpdateMessageEventArgs.MessageType.Log); 
-                    }
-
-                    DeviceManagerSingleton.Manager.ReleaseDevice(d);
-                }
+                updateThread = new Thread(new ParameterizedThreadStart(doUpdate));
+                updateThread.SetApartmentState(ApartmentState.MTA);
+                updateThread.Start(new doUpdateArgs(){ device = device, updates = updates, withBackup = withBackup});
             }
-            catch (Exception ex)
+            else
             {
-                raiseMessageSent(ex.Message, UpdateMessageEventArgs.MessageType.Log);
-                if (d != null)
-                    DeviceManagerSingleton.Manager.ReleaseDevice(d);
+                raiseMessageSent("There is already an update in progress. Please wait for it to finish.", UpdateMessageEventArgs.MessageType.Log);
             }
         }
 
@@ -97,13 +146,13 @@ namespace EasyWP7Updater.Update
         {
             if (progress.CurrentStep.StepCompleted)
             {
-                raiseMessageSent(String.Format("Step {0} completed", progress.CurrentStep.Name));
+                raiseMessageSent(String.Format("Step {0} completed", progress.CurrentStep.Name), UpdateMessageEventArgs.MessageType.Log);
             }
             else
             {
                 if (progress.CurrentStep.PercentageAvailable)
                 {
-                    raiseMessageSent(String.Format("Step {0}: {1}%", progress.CurrentStep.Name, progress.CurrentStep.Percentage));
+                    raiseMessageSent(String.Format("Step {0}: {1}%", progress.CurrentStep.Name, progress.CurrentStep.Percentage), UpdateMessageEventArgs.MessageType.Log);
                 }
                 else
                 {
@@ -114,16 +163,19 @@ namespace EasyWP7Updater.Update
 
         private void raiseMessageSent(string message)
         {
-            if (OnUpdateWPMessageSent != null)
-                OnUpdateWPMessageSent(this, new UpdateMessageEventArgs(message));
+            if (OnServiceMessageSent != null)
+                OnServiceMessageSent(this, new UpdateMessageEventArgs(message));
         }
 
         private void raiseMessageSent(string message, UpdateMessageEventArgs.MessageType type)
         {
-            if (OnUpdateWPMessageSent != null)
-                OnUpdateWPMessageSent(this, new UpdateMessageEventArgs(message, type));
+            if (OnServiceMessageSent != null)
+                OnServiceMessageSent(this, new UpdateMessageEventArgs(message, type));
         }
 
+        /// <summary>
+        /// Disposes the DeviceService
+        /// </summary>
         public void Dispose()
         {
             Devices.Clear();
@@ -131,6 +183,10 @@ namespace EasyWP7Updater.Update
             changedHandler = null;
         }
 
+        /// <summary>
+        /// Restarts the device in SLDR mode
+        /// </summary>
+        /// <param name="device">The device that should be restarted</param>
         public static void RestartSLDRMode(IDeviceInfo device)
         {
             string uid = device.UniqueIdentifier;
@@ -147,6 +203,10 @@ namespace EasyWP7Updater.Update
             }
         }
 
+        /// <summary>
+        /// Restarts the device in OS Mode
+        /// </summary>
+        /// <param name="device">The device that should be restarted</param>
         public static void RestartOSMode(IDeviceInfo device)
         {
             string uid = device.UniqueIdentifier;
@@ -163,6 +223,10 @@ namespace EasyWP7Updater.Update
             }
         }
 
+        /// <summary>
+        /// Performs a coldboot restart on the deive
+        /// </summary>
+        /// <param name="device">The device that should be restarted</param>
         public static void RestartColdboot(IDeviceInfo device)
         {
             string uid = device.UniqueIdentifier;

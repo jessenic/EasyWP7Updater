@@ -27,7 +27,7 @@ namespace EasyWP7Updater.Forms
             this.Text = this.Text + " - Version " + ver.Major + "." + ver.Minor;
             webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
             deviceService = new DeviceService();
-            deviceService.OnUpdateWPMessageSent += new DeviceService.UpdateWPMessageEventhandler(handleUpdateMessage);
+            deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
             deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
             refreshDevices();
         }
@@ -197,7 +197,7 @@ namespace EasyWP7Updater.Forms
                 if (proceed)
                 {
                     AppendLog("Updating");
-                    deviceService.UpdateCAB(d.DeviceInfo, cabs, takeBackup);
+                    deviceService.UpdateImageUpdate(d.DeviceInfo, cabs, takeBackup);
                 }
                 else
                 {
@@ -214,7 +214,7 @@ namespace EasyWP7Updater.Forms
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action<string>(AppendLog), line);
+                this.BeginInvoke(new Action<string>(AppendLog), line);
             }
             else
             {

@@ -6,8 +6,14 @@ using System.Windows.Forms;
 
 namespace EasyWP7Updater.Controls
 {
+    /// <summary>
+    /// Provides a ToolStripMenuItem that represents a connected device
+    /// </summary>
     class DeviceMenuItem : ToolStripMenuItem
     {
+        /// <summary>
+        /// The device associated with the MenuItem
+        /// </summary>
         public Update.BindableDeviceInformation Device { get; private set; }
         ToolStripDropDownButton parent;
 
