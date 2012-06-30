@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -360,11 +360,18 @@ namespace EasyWP7Updater.Forms
 
         }
 
+<<<<<<< HEAD
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             deviceService.Dispose();
             DeviceManagerSingleton.Cleanup();
             deviceService = null;
+=======
+        private void captureZuneUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PCapForm pcform = new PCapForm();
+            pcform.Show();
+>>>>>>> 39672c9bdf93440812d88771f880293589ab4c73
         }
     }
 }
