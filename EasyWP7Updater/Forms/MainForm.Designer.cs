@@ -36,6 +36,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.captureZuneUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHomepageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,7 +90,6 @@
             this.startDownloadButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.downloadOverviewList = new System.Windows.Forms.CheckedListBox();
-            this.captureZuneUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -160,6 +160,13 @@
             this.startOverToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.startOverToolStripMenuItem.Text = "Start over";
             this.startOverToolStripMenuItem.Click += new System.EventHandler(this.startOverToolStripMenuItem_Click);
+            // 
+            // captureZuneUpdatesToolStripMenuItem
+            // 
+            this.captureZuneUpdatesToolStripMenuItem.Name = "captureZuneUpdatesToolStripMenuItem";
+            this.captureZuneUpdatesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.captureZuneUpdatesToolStripMenuItem.Text = "Capture Zune updates";
+            this.captureZuneUpdatesToolStripMenuItem.Click += new System.EventHandler(this.captureZuneUpdatesToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -249,20 +256,20 @@
             this.twitterToolStripMenuItem,
             this.xDAForumsToolStripMenuItem});
             this.jessenicToolStripMenuItem.Name = "jessenicToolStripMenuItem";
-            this.jessenicToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jessenicToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.jessenicToolStripMenuItem.Text = "jessenic";
             // 
             // twitterToolStripMenuItem
             // 
             this.twitterToolStripMenuItem.Name = "twitterToolStripMenuItem";
-            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.twitterToolStripMenuItem.Text = "Twitter";
             this.twitterToolStripMenuItem.Click += new System.EventHandler(this.twitterToolStripMenuItem_Click);
             // 
             // xDAForumsToolStripMenuItem
             // 
             this.xDAForumsToolStripMenuItem.Name = "xDAForumsToolStripMenuItem";
-            this.xDAForumsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xDAForumsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.xDAForumsToolStripMenuItem.Text = "XDA Forums";
             this.xDAForumsToolStripMenuItem.Click += new System.EventHandler(this.xDAForumsToolStripMenuItem_Click);
             // 
@@ -272,20 +279,20 @@
             this.twitterToolStripMenuItem1,
             this.xDAToolStripMenuItem});
             this.chrisK91ToolStripMenuItem.Name = "chrisK91ToolStripMenuItem";
-            this.chrisK91ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chrisK91ToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.chrisK91ToolStripMenuItem.Text = "ChrisK91";
             // 
             // twitterToolStripMenuItem1
             // 
             this.twitterToolStripMenuItem1.Name = "twitterToolStripMenuItem1";
-            this.twitterToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.twitterToolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
             this.twitterToolStripMenuItem1.Text = "Twitter";
             this.twitterToolStripMenuItem1.Click += new System.EventHandler(this.twitterToolStripMenuItem1_Click);
             // 
             // xDAToolStripMenuItem
             // 
             this.xDAToolStripMenuItem.Name = "xDAToolStripMenuItem";
-            this.xDAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xDAToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.xDAToolStripMenuItem.Text = "XDA Forums";
             this.xDAToolStripMenuItem.Click += new System.EventHandler(this.xDAToolStripMenuItem_Click);
             // 
@@ -719,13 +726,6 @@
             this.downloadOverviewList.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.downloadOverviewList.Size = new System.Drawing.Size(659, 244);
             this.downloadOverviewList.TabIndex = 0;
-            // 
-            // captureZuneUpdatesToolStripMenuItem
-            // 
-            this.captureZuneUpdatesToolStripMenuItem.Name = "captureZuneUpdatesToolStripMenuItem";
-            this.captureZuneUpdatesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.captureZuneUpdatesToolStripMenuItem.Text = "Capture Zune updates";
-            this.captureZuneUpdatesToolStripMenuItem.Click += new System.EventHandler(this.captureZuneUpdatesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
