@@ -38,6 +38,8 @@
             this.xmlStructureTrvw = new System.Windows.Forms.TreeView();
             this.openXmlOFDlg = new System.Windows.Forms.OpenFileDialog();
             this.saveXmlSFDlg = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.text2XmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +58,9 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.text2XmlToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -64,7 +68,7 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -139,6 +143,18 @@
             this.saveXmlSFDlg.FileName = "sources";
             this.saveXmlSFDlg.Filter = "XML|*.xml";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // text2XmlToolStripMenuItem
+            // 
+            this.text2XmlToolStripMenuItem.Name = "text2XmlToolStripMenuItem";
+            this.text2XmlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.text2XmlToolStripMenuItem.Text = "text to xml";
+            this.text2XmlToolStripMenuItem.Click += new System.EventHandler(this.text2XmlToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,6 +186,8 @@
         private System.Windows.Forms.Button addNewBtn;
         private System.Windows.Forms.OpenFileDialog openXmlOFDlg;
         private System.Windows.Forms.SaveFileDialog saveXmlSFDlg;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem text2XmlToolStripMenuItem;
     }
 }
 

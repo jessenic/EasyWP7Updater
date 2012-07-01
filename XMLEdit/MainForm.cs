@@ -168,5 +168,11 @@ namespace XMLEdit
                 Packages.SaveToXML(categories, saveXmlSFDlg.FileName);
             }
         }
+
+        private void text2XmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextToXml dlg = new TextToXml();
+            dlg.Show();
+        }
     }
 }
