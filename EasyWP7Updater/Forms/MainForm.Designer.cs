@@ -34,9 +34,9 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.devicesSelectMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.captureZuneUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.captureZuneUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHomepageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -140,7 +140,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.captureZuneUpdatesToolStripMenuItem,
             this.fileToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -149,17 +148,11 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // captureZuneUpdatesToolStripMenuItem
-            // 
-            this.captureZuneUpdatesToolStripMenuItem.Name = "captureZuneUpdatesToolStripMenuItem";
-            this.captureZuneUpdatesToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
-            this.captureZuneUpdatesToolStripMenuItem.Text = "Capture Zune Updates";
-            this.captureZuneUpdatesToolStripMenuItem.Click += new System.EventHandler(this.captureZuneUpdatesToolStripMenuItem_Click);
-            // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startOverToolStripMenuItem,
+            this.captureZuneUpdatesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -168,14 +161,21 @@
             // startOverToolStripMenuItem
             // 
             this.startOverToolStripMenuItem.Name = "startOverToolStripMenuItem";
-            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.startOverToolStripMenuItem.Text = "Start over";
             this.startOverToolStripMenuItem.Click += new System.EventHandler(this.startOverToolStripMenuItem_Click);
+            // 
+            // captureZuneUpdatesToolStripMenuItem
+            // 
+            this.captureZuneUpdatesToolStripMenuItem.Name = "captureZuneUpdatesToolStripMenuItem";
+            this.captureZuneUpdatesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.captureZuneUpdatesToolStripMenuItem.Text = "Capture Zune updates";
+            this.captureZuneUpdatesToolStripMenuItem.Click += new System.EventHandler(this.captureZuneUpdatesToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -844,7 +844,6 @@
         private System.Windows.Forms.ListBox subCatSelectBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox catSelectBox;
-        private System.Windows.Forms.ToolStripMenuItem captureZuneUpdatesToolStripMenuItem;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckedListBox selectLangBox;
         private System.Windows.Forms.ToolStripMenuItem chrisK91ToolStripMenuItem;
@@ -865,5 +864,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckedListBox selectInstalledLanguagesBox;
         private System.Windows.Forms.Button continueWithUpdateSelectionBtn;
+        private System.Windows.Forms.ToolStripMenuItem captureZuneUpdatesToolStripMenuItem;
     }
 }
