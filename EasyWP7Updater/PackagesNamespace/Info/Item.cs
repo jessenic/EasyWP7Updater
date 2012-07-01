@@ -37,7 +37,7 @@ namespace EasyWP7Updater.Packages.Info
         public Item(string desc, string type, string lang, Uri download)
         {
             Description = desc;
-            switch (type)
+            switch (type.ToLower())
             {
                 case "os":
                     Type = ItemType.os;
