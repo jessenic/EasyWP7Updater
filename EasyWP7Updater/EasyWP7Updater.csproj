@@ -108,6 +108,7 @@
     <Compile Include="Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\LanguageList.cs" />
     <Compile Include="Helper\Validator.cs" />
     <Compile Include="PCapForm.cs">
       <SubType>Form</SubType>

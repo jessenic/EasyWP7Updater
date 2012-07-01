@@ -57,12 +57,11 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new EasyWP7Updater.Controls.WizardPages();
             this.firstPage = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.label3 = new System.Windows.Forms.Label();
             this.InstallDownloadedCabsButton = new System.Windows.Forms.Button();
             this.downloadFromROMProviderButton = new System.Windows.Forms.Button();
             this.downloadfromMSbutton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.predownloadedSelectionPage = new System.Windows.Forms.TabPage();
             this.removeSelectedButton = new System.Windows.Forms.Button();
             this.addCabsButton = new System.Windows.Forms.Button();
@@ -90,6 +89,10 @@
             this.startDownloadButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.downloadOverviewList = new System.Windows.Forms.CheckedListBox();
+            this.selectInstalledLanguagesPage = new System.Windows.Forms.TabPage();
+            this.continueWithUpdateSelectionBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.selectInstalledLanguagesBox = new System.Windows.Forms.CheckedListBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -99,6 +102,7 @@
             this.downloadPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.downloadSelected.SuspendLayout();
+            this.selectInstalledLanguagesPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -320,6 +324,7 @@
             this.tabControl1.Controls.Add(this.sendCabsPage);
             this.tabControl1.Controls.Add(this.downloadPage);
             this.tabControl1.Controls.Add(this.downloadSelected);
+            this.tabControl1.Controls.Add(this.selectInstalledLanguagesPage);
             this.tabControl1.Location = new System.Drawing.Point(13, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -329,18 +334,25 @@
             // firstPage
             // 
             this.firstPage.BackColor = System.Drawing.SystemColors.Control;
+            this.firstPage.Controls.Add(this.label1);
             this.firstPage.Controls.Add(this.webBrowser1);
-            this.firstPage.Controls.Add(this.label3);
             this.firstPage.Controls.Add(this.InstallDownloadedCabsButton);
             this.firstPage.Controls.Add(this.downloadFromROMProviderButton);
             this.firstPage.Controls.Add(this.downloadfromMSbutton);
-            this.firstPage.Controls.Add(this.label1);
             this.firstPage.Location = new System.Drawing.Point(4, 22);
             this.firstPage.Name = "firstPage";
             this.firstPage.Padding = new System.Windows.Forms.Padding(3);
             this.firstPage.Size = new System.Drawing.Size(671, 310);
             this.firstPage.TabIndex = 0;
             this.firstPage.Text = "Selection page";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(7, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(306, 109);
+            this.label1.TabIndex = 7;
+            this.label1.Text = resources.GetString("label1.Text");
             // 
             // webBrowser1
             // 
@@ -354,18 +366,9 @@
             this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
             this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(291, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Downloading is not implemented yet, but it will be super easy";
-            // 
             // InstallDownloadedCabsButton
             // 
-            this.InstallDownloadedCabsButton.Location = new System.Drawing.Point(10, 96);
+            this.InstallDownloadedCabsButton.Location = new System.Drawing.Point(6, 174);
             this.InstallDownloadedCabsButton.Name = "InstallDownloadedCabsButton";
             this.InstallDownloadedCabsButton.Size = new System.Drawing.Size(238, 23);
             this.InstallDownloadedCabsButton.TabIndex = 4;
@@ -376,7 +379,7 @@
             // downloadFromROMProviderButton
             // 
             this.downloadFromROMProviderButton.Enabled = false;
-            this.downloadFromROMProviderButton.Location = new System.Drawing.Point(10, 66);
+            this.downloadFromROMProviderButton.Location = new System.Drawing.Point(6, 145);
             this.downloadFromROMProviderButton.Name = "downloadFromROMProviderButton";
             this.downloadFromROMProviderButton.Size = new System.Drawing.Size(238, 23);
             this.downloadFromROMProviderButton.TabIndex = 3;
@@ -385,22 +388,13 @@
             // 
             // downloadfromMSbutton
             // 
-            this.downloadfromMSbutton.Location = new System.Drawing.Point(10, 36);
+            this.downloadfromMSbutton.Location = new System.Drawing.Point(6, 116);
             this.downloadfromMSbutton.Name = "downloadfromMSbutton";
             this.downloadfromMSbutton.Size = new System.Drawing.Size(238, 23);
             this.downloadfromMSbutton.TabIndex = 2;
             this.downloadfromMSbutton.Text = "Download official cabs from Microsoft servers";
             this.downloadfromMSbutton.UseVisualStyleBackColor = true;
             this.downloadfromMSbutton.Click += new System.EventHandler(this.downloadfromMSbutton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "What do you want to do?";
             // 
             // predownloadedSelectionPage
             // 
@@ -727,6 +721,49 @@
             this.downloadOverviewList.Size = new System.Drawing.Size(659, 244);
             this.downloadOverviewList.TabIndex = 0;
             // 
+            // selectInstalledLanguagesPage
+            // 
+            this.selectInstalledLanguagesPage.Controls.Add(this.continueWithUpdateSelectionBtn);
+            this.selectInstalledLanguagesPage.Controls.Add(this.label3);
+            this.selectInstalledLanguagesPage.Controls.Add(this.selectInstalledLanguagesBox);
+            this.selectInstalledLanguagesPage.Location = new System.Drawing.Point(4, 22);
+            this.selectInstalledLanguagesPage.Name = "selectInstalledLanguagesPage";
+            this.selectInstalledLanguagesPage.Padding = new System.Windows.Forms.Padding(3);
+            this.selectInstalledLanguagesPage.Size = new System.Drawing.Size(671, 310);
+            this.selectInstalledLanguagesPage.TabIndex = 5;
+            this.selectInstalledLanguagesPage.Text = "SelectLanguages";
+            this.selectInstalledLanguagesPage.UseVisualStyleBackColor = true;
+            // 
+            // continueWithUpdateSelectionBtn
+            // 
+            this.continueWithUpdateSelectionBtn.Location = new System.Drawing.Point(9, 281);
+            this.continueWithUpdateSelectionBtn.Name = "continueWithUpdateSelectionBtn";
+            this.continueWithUpdateSelectionBtn.Size = new System.Drawing.Size(308, 23);
+            this.continueWithUpdateSelectionBtn.TabIndex = 2;
+            this.continueWithUpdateSelectionBtn.Text = "Continue selecting the updates";
+            this.continueWithUpdateSelectionBtn.UseVisualStyleBackColor = true;
+            this.continueWithUpdateSelectionBtn.Click += new System.EventHandler(this.continueWithUpdateSelectionBtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(6, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(311, 55);
+            this.label3.TabIndex = 1;
+            this.label3.Text = resources.GetString("label3.Text");
+            // 
+            // selectInstalledLanguagesBox
+            // 
+            this.selectInstalledLanguagesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectInstalledLanguagesBox.CheckOnClick = true;
+            this.selectInstalledLanguagesBox.FormattingEnabled = true;
+            this.selectInstalledLanguagesBox.Location = new System.Drawing.Point(323, 6);
+            this.selectInstalledLanguagesBox.Name = "selectInstalledLanguagesBox";
+            this.selectInstalledLanguagesBox.Size = new System.Drawing.Size(342, 304);
+            this.selectInstalledLanguagesBox.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,7 +784,6 @@
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.firstPage.ResumeLayout(false);
-            this.firstPage.PerformLayout();
             this.predownloadedSelectionPage.ResumeLayout(false);
             this.predownloadedSelectionPage.PerformLayout();
             this.sendCabsPage.ResumeLayout(false);
@@ -757,6 +793,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.downloadSelected.ResumeLayout(false);
             this.downloadSelected.PerformLayout();
+            this.selectInstalledLanguagesPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -777,7 +814,6 @@
         private System.Windows.Forms.TabPage firstPage;
         private System.Windows.Forms.TabPage predownloadedSelectionPage;
         private EasyWP7Updater.Controls.WizardPages tabControl1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button InstallDownloadedCabsButton;
         private System.Windows.Forms.Button downloadFromROMProviderButton;
         private System.Windows.Forms.Button downloadfromMSbutton;
@@ -791,7 +827,6 @@
         private System.Windows.Forms.Button removeSelectedButton;
         private System.Windows.Forms.Button sendCABsButton;
         private System.Windows.Forms.TextBox logBox;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem viewHomepageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jessenicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem twitterToolStripMenuItem;
@@ -825,5 +860,10 @@
         private System.Windows.Forms.Button startDownloadButton;
         private System.Windows.Forms.ProgressBar downloadProgress;
         private System.Windows.Forms.Button continueWithDownloaded;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage selectInstalledLanguagesPage;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckedListBox selectInstalledLanguagesBox;
+        private System.Windows.Forms.Button continueWithUpdateSelectionBtn;
     }
 }

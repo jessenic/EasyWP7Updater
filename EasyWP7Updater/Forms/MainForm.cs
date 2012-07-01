@@ -23,6 +23,7 @@ namespace EasyWP7Updater.Forms
         private bool lastDownloaded = false;
         private int currentItem = 0;
         private List<string> cabsToSend = new List<string>();
+        private List<string> selectedLanguageIDs = new List<string>();
         string downloadDir = Directory.GetCurrentDirectory() + @"\download\";
 
         public MainForm()
@@ -35,6 +36,12 @@ namespace EasyWP7Updater.Forms
             deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
             deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
             refreshDevices();
+
+            foreach(KeyValuePair<string, string> s in Helper.LanguageList.Languages)
+                selectInstalledLanguagesBox.Items.Add(s.Key);
+
+            for (int i = 0; i < selectInstalledLanguagesBox.Items.Count; i++)
+                selectInstalledLanguagesBox.SetItemChecked(i, true);
         }
 
         private void updateHelper_OnDevicesChanged(object sender, List<BindableDeviceInformation> Devices)
@@ -109,6 +116,7 @@ namespace EasyWP7Updater.Forms
                 if (wf.exit)
                 {
                     wf.Dispose();
+                    DeviceManagerSingleton.Cleanup();
                     this.Dispose();
                 }
                 else
@@ -311,13 +319,17 @@ namespace EasyWP7Updater.Forms
 
         private void downloadfromMSbutton_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = downloadPage;
+            tabControl1.SelectedTab = selectInstalledLanguagesPage;
             UpdateDownloadLists("sources.xml");
         }
 
         private void UpdateDownloadLists(string cablisturl)
         {
+#if DEBUG
             string filename = Directory.GetCurrentDirectory() + @"\sources.xml";
+#else
+            string filename = "http://jessenic.github.com/EasyWP7Updater/updates.xml";
+#endif
             List<Packages.Info.Category> categories = Packages.Packages.GetFromXml(filename);
             catSelectBox.Items.Clear();
             catSelectBox.Items.AddRange(categories.ToArray());
@@ -365,6 +377,83 @@ namespace EasyWP7Updater.Forms
 
                 selectLangBox.Items.Clear();
                 selectLangBox.Items.AddRange(items.ToArray());
+
+                //Check the device OS version
+                BindableDeviceInformation d = getSelectedDevice();
+                if (d != null)
+                {
+                    try
+                    {
+                        string OSversion = d.DeviceInfo.OSVersion;
+                        string[] tmp = OSversion.Split('-');
+                        OSversion = tmp[0];
+
+                        bool warning = false;
+                        bool osUpdate = false;
+
+                        string[] versionsPhone = OSversion.Split('.');
+                        string[] versionsUpdate = selectedVersion.ToVersion.Split('.');
+
+                        if (versionsPhone.Length != versionsUpdate.Length)
+                            throw new Exception("Possible version mismatch");
+                        else
+                        {
+                            for (int i = 0; i < versionsPhone.Length; i++)
+                            {
+                                int versionPhone = Convert.ToInt32(versionsPhone[i]);
+                                int versionUpdate = Convert.ToInt32(versionsUpdate[i]);
+                                if(versionUpdate < versionPhone)
+                                {
+                                    warning = true;
+                                }
+
+                                if (i == 0 && versionUpdate == 7)
+                                    osUpdate = true;
+                            }
+                        }
+
+                        if(warning && osUpdate)
+                            MessageBox.Show(String.Format("Your phone already has this (or a newer) version installed. Please continue only if you are sure that you want to install the update {0}", selectedVersion.ToString()), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unable to compare OS Versions, " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+
+                //Check istalled languages
+                if (selectedLanguageIDs.Count != 0 && selectedVersion.IsLanguageAware)
+                {
+                    List<string> notFound = new List<string>();
+                    bool everythingFound = true;
+
+                    foreach (string languageId in selectedLanguageIDs)
+                    {
+                        bool currentFound = false;
+                        for (int i = 0; i < selectLangBox.Items.Count; i++)
+                        {
+                            Packages.Info.Item item = selectLangBox.Items[i] as Packages.Info.Item;
+                            if (item.LangId.Trim().ToLower() == languageId.Trim().ToLower())
+                            {
+                                currentFound = true;
+                                selectLangBox.SetItemChecked(i, true);
+                            }
+                        }
+
+                        if (!currentFound)
+                        {
+                            everythingFound = false;
+                            notFound.Add(Helper.LanguageList.LanguagesById[languageId]);
+                        }
+                    }
+
+                    if (!everythingFound)
+                    {
+                        MessageBox.Show(String.Format("At least one language has not been found. You can continue anyway, but note that missing languages can make your device unusable!\r\nMissing languages: {0}", String.Join(", ", notFound)), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    }
+                }
             }
         }
 
@@ -492,6 +581,23 @@ namespace EasyWP7Updater.Forms
 
             foreach (string u in cabsToSend)
                 AppendLog(u);
+        }
+
+        private void continueWithUpdateSelectionBtn_Click(object sender, EventArgs e)
+        {
+            if ((selectInstalledLanguagesBox.CheckedItems.Count == 0) && (MessageBox.Show("Do you really want to proceed without selecting your installed languages? Missing language packs can make your phone unusable!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes))
+            {
+                tabControl1.SelectedTab = downloadPage;
+            }
+            else
+            {
+                selectedLanguageIDs = new List<string>();
+                foreach (string s in selectInstalledLanguagesBox.CheckedItems)
+                {
+                    selectedLanguageIDs.Add(Helper.LanguageList.Languages[s]);
+                }
+                tabControl1.SelectedTab = downloadPage;
+            }
         }
     }
 }
