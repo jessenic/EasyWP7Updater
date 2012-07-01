@@ -34,6 +34,7 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.devicesSelectMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.captureZuneUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,9 +74,9 @@
             this.logBox = new System.Windows.Forms.TextBox();
             this.sendCABsButton = new System.Windows.Forms.Button();
             this.downloadPage = new System.Windows.Forms.TabPage();
+            this.downloadSelectedCabs = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.catSelectBox = new System.Windows.Forms.ListBox();
-            this.captureZuneUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subCatSelectBox = new System.Windows.Forms.ListBox();
             this.versionBox = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -83,6 +84,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.selectLangBox = new System.Windows.Forms.CheckedListBox();
+            this.downloadSelected = new System.Windows.Forms.TabPage();
+            this.downloadProgress = new System.Windows.Forms.ProgressBar();
+            this.continueWithDownloaded = new System.Windows.Forms.Button();
+            this.startDownloadButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.downloadOverviewList = new System.Windows.Forms.CheckedListBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -91,6 +98,7 @@
             this.sendCabsPage.SuspendLayout();
             this.downloadPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.downloadSelected.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -136,6 +144,13 @@
             this.menuStrip1.Size = new System.Drawing.Size(704, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // captureZuneUpdatesToolStripMenuItem
+            // 
+            this.captureZuneUpdatesToolStripMenuItem.Name = "captureZuneUpdatesToolStripMenuItem";
+            this.captureZuneUpdatesToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
+            this.captureZuneUpdatesToolStripMenuItem.Text = "Capture Zune Updates";
+            this.captureZuneUpdatesToolStripMenuItem.Click += new System.EventHandler(this.captureZuneUpdatesToolStripMenuItem_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -304,6 +319,7 @@
             this.tabControl1.Controls.Add(this.predownloadedSelectionPage);
             this.tabControl1.Controls.Add(this.sendCabsPage);
             this.tabControl1.Controls.Add(this.downloadPage);
+            this.tabControl1.Controls.Add(this.downloadSelected);
             this.tabControl1.Location = new System.Drawing.Point(13, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -512,6 +528,7 @@
             // downloadPage
             // 
             this.downloadPage.BackColor = System.Drawing.SystemColors.Control;
+            this.downloadPage.Controls.Add(this.downloadSelectedCabs);
             this.downloadPage.Controls.Add(this.tableLayoutPanel1);
             this.downloadPage.Location = new System.Drawing.Point(4, 22);
             this.downloadPage.Name = "downloadPage";
@@ -519,6 +536,17 @@
             this.downloadPage.Size = new System.Drawing.Size(671, 310);
             this.downloadPage.TabIndex = 3;
             this.downloadPage.Text = "Download Page";
+            // 
+            // downloadSelectedCabs
+            // 
+            this.downloadSelectedCabs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.downloadSelectedCabs.Location = new System.Drawing.Point(501, 284);
+            this.downloadSelectedCabs.Name = "downloadSelectedCabs";
+            this.downloadSelectedCabs.Size = new System.Drawing.Size(164, 23);
+            this.downloadSelectedCabs.TabIndex = 9;
+            this.downloadSelectedCabs.Text = "Continue";
+            this.downloadSelectedCabs.UseVisualStyleBackColor = true;
+            this.downloadSelectedCabs.Click += new System.EventHandler(this.downloadSelectedCabs_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -543,7 +571,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(662, 308);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(662, 272);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
             // catSelectBox
@@ -557,13 +585,6 @@
             this.catSelectBox.Size = new System.Drawing.Size(159, 277);
             this.catSelectBox.TabIndex = 0;
             this.catSelectBox.SelectedIndexChanged += new System.EventHandler(this.catSelectBox_SelectedIndexChanged);
-            //
-            // captureZuneUpdatesToolStripMenuItem
-            // 
-            this.captureZuneUpdatesToolStripMenuItem.Name = "captureZuneUpdatesToolStripMenuItem";
-            this.captureZuneUpdatesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.captureZuneUpdatesToolStripMenuItem.Text = "Capture Zune Updates";
-            this.captureZuneUpdatesToolStripMenuItem.Click += new System.EventHandler(this.captureZuneUpdatesToolStripMenuItem_Click);
             // 
             // subCatSelectBox
             // 
@@ -637,6 +658,75 @@
             this.selectLangBox.Size = new System.Drawing.Size(161, 274);
             this.selectLangBox.TabIndex = 6;
             // 
+            // downloadSelected
+            // 
+            this.downloadSelected.Controls.Add(this.downloadProgress);
+            this.downloadSelected.Controls.Add(this.continueWithDownloaded);
+            this.downloadSelected.Controls.Add(this.startDownloadButton);
+            this.downloadSelected.Controls.Add(this.label8);
+            this.downloadSelected.Controls.Add(this.downloadOverviewList);
+            this.downloadSelected.Location = new System.Drawing.Point(4, 22);
+            this.downloadSelected.Name = "downloadSelected";
+            this.downloadSelected.Padding = new System.Windows.Forms.Padding(3);
+            this.downloadSelected.Size = new System.Drawing.Size(671, 310);
+            this.downloadSelected.TabIndex = 4;
+            this.downloadSelected.Text = "Download Selected CABs";
+            this.downloadSelected.UseVisualStyleBackColor = true;
+            // 
+            // downloadProgress
+            // 
+            this.downloadProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.downloadProgress.Location = new System.Drawing.Point(145, 281);
+            this.downloadProgress.Name = "downloadProgress";
+            this.downloadProgress.Size = new System.Drawing.Size(381, 23);
+            this.downloadProgress.TabIndex = 3;
+            // 
+            // continueWithDownloaded
+            // 
+            this.continueWithDownloaded.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.continueWithDownloaded.Enabled = false;
+            this.continueWithDownloaded.Location = new System.Drawing.Point(532, 281);
+            this.continueWithDownloaded.Name = "continueWithDownloaded";
+            this.continueWithDownloaded.Size = new System.Drawing.Size(133, 23);
+            this.continueWithDownloaded.TabIndex = 2;
+            this.continueWithDownloaded.Text = "Continue";
+            this.continueWithDownloaded.UseVisualStyleBackColor = true;
+            this.continueWithDownloaded.Click += new System.EventHandler(this.continueWithDownloaded_Click);
+            // 
+            // startDownloadButton
+            // 
+            this.startDownloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.startDownloadButton.Location = new System.Drawing.Point(6, 281);
+            this.startDownloadButton.Name = "startDownloadButton";
+            this.startDownloadButton.Size = new System.Drawing.Size(133, 23);
+            this.startDownloadButton.TabIndex = 2;
+            this.startDownloadButton.Text = "Start download";
+            this.startDownloadButton.UseVisualStyleBackColor = true;
+            this.startDownloadButton.Click += new System.EventHandler(this.startDownloadButton_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 7);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(423, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "The following CABs will be downloaded. Click on the button below to start the dow" +
+    "nload.";
+            // 
+            // downloadOverviewList
+            // 
+            this.downloadOverviewList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.downloadOverviewList.FormattingEnabled = true;
+            this.downloadOverviewList.Location = new System.Drawing.Point(6, 23);
+            this.downloadOverviewList.Name = "downloadOverviewList";
+            this.downloadOverviewList.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.downloadOverviewList.Size = new System.Drawing.Size(659, 244);
+            this.downloadOverviewList.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -665,6 +755,8 @@
             this.downloadPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.downloadSelected.ResumeLayout(false);
+            this.downloadSelected.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -726,5 +818,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolStripDropDownButton devicesSelectMenu;
         private System.Windows.Forms.CheckBox takeBackupCheckbox;
+        private System.Windows.Forms.Button downloadSelectedCabs;
+        private System.Windows.Forms.TabPage downloadSelected;
+        private System.Windows.Forms.CheckedListBox downloadOverviewList;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button startDownloadButton;
+        private System.Windows.Forms.ProgressBar downloadProgress;
+        private System.Windows.Forms.Button continueWithDownloaded;
     }
 }

@@ -1,4 +1,4 @@
-﻿using System; 
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +11,7 @@ using EasyWP7Updater.Update;
 using System.IO;
 using System.Diagnostics;
 using System.Xml;
+using System.Net;
 
 namespace EasyWP7Updater.Forms
 {
@@ -18,7 +19,11 @@ namespace EasyWP7Updater.Forms
     {
         DeviceService deviceService;
         public bool doBackup = true;
-        public static string[] cabsToSend;
+        //public static string[] cabsToSend;
+        private bool lastDownloaded = false;
+        private int currentItem = 0;
+        private List<string> cabsToSend = new List<string>();
+        string downloadDir = Directory.GetCurrentDirectory() + @"\download\";
 
         public MainForm()
         {
@@ -128,9 +133,13 @@ namespace EasyWP7Updater.Forms
         {
             if (selectedCabsView.Items.Count > 0)
             {
+                cabsToSend = new List<string>();
+
+                foreach (ListViewItem i in selectedCabsView.Items)
+                    cabsToSend.Add(i.Name);
+
+                logUpdates();
                 tabControl1.SelectedTab = sendCabsPage;
-                /*DeviceInfo di = updateHelper.getDeviceInfo();
-                AppendLog("Ready to send cabs to " + di.Name + " (" + di.Make + " " + di.Model + ").");*/
             }
             else
             {
@@ -182,10 +191,6 @@ namespace EasyWP7Updater.Forms
             if (d != null)
             {
                 bool takeBackup = takeBackupCheckbox.Checked;
-                List<string> cabs = new List<string>();
-
-                foreach (ListViewItem i in selectedCabsView.Items)
-                    cabs.Add(i.Name);
 
                 bool proceed = takeBackup;
 
@@ -197,7 +202,7 @@ namespace EasyWP7Updater.Forms
                 if (proceed)
                 {
                     AppendLog("Updating");
-                    deviceService.UpdateImageUpdate(d.DeviceInfo, cabs, takeBackup);
+                    deviceService.UpdateImageUpdate(d.DeviceInfo, cabsToSend, takeBackup);
                 }
                 else
                 {
@@ -325,20 +330,26 @@ namespace EasyWP7Updater.Forms
         private void catSelectBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Packages.Info.Category selectedCat = catSelectBox.SelectedItem as Packages.Info.Category;
-            subCatSelectBox.Items.Clear();
-            subCatSelectBox.Items.AddRange(selectedCat.Subcategories.ToArray());
+            if (selectedCat != null)
+            {
+                subCatSelectBox.Items.Clear();
+                subCatSelectBox.Items.AddRange(selectedCat.Subcategories.ToArray());
 
-            versionBox.Items.Clear();
-            selectLangBox.Items.Clear();
+                versionBox.Items.Clear();
+                selectLangBox.Items.Clear();
+            }
         }
 
         private void subCatSelectBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Packages.Info.Subcategory selectedSubcat = subCatSelectBox.SelectedItem as Packages.Info.Subcategory;
-            versionBox.Items.Clear();
-            versionBox.Items.AddRange(selectedSubcat.Versions.ToArray());
+            if (selectedSubcat != null)
+            {
+                versionBox.Items.Clear();
+                versionBox.Items.AddRange(selectedSubcat.Versions.ToArray());
 
-            selectLangBox.Items.Clear();
+                selectLangBox.Items.Clear();
+            }
         }
 
         private void versionBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -346,13 +357,15 @@ namespace EasyWP7Updater.Forms
             //filter out the languages
             List<Packages.Info.Item> items = new List<Packages.Info.Item>();
             Packages.Info.VersionInformation selectedVersion = versionBox.SelectedItem as Packages.Info.VersionInformation;
+            if (selectedVersion != null)
+            {
+                for (int i = 0; i < selectedVersion.Items.Count; i++)
+                    if (selectedVersion.Items[i].Type == Packages.Info.ItemType.language)
+                        items.Add(selectedVersion.Items[i]);
 
-            for (int i = 0; i < selectedVersion.Items.Count; i++)
-                if (selectedVersion.Items[i].Type == Packages.Info.ItemType.language)
-                    items.Add(selectedVersion.Items[i]);
-
-            selectLangBox.Items.Clear();
-            selectLangBox.Items.AddRange(items.ToArray());
+                selectLangBox.Items.Clear();
+                selectLangBox.Items.AddRange(items.ToArray());
+            }
         }
 
         private void selectLangBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -371,6 +384,114 @@ namespace EasyWP7Updater.Forms
         {
             PCapForm pcform = new PCapForm();
             pcform.Show();
+        }
+
+        private void downloadSelectedCabs_Click(object sender, EventArgs e)
+        {
+            List<Packages.Info.Item> toDownload = new List<Packages.Info.Item>();
+
+            //add all updates except languages
+            foreach (Packages.Info.Item i in (versionBox.SelectedItem as Packages.Info.VersionInformation).Items)
+            {
+                if (i.Type != Packages.Info.ItemType.language)
+                    toDownload.Add(i);
+            }
+
+            //add all selected languages
+            foreach (Packages.Info.Item item in selectLangBox.CheckedItems)
+            {
+                Packages.Info.Item i = item as Packages.Info.Item;
+                toDownload.Add(i);
+            }
+
+            downloadOverviewList.Items.Clear();
+            downloadOverviewList.Items.AddRange(toDownload.ToArray());
+
+            continueWithDownloaded.Enabled = false;
+            startDownloadButton.Enabled = true;
+            tabControl1.SelectedTab = downloadSelected;
+        }
+
+        private void startDownloadButton_Click(object sender, EventArgs e)
+        {
+            startDownloadButton.Enabled = false;
+            lastDownloaded = false;
+            downloadNext();
+        }
+
+        private void downloadNext()
+        {
+            for (int i = 0; i < downloadOverviewList.Items.Count; i++)
+            {
+                if (!downloadOverviewList.GetItemChecked(i))
+                {
+                    WebClient downloader = new WebClient();
+
+                    downloader.DownloadProgressChanged += new DownloadProgressChangedEventHandler(downloader_progressChanged);
+                    downloader.DownloadFileCompleted += new AsyncCompletedEventHandler(downloader_downloadComplete);
+
+                    Packages.Info.Item itemToDownload = downloadOverviewList.Items[i] as Packages.Info.Item;
+
+                    if (!Directory.Exists(downloadDir))
+                        Directory.CreateDirectory(downloadDir);
+
+                    string downloadLocation = downloadDir + Path.GetFileName(itemToDownload.Download.LocalPath);
+
+                    currentItem = i;
+                    downloader.DownloadFileAsync(itemToDownload.Download, downloadLocation);
+                    break;
+                }
+
+                if (i == (downloadOverviewList.Items.Count - 1))
+                    lastDownloaded = true;
+            }
+
+            continueWithDownloaded.Enabled = lastDownloaded;
+        }
+
+        private void downloader_downloadComplete(object sender, AsyncCompletedEventArgs e)
+        {
+            downloadOverviewList.SetItemChecked(currentItem, true);
+            downloadNext();
+        }
+
+        private void downloader_progressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            double bytesIn = double.Parse(e.BytesReceived.ToString());
+            double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+            double percentage = bytesIn / totalBytes * 100;
+
+            downloadProgress.Value = int.Parse(Math.Truncate(percentage).ToString());
+        }
+
+        private void continueWithDownloaded_Click(object sender, EventArgs e)
+        {
+            cabsToSend = new List<string>();
+
+            foreach (Packages.Info.Item i in downloadOverviewList.Items)
+            {
+                string file = downloadDir + Path.GetFileName(i.Download.LocalPath);
+                cabsToSend.Add(file);
+            }
+
+            logUpdates();
+            tabControl1.SelectedTab = sendCabsPage;
+        }
+
+        private void logUpdates()
+        {
+            BindableDeviceInformation d = getSelectedDevice();
+            if (d != null)
+            {
+                AppendLog(String.Format("The following updates will be sent to {0} ({1}):", d.DeviceInfo.Name, d.DeviceInfo.UniqueIdentifier));
+            }
+            else
+            {
+                AppendLog("The following updates are selected:");
+            }
+
+            foreach (string u in cabsToSend)
+                AppendLog(u);
         }
     }
 }

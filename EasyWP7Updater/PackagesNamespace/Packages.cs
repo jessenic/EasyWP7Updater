@@ -7,7 +7,7 @@ using EasyWP7Updater.Packages.Info;
 
 namespace EasyWP7Updater.Packages
 {
-    class Packages
+    public class Packages
     {
         /// <summary>
         /// Will extract the update information from the given file
@@ -105,6 +105,7 @@ namespace EasyWP7Updater.Packages
 
                                             VersionInformation v = new VersionInformation(fromVersion, toVersion);
                                             v.AddItems(items);
+                                            items.Clear();
                                             versions.Add(v);
 
                                             continue;
@@ -132,6 +133,87 @@ namespace EasyWP7Updater.Packages
             }
 
             return returnMe;
+        }
+
+        /// <summary>
+        /// Serializes the given list into a XML
+        /// </summary>
+        /// <param name="categories">The list to serialize</param>
+        public static void SaveToXML(List<Category> categories, string filename)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlNode root = doc.CreateElement("Categories");
+
+            foreach (Category c in categories)
+            {
+                XmlNode categoryNode = doc.CreateElement("Category");
+
+                XmlNode categoryName = doc.CreateElement("Name");
+                categoryName.InnerText = c.Name;
+
+                XmlNode categoryType = doc.CreateElement("Type");
+                categoryType.InnerText = c.Type;
+
+                categoryNode.AppendChild(categoryName);
+                categoryNode.AppendChild(categoryType);
+
+                foreach (Subcategory sc in c.Subcategories)
+                {
+                    XmlNode subcategoryNode = doc.CreateElement("Subcategory");
+                    XmlNode subcategoryName = doc.CreateElement("Name");
+                    subcategoryName.InnerText = sc.Name;
+                    subcategoryNode.AppendChild(subcategoryName);
+
+                    foreach (VersionInformation vi in sc.Versions)
+                    {
+                        XmlNode versionNode = doc.CreateElement("Version");
+
+                        if (vi.FromVersion != "")
+                        {
+                            XmlAttribute fromVersion = doc.CreateAttribute("From");
+                            fromVersion.InnerText = vi.FromVersion;
+                            versionNode.Attributes.Append(fromVersion);
+                        }
+
+                        XmlAttribute toVersion = doc.CreateAttribute("To");
+                        toVersion.InnerText = vi.ToVersion;
+                        versionNode.Attributes.Append(toVersion);
+
+                        foreach (Item i in vi.Items)
+                        {
+                            XmlElement itemNode = doc.CreateElement("Item");
+
+                            XmlElement downloadNode = doc.CreateElement("Download");
+                            downloadNode.InnerText = i.Download.ToString();
+                            itemNode.AppendChild(downloadNode);
+
+                            XmlElement descNode = doc.CreateElement("Description");
+                            descNode.InnerText = i.Description;
+                            itemNode.AppendChild(descNode);
+
+                            XmlElement itemTypeNode = doc.CreateElement("Type");
+                            itemTypeNode.InnerText = i.Type.ToString();
+                            itemNode.AppendChild(itemTypeNode);
+
+                            if (i.Type == ItemType.language)
+                            {
+                                XmlElement langIdNode = doc.CreateElement("LangId");
+                                langIdNode.InnerText = i.LangId;
+                                itemNode.AppendChild(langIdNode);
+                            }
+
+                            versionNode.AppendChild(itemNode);
+                        }
+                        subcategoryNode.AppendChild(versionNode);
+                    }
+                    categoryNode.AppendChild(subcategoryNode);
+                }
+                root.AppendChild(categoryNode);
+            }
+
+            doc.AppendChild(root);
+
+            doc.Save(filename);
         }
     }
 }
