@@ -62,22 +62,27 @@ namespace EasyWP7Updater.Update
                 IDevice d = (IDevice)null;
                 try
                 {
-                    d = DeviceManagerSingleton.Manager.AcquireDevice(arguments.device.UniqueIdentifier);
-                    if (d != null)
+                    if (Helper.Validator.ValidateSystem())
                     {
-                        raiseMessageSent(String.Format("Applying updates to device {0} ({1})", arguments.device.Name, arguments.device.UniqueIdentifier), UpdateMessageEventArgs.MessageType.Log);
-                        UpdateType type = UpdateType.IU;
-                        if (arguments.withBackup)
-                            type = UpdateType.IU | UpdateType.BACKUP;
-
-                        IErrorInfo error = d.Update(arguments.updates.ToArray(), type, new Action<IUpdateProgress>(handleProgress), (object)null);
-
-                        if (error != null)
+                        Helper.Validator.PreventZuneAutostart();
+                        d = DeviceManagerSingleton.Manager.AcquireDevice(arguments.device.UniqueIdentifier);
+                        if (d != null)
                         {
-                            raiseMessageSent(String.Format("Update on device {0} completed with error {1} - {2}", arguments.device.UniqueIdentifier, error.Code.ToString(), error.Description.ToString()), UpdateMessageEventArgs.MessageType.Log);
-                        }
+                            raiseMessageSent(String.Format("Applying updates to device {0} ({1})", arguments.device.Name, arguments.device.UniqueIdentifier), UpdateMessageEventArgs.MessageType.Log);
+                            UpdateType type = UpdateType.IU;
+                            if (arguments.withBackup)
+                                type = UpdateType.IU | UpdateType.BACKUP;
 
-                        DeviceManagerSingleton.Manager.ReleaseDevice(d);
+                            IErrorInfo error = d.Update(arguments.updates.ToArray(), type, new Action<IUpdateProgress>(handleProgress), (object)null);
+
+                            if (error != null)
+                            {
+                                raiseMessageSent(String.Format("Update on device {0} completed with error {1} - {2}", arguments.device.UniqueIdentifier, error.Code.ToString(), error.Description.ToString()), UpdateMessageEventArgs.MessageType.Log);
+                            }
+
+                            DeviceManagerSingleton.Manager.ReleaseDevice(d);
+                        }
+                        Helper.Validator.RestoreZuneAutostart();
                     }
                 }
                 catch (Exception ex)
@@ -85,6 +90,7 @@ namespace EasyWP7Updater.Update
                     raiseMessageSent(ex.Message, UpdateMessageEventArgs.MessageType.Log);
                     if (d != null)
                         DeviceManagerSingleton.Manager.ReleaseDevice(d);
+                    Helper.Validator.RestoreZuneAutostart();
                 }
             }
         }

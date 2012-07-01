@@ -59,7 +59,20 @@ namespace EasyWP7Updater.Packages.Info
         /// <returns>The description</returns>
         public override string ToString()
         {
-            return Description;
+            if (Description != "")
+                return Description;
+
+            switch (Type)
+            {
+                case ItemType.os:
+                    return "OS update";
+                case ItemType.language:
+                    return "unamed language file";
+                case ItemType.other:
+                    return "unknown update";
+            }
+
+            return "unknown";
         }
     }
 
