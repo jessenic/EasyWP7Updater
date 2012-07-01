@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyWP7Updater", "EasyWP7Updater\EasyWP7Updater.csproj", "{39BB8BD4-C4EB-4209-A2B1-4E5CE2D576FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLEdit", "XMLEdit\XMLEdit.csproj", "{3947864A-D243-42BE-B3A3-383553E410B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3947864A-D243-42BE-B3A3-383553E410B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3947864A-D243-42BE-B3A3-383553E410B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3947864A-D243-42BE-B3A3-383553E410B5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3947864A-D243-42BE-B3A3-383553E410B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3947864A-D243-42BE-B3A3-383553E410B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3947864A-D243-42BE-B3A3-383553E410B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3947864A-D243-42BE-B3A3-383553E410B5}.Release|x64.ActiveCfg = Release|Any CPU
+		{3947864A-D243-42BE-B3A3-383553E410B5}.Release|x86.ActiveCfg = Release|Any CPU
 		{39BB8BD4-C4EB-4209-A2B1-4E5CE2D576FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39BB8BD4-C4EB-4209-A2B1-4E5CE2D576FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39BB8BD4-C4EB-4209-A2B1-4E5CE2D576FC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
