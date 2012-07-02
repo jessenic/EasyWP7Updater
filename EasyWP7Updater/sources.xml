@@ -6,69 +6,69 @@
       <Name>Nodo</Name>
       <Version From="7.0.7004.0" To="7.0.7403.0">
         <Item>
+          <Description>OS Update - from 7.0.7004.0 to 7.0.7008.0</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/02/diff-7.0.7004.0-7.0.7008.0-armv7-retail-microsoft.pks_fe49cc6a5f39389728a769f9013dcd491bd65168.cab</Download>
-          <Description>OS Update 7004</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.0.7008.0 to 7.0.7355.0</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/03/diff-7.0.7008.0-7.0.7355.0-armv7-retail-microsoft.pks_7fea4585c1275be10e4c06adffb3c4e42372f7d2.cab</Download>
-          <Description>OS Update 7008</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.0.7355.0 to 7.0.7389.0</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/01/diff-7.0.7355.0-7.0.7389.0-armv7-retail-microsoft.pks_35616816bdd0b9c08e39cdbab9fc9f7bfafec5ac.cab</Download>
-          <Description>OS Update 7335</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.0.7389.0 to 7.0.7390.0</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/03/diff-7.0.7389.0-7.0.7390.0-armv7-retail-microsoft.pks_669700d5014b3a9c73fe81390281620ca29d0675.cab</Download>
-          <Description>OS Update 7389</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.0.7390.0 to 7.0.7392.0</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/04/diff-7.0.7390.0-7.0.7392.0-armv7-retail-microsoft.pks_3a3a18fff5252d787974a169b115f8b428c0566c.cab</Download>
-          <Description>OS Update 7390</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.0.7392.0 to 7.0.7403.0</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/custom_diff-7.0.7392.0-7.0.7403.0-armv7-retail-microsoft.pks_5787b956938cb2b6d09892934b38dd9fd88f25ab.cab</Download>
-          <Description>OS Update to 7403</Description>
-          <Type>os</Type>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0407.pks_0c2c1a33fe4dfb7d5198a1ac0d79cf391bac82e1.cab</Download>
-          <Description>German</Description>
+          <Description>German - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0407.pks_0c2c1a33fe4dfb7d5198a1ac0d79cf391bac82e1.cab</Download>
           <LangId>0407</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0409.pks_04973d3358abc8524cca292e5ff43f71ac0a0b01.cab</Download>
-          <Description>English - US</Description>
+          <Description>English (US) - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0409.pks_04973d3358abc8524cca292e5ff43f71ac0a0b01.cab</Download>
           <LangId>0409</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_040c.pks_8bdcf24bd4aefc0bf7068b21c6420fd48c85c3ed.cab</Download>
-          <Description>French</Description>
+          <Description>French - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_040c.pks_8bdcf24bd4aefc0bf7068b21c6420fd48c85c3ed.cab</Download>
           <LangId>040C</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0410.pks_8780e7198b772862bec6c7439a82e8454698f620.cab</Download>
-          <Description>Italian</Description>
+          <Description>Italian - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0410.pks_8780e7198b772862bec6c7439a82e8454698f620.cab</Download>
           <LangId>0410</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0809.pks_3751f30bbe35440e153b027ed77313edd2225e9f.cab</Download>
-          <Description>English - UK</Description>
+          <Description>English (GB) - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0809.pks_3751f30bbe35440e153b027ed77313edd2225e9f.cab</Download>
           <LangId>0809</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0c0a.pks_b173cb8bd37eae4b0e5974891967bcae1eb285db.cab</Download>
-          <Description>Spanish</Description>
+          <Description>Spanish - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/canonical-7.0.7004.0-7.0.7403.0-armv7-retail-microsoft.lang_0c0a.pks_b173cb8bd37eae4b0e5974891967bcae1eb285db.cab</Download>
           <LangId>0C0A</LangId>
         </Item>
       </Version>
@@ -77,287 +77,287 @@
       <Name>Mango</Name>
       <Version From="7.0.7403.0" To="7.10.8107.79">
         <Item>
+          <Description>OS Update - from 7.0.7403.0 to 7.10.7720.68</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.pks_af342c3af8880359d4ecffac3bf17c8e2e586599.cab</Download>
-          <Description>OS Update 7720.68</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.0.7403.0 to 7.10.7720.68</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.dpi_262.pks_268000b46b0dad9d5d51ce762ee73e5e4ae1f341.cab</Download>
-          <Description>OS Update 7720.68</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.10.7720.68 to 7.10.7740.16</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/10/diff-7.10.7720.68-7.10.7740.16-armv7-retail-microsoft.pks_2cb1bfdd82133914239b8ee1a78e61e9000d124a.cab</Download>
-          <Description>OS Update 7740.16</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.10.7740.16 to 7.10.8107.79</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.pks_c9b7f3bc5bb340ba30473b566b4557de0cf3322e.cab</Download>
-          <Description>OS Update 8107.79</Description>
-          <Type>os</Type>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0404.pks_9662b187f51dd167e37f383aeff3c069195c8ab0.cab</Download>
           <Description>Chinese (traditional) - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0404.pks_9662b187f51dd167e37f383aeff3c069195c8ab0.cab</Download>
           <LangId>0404</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0404.pks_14f5fe7f4a13691af0836c66b24609a7cc4d91bf.cab</Download>
           <Description>Chinese (traditional) - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0404.pks_14f5fe7f4a13691af0836c66b24609a7cc4d91bf.cab</Download>
           <LangId>0404</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0405.pks_90e6a5194056f1ddd295ad00a33b15395b914de3.cab</Download>
           <Description>Czech - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0405.pks_90e6a5194056f1ddd295ad00a33b15395b914de3.cab</Download>
           <LangId>0405</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0405.pks_39e23349a19a6a22080ef7a2feb92e392bf760d4.cab</Download>
           <Description>Czech - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0405.pks_39e23349a19a6a22080ef7a2feb92e392bf760d4.cab</Download>
           <LangId>0405</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0406.pks_4ce937ab0236dd512cbb44c93e3aab9aa3d93e0f.cab</Download>
           <Description>Danish - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0406.pks_4ce937ab0236dd512cbb44c93e3aab9aa3d93e0f.cab</Download>
           <LangId>0406</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0406.pks_405c4cea1c731f7e162bb22e856bb581bb2a487b.cab</Download>
           <Description>Danish - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0406.pks_405c4cea1c731f7e162bb22e856bb581bb2a487b.cab</Download>
           <LangId>0406</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0407.pks_f94bb5196862961f19fcf78413fbef03848fb385.cab</Download>
           <Description>German - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0407.pks_f94bb5196862961f19fcf78413fbef03848fb385.cab</Download>
           <LangId>0407</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0407.pks_b50019ef50d52090d408d854c0708ddbf520706c.cab</Download>
           <Description>German - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0407.pks_b50019ef50d52090d408d854c0708ddbf520706c.cab</Download>
           <LangId>0407</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0408.pks_2987ab10e8ac3118ad7c1a0a76d328cdc77a213a.cab</Download>
           <Description>Greek - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0408.pks_2987ab10e8ac3118ad7c1a0a76d328cdc77a213a.cab</Download>
           <LangId>0408</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0408.pks_03d24647cd9678f10b7bb59aed3527312ea165e9.cab</Download>
           <Description>Greek - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0408.pks_03d24647cd9678f10b7bb59aed3527312ea165e9.cab</Download>
           <LangId>0408</LangId>
         </Item>
         <Item>
+          <Description>English (US) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0409.pks_ef46131182d8294904ede76983dc9c58e63e245d.cab</Download>
-          <Description>English - United States - Part 1</Description>
-          <Type>language</Type>
           <LangId>0409</LangId>
         </Item>
         <Item>
+          <Description>English (US) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0409.pks_bfd9c047a7b27c28208c8a717f8d7511fb2586f1.cab</Download>
-          <Description>English - United States - Part 2</Description>
-          <Type>language</Type>
           <LangId>0409</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_040b.pks_66ecf976477b369f354fa56a8daf25f4f52cb2e0.cab</Download>
           <Description>Finnish - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_040b.pks_66ecf976477b369f354fa56a8daf25f4f52cb2e0.cab</Download>
           <LangId>040B</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_040b.pks_398799fcdc32f92bced716dcd7606916d9c6a02d.cab</Download>
           <Description>Finnish - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_040b.pks_398799fcdc32f92bced716dcd7606916d9c6a02d.cab</Download>
           <LangId>040B</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_040c.pks_bced8a88d66b84726f8d70ddff206d2733b23f5a.cab</Download>
           <Description>French - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_040c.pks_bced8a88d66b84726f8d70ddff206d2733b23f5a.cab</Download>
           <LangId>040C</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_040c.pks_2d74e8c5f6a835f1fe4c62b488c96ac2d7f01c29.cab</Download>
           <Description>French - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_040c.pks_2d74e8c5f6a835f1fe4c62b488c96ac2d7f01c29.cab</Download>
           <LangId>040C</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_040e.pks_96fa5ddcd31def4cf48b1445f901af7d9cbdf61f.cab</Download>
           <Description>Hungarian - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_040e.pks_96fa5ddcd31def4cf48b1445f901af7d9cbdf61f.cab</Download>
           <LangId>040E</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_040e.pks_bb52bdd5424ec4921a80a5e70b280ff021613b0f.cab</Download>
           <Description>Hungarian - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_040e.pks_bb52bdd5424ec4921a80a5e70b280ff021613b0f.cab</Download>
           <LangId>040E</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0410.pks_41488e7df1f6d7dc752ec0daebf4d9eccc693f72.cab</Download>
           <Description>Italian - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0410.pks_41488e7df1f6d7dc752ec0daebf4d9eccc693f72.cab</Download>
           <LangId>0410</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0410.pks_9ecf9b052b6cc3161462e998dac8204a0f754556.cab</Download>
           <Description>Italian - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0410.pks_9ecf9b052b6cc3161462e998dac8204a0f754556.cab</Download>
           <LangId>0410</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0411.pks_88026588d3dc532c9c3e2898a46603f44d5456d3.cab</Download>
           <Description>Japanese - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0411.pks_88026588d3dc532c9c3e2898a46603f44d5456d3.cab</Download>
           <LangId>0411</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0411.pks_02108a1813a8f3ddfaba98f21d72ad0942e696a9.cab</Download>
           <Description>Japanese - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0411.pks_02108a1813a8f3ddfaba98f21d72ad0942e696a9.cab</Download>
           <LangId>0411</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0412.pks_45c41868b5ecf91f5e0501f293b9cf3fb31503ab.cab</Download>
           <Description>Korean - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0412.pks_45c41868b5ecf91f5e0501f293b9cf3fb31503ab.cab</Download>
           <LangId>0412</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0412.pks_94f886dab44851ddfc1481f6ce183930d58625c7.cab</Download>
           <Description>Korean - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0412.pks_94f886dab44851ddfc1481f6ce183930d58625c7.cab</Download>
           <LangId>0412</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0413.pks_5eb880b1d3e3e6550307d9a133529fbcc5035aec.cab</Download>
           <Description>Dutch - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0413.pks_5eb880b1d3e3e6550307d9a133529fbcc5035aec.cab</Download>
           <LangId>0413</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0413.pks_8fb73a926d0b157da33edde9e6332a68a4ee2fb2.cab</Download>
           <Description>Dutch - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0413.pks_8fb73a926d0b157da33edde9e6332a68a4ee2fb2.cab</Download>
           <LangId>0413</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0414.pks_06135c04b97516078269f9b5c805a77d297c8085.cab</Download>
           <Description>Norwegian - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0414.pks_06135c04b97516078269f9b5c805a77d297c8085.cab</Download>
           <LangId>0414</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0414.pks_b79d55444fefc11af29ddb3abab85c255f9bbb8b.cab</Download>
           <Description>Norwegian - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0414.pks_b79d55444fefc11af29ddb3abab85c255f9bbb8b.cab</Download>
           <LangId>0414</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0415.pks_6abe5f16973c694c6747e7e087c02b28bb8b9f6e.cab</Download>
           <Description>Polish - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0415.pks_6abe5f16973c694c6747e7e087c02b28bb8b9f6e.cab</Download>
           <LangId>0415</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0415.pks_53749601c866e4521044b02fe4a03625fbb8a31f.cab</Download>
           <Description>Polish - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0415.pks_53749601c866e4521044b02fe4a03625fbb8a31f.cab</Download>
           <LangId>0415</LangId>
         </Item>
         <Item>
+          <Description>Portugese (Brazil) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0416.pks_bea5e1b1844aa4cf3a0fd5d24ec6a580654a2e12.cab</Download>
-          <Description>Portuguese - Brazil - Part 1</Description>
-          <Type>language</Type>
           <LangId>0416</LangId>
         </Item>
         <Item>
+          <Description>Portugese (Brazil) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0416.pks_4cadd6d75bd962d8e0d25cf3fa85cd71b011a750.cab</Download>
-          <Description>Portuguese - Brazil - Part 2</Description>
-          <Type>language</Type>
           <LangId>0416</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0419.pks_fc1b1449a765e4b9d5476d10218b9b2ad8b59c47.cab</Download>
           <Description>Russian - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0419.pks_fc1b1449a765e4b9d5476d10218b9b2ad8b59c47.cab</Download>
           <LangId>0419</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0419.pks_8d8f924349f1f1e98c2677380ca38b73b6ef245f.cab</Download>
           <Description>Russian - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0419.pks_8d8f924349f1f1e98c2677380ca38b73b6ef245f.cab</Download>
           <LangId>0419</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_041d.pks_799b7ad94923a0f307efc20623c08b06af5e863f.cab</Download>
           <Description>Swedish - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_041d.pks_799b7ad94923a0f307efc20623c08b06af5e863f.cab</Download>
           <LangId>041D</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_041d.pks_7be1f542160ac7088439c273b1d40469569a32b4.cab</Download>
           <Description>Swedish - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_041d.pks_7be1f542160ac7088439c273b1d40469569a32b4.cab</Download>
           <LangId>041D</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0804.pks_d5b5afe9cd43006c836ead893c6e5e153b6e55b7.cab</Download>
           <Description>Chinese (simplified) - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0804.pks_d5b5afe9cd43006c836ead893c6e5e153b6e55b7.cab</Download>
           <LangId>0804</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0804.pks_f72389ae04c3dadd144cffa0c4951c4c7970f7eb.cab</Download>
           <Description>Chinese (simplified) - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0804.pks_f72389ae04c3dadd144cffa0c4951c4c7970f7eb.cab</Download>
           <LangId>0804</LangId>
         </Item>
         <Item>
+          <Description>English (GB) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0809.pks_87bb3b0f71a3d2abc4aa75b798f6035477053a60.cab</Download>
-          <Description>English - United Kingdom - Part 1</Description>
-          <Type>language</Type>
           <LangId>0809</LangId>
         </Item>
         <Item>
+          <Description>English (GB) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0809.pks_2666da3127f526b23b492f293983ccce1d28f375.cab</Download>
-          <Description>English - United Kingdom - Part 2</Description>
-          <Type>language</Type>
           <LangId>0809</LangId>
         </Item>
         <Item>
+          <Description>Portugese (Portugal) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0816.pks_cfa86e2a766af4f2a2d5541a2bfef05307e7dece.cab</Download>
-          <Description>Portuguese - Portugal - Part 1</Description>
-          <Type>language</Type>
           <LangId>0816</LangId>
         </Item>
         <Item>
+          <Description>Portugese (Portugal) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0816.pks_c595c2d27f7d43a6357ea17adde815e9495274c7.cab</Download>
-          <Description>Portuguese - Portugal - Part 2</Description>
-          <Type>language</Type>
           <LangId>0816</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0c0a.pks_8c6fb6f36770b4f517be920a23d8600a1c127232.cab</Download>
           <Description>Spanish - Part 1</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/07/diff-7.0.7403.0-7.10.7720.68-armv7-retail-microsoft.lang_0c0a.pks_8c6fb6f36770b4f517be920a23d8600a1c127232.cab</Download>
           <LangId>0C0A</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0c0a.pks_97df86b81a40df06bb2b15c6739e2ee772e53bbf.cab</Download>
           <Description>Spanish - Part 2</Description>
           <Type>language</Type>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2011/12/diff-7.10.7740.16-7.10.8107.79-armv7-retail-microsoft.lang_0c0a.pks_97df86b81a40df06bb2b15c6739e2ee772e53bbf.cab</Download>
           <LangId>0C0A</LangId>
         </Item>
       </Version>
@@ -366,332 +366,288 @@
       <Name>Tango</Name>
       <Version From="7.10.8107.79" To="7.10.8773.98">
         <Item>
+          <Description>OS Update - from 7.10.8107.79 to 7.10.8112.7</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft-pluspkr.pks_d500a10eeb11fb6c1913adac4759d67185474d3e.cab</Download>
-          <Description>OS Update</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.10.8107.79 to 7.10.8112.7</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.dpi_262.pks_24bb20423e86130365686c1796577d4b22343be9.cab</Download>
-          <Description>OS Update</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.10.8112.7 to 7.10.8773.98</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.pks_113460c78ac6233e3bb776ceddb6ac94e98c4221.cab</Download>
-          <Description>OS Update</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>OS Update - from 7.10.8112.7 to 7.10.8773.98</Description>
+          <Type>os</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.dpi_262.pks_4dbf7302a7b3da01eeafbcfbf1b9b75e6f6de15e.cab</Download>
-          <Description>OS Update</Description>
-          <Type>os</Type>
         </Item>
         <Item>
+          <Description>Chinese (traditional) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0404.pks_5264adfac00822e6f264444879d579fd9d83d521.cab</Download>
-          <Description>Chinese - Part 1</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0404</LangId>
         </Item>
         <Item>
+          <Description>Chinese (traditional) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0404.pks_7419d68221a4b73171c8d57b02fa74d62047eaf6.cab</Download>
-          <Description>Chinese - Part 2</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0404</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0405.pks_808ff53261123dfd0e86ee7ae9c63d1ed2f0809a.cab</Download>
           <Description>Czech - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0405.pks_808ff53261123dfd0e86ee7ae9c63d1ed2f0809a.cab</Download>
+          <LangId>0405</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0405.pks_b4ca08158f722ba8bfcd7dc6ffd8bcfc2078dbcb.cab</Download>
           <Description>Czech - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0405.pks_b4ca08158f722ba8bfcd7dc6ffd8bcfc2078dbcb.cab</Download>
+          <LangId>0405</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0406.pks_4b758bd9c162dbf64abaf65e5ea831a06f2e7eda.cab</Download>
           <Description>Danish - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0406.pks_4b758bd9c162dbf64abaf65e5ea831a06f2e7eda.cab</Download>
+          <LangId>0406</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0406.pks_8865f440166f08be5c5232f7246555b2c66606d2.cab</Download>
           <Description>Danish - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0406.pks_8865f440166f08be5c5232f7246555b2c66606d2.cab</Download>
+          <LangId>0406</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0407.pks_d89120e9719b4791ecf5f5581730952790d85505.cab</Download>
           <Description>German - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0407.pks_d89120e9719b4791ecf5f5581730952790d85505.cab</Download>
+          <LangId>0407</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0407.pks_e1a132dbad341e61c902f697bbde9d2ebb98a08f.cab</Download>
           <Description>German - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0407.pks_e1a132dbad341e61c902f697bbde9d2ebb98a08f.cab</Download>
+          <LangId>0407</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0408.pks_d0b6fbbb0bf96899196cee43179224b2451d5c31.cab</Download>
           <Description>Greek - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0408.pks_d0b6fbbb0bf96899196cee43179224b2451d5c31.cab</Download>
+          <LangId>0408</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0408.pks_99053859daedfb6f20eae29659254996d765b8ff.cab</Download>
           <Description>Greek - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0408.pks_99053859daedfb6f20eae29659254996d765b8ff.cab</Download>
+          <LangId>0408</LangId>
         </Item>
         <Item>
+          <Description>English (US) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0409.pks_ae068921fd637ba2e3e268b28e6ca1c9f3a9c11f.cab</Download>
-          <Description>English - Part 1</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0409</LangId>
         </Item>
         <Item>
+          <Description>English (US) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0409.pks_3e940c840ee4815422610bb6da8f28ac327767cc.cab</Download>
-          <Description>English - Part 2</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0409</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_040b.pks_ce1435085bb7dfcb0453f7ff7b0fa8b8f34010eb.cab</Download>
           <Description>Finnish - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_040b.pks_ce1435085bb7dfcb0453f7ff7b0fa8b8f34010eb.cab</Download>
+          <LangId>040B</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_040b.pks_3bf50f7208f7fdf69932428e323a2c93bbede976.cab</Download>
           <Description>Finnish - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_040b.pks_3bf50f7208f7fdf69932428e323a2c93bbede976.cab</Download>
+          <LangId>040B</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_040c.pks_0e4fe7facb5bd169c742f7811f10e3caf4110e9a.cab</Download>
           <Description>French - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_040c.pks_0e4fe7facb5bd169c742f7811f10e3caf4110e9a.cab</Download>
+          <LangId>040C</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_040c.pks_7cbfbdf414fcea12530080f94cb7c29fea74c54a.cab</Download>
           <Description>French - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_040c.pks_7cbfbdf414fcea12530080f94cb7c29fea74c54a.cab</Download>
+          <LangId>040C</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_040e.pks_22555d0f89f9ebbe95926056f21d8bdc24b7d520.cab</Download>
           <Description>Hungarian - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_040e.pks_22555d0f89f9ebbe95926056f21d8bdc24b7d520.cab</Download>
+          <LangId>040E</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_040e.pks_5780cdb32b99d0adf4ff39350bddfec14a792dc5.cab</Download>
           <Description>Hungarian - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_040e.pks_5780cdb32b99d0adf4ff39350bddfec14a792dc5.cab</Download>
+          <LangId>040E</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0410.pks_9b7013b1a94c12121b92964f6a0d12425986c195.cab</Download>
           <Description>Italian - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0410.pks_9b7013b1a94c12121b92964f6a0d12425986c195.cab</Download>
+          <LangId>0410</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0410.pks_926fdca3ca7df7ac163d22b15ab18a716eef0042.cab</Download>
           <Description>Italian - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0410.pks_926fdca3ca7df7ac163d22b15ab18a716eef0042.cab</Download>
+          <LangId>0410</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0411.pks_2123187dd97da62bcf68d06b481e1bb200d4a3ad.cab</Download>
           <Description>Japanese - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0411.pks_2123187dd97da62bcf68d06b481e1bb200d4a3ad.cab</Download>
+          <LangId>0411</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0411.pks_d1b4cdb9029da5c6a25bf671de494231ec0b3e27.cab</Download>
           <Description>Japanese - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0411.pks_d1b4cdb9029da5c6a25bf671de494231ec0b3e27.cab</Download>
+          <LangId>0411</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0412.pks_bb4fd590e3e3ea568fba17484261d68e191bf148.cab</Download>
           <Description>Korean - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0412.pks_bb4fd590e3e3ea568fba17484261d68e191bf148.cab</Download>
+          <LangId>0412</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0412.pks_576bb7afb8fc4e6d89563184a8a6a5d625b449a5.cab</Download>
           <Description>Korean - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0412.pks_576bb7afb8fc4e6d89563184a8a6a5d625b449a5.cab</Download>
+          <LangId>0412</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0413.pks_bd8d1a0427266b9e7a98598eb95b1f378ad9781f.cab</Download>
           <Description>Dutch - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0413.pks_bd8d1a0427266b9e7a98598eb95b1f378ad9781f.cab</Download>
+          <LangId>0413</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0413.pks_20bee08afa00d72fb169522f028d94fdcca87664.cab</Download>
           <Description>Dutch - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0413.pks_20bee08afa00d72fb169522f028d94fdcca87664.cab</Download>
+          <LangId>0413</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0414.pks_63665eebb1733349f4454b75bf967453493ca1e5.cab</Download>
           <Description>Norwegian - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0414.pks_63665eebb1733349f4454b75bf967453493ca1e5.cab</Download>
+          <LangId>0414</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0414.pks_b29084e38981e548bc53419430f789077a15207c.cab</Download>
           <Description>Norwegian - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0414.pks_b29084e38981e548bc53419430f789077a15207c.cab</Download>
+          <LangId>0414</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0415.pks_c5eae4190043d0ecc156edc363c677f685788544.cab</Download>
           <Description>Polish - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0415.pks_c5eae4190043d0ecc156edc363c677f685788544.cab</Download>
+          <LangId>0415</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0415.pks_0613867ea56454150ce63f8b4b2612b86dfa85c3.cab</Download>
           <Description>Polish - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0415.pks_0613867ea56454150ce63f8b4b2612b86dfa85c3.cab</Download>
+          <LangId>0415</LangId>
         </Item>
         <Item>
+          <Description>Portugese (Brazil) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0416.pks_0faf0a17c2d51efe8a54f7063a56bc06537e62ee.cab</Download>
-          <Description>Portuguese - Part 1</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0416</LangId>
         </Item>
         <Item>
+          <Description>Portugese (Brazil) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0416.pks_1b4634522f8f6c1792c9f85615945ed536201185.cab</Download>
-          <Description>Portuguese - Part 2</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0416</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0419.pks_a3be6ca52716096243398b5aa646825c4cd28fbe.cab</Download>
           <Description>Russian - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0419.pks_a3be6ca52716096243398b5aa646825c4cd28fbe.cab</Download>
+          <LangId>0419</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0419.pks_71182794a1023bec4548529ac00bbb1a5098d787.cab</Download>
           <Description>Russian - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0419.pks_71182794a1023bec4548529ac00bbb1a5098d787.cab</Download>
+          <LangId>0419</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_041d.pks_6642fcd0eb59dbd981aa1a91034df5462013d8c7.cab</Download>
           <Description>Swedish - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_041d.pks_6642fcd0eb59dbd981aa1a91034df5462013d8c7.cab</Download>
+          <LangId>041D</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_041d.pks_e42bb7e6d9cd9687d43cadb06c9843d7ccfe89f0.cab</Download>
           <Description>Swedish - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_041d.pks_e42bb7e6d9cd9687d43cadb06c9843d7ccfe89f0.cab</Download>
+          <LangId>041D</LangId>
         </Item>
         <Item>
+          <Description>Chinese (simplified) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0804.pks_26d9ffdca74b379504c2607ef260cd9d52c4add9.cab</Download>
-          <Description>Chinese - Part 1</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0804</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0804.pks_60b681c892fd55ccab4bd2c94bdec543dd207631.cab</Download>
-          <Description>Chinese - Part 2</Description>
+          <Description>Chinese (simplified) - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0804.pks_60b681c892fd55ccab</Download>
+          <LangId>0804</LangId>
         </Item>
         <Item>
+          <Description>English (GB) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0809.pks_80abdd4c9c9f3df25432fe4465e23fc3048012cb.cab</Download>
-          <Description>English - Part 1</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0809</LangId>
         </Item>
         <Item>
+          <Description>English (GB) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0809.pks_04fcbfbd2d6f419b7f0b854da77f6ce13a16698d.cab</Download>
-          <Description>English - Part 2</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0809</LangId>
         </Item>
         <Item>
+          <Description>Portugese (Portugal) - Part 1</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0816.pks_74bc78c410e0ea1433a3eb3aa3f71296ed8a34aa.cab</Download>
-          <Description>Portuguese - Part 1</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0816</LangId>
         </Item>
         <Item>
+          <Description>Portugese (Portugal) - Part 2</Description>
+          <Type>language</Type>
           <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0816.pks_3ecb9ac90f3614c5ee80bc95c7d8f300b7de4996.cab</Download>
-          <Description>Portuguese - Part 2</Description>
-          <Type>language</Type>
-          <LangId>
-          </LangId>
+          <LangId>0816</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0c0a.pks_69aaa5b4911d99c4669344254bfa7ba5f8cd0408.cab</Download>
           <Description>Spanish - Part 1</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/03/diff-7.10.8107.79-7.10.8112.7-armv7-retail-microsoft.lang_0c0a.pks_69aaa5b4911d99c4669344254bfa7ba5f8cd0408.cab</Download>
+          <LangId>0C0A</LangId>
         </Item>
         <Item>
-          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7</Download>
           <Description>Spanish - Part 2</Description>
           <Type>language</Type>
-          <LangId>
-          </LangId>
+          <Download>http://download.windowsupdate.com/msdownload/update/software/dflt/2012/05/diff-7.10.8112.7-7.10.8773.98-armv7-retail-microsoft.lang_0c0a.pks_09cab</Download>
+          <LangId>0C0A</LangId>
         </Item>
       </Version>
     </Subcategory>

@@ -17,7 +17,7 @@ namespace EasyWP7Updater.Packages.Info
         /// <summary>
         /// The type of the category
         /// </summary>
-        public string Type { get; private set; }
+        public CategoryType Type { get; private set; }
         /// <summary>
         /// Contains all subcategories
         /// </summary>
@@ -31,7 +31,19 @@ namespace EasyWP7Updater.Packages.Info
         public Category(string name, string type)
         {
             Name = name;
-            Type = type;
+            switch (type.Trim().ToLower())
+            {
+                case "fw":
+                case "firmware":
+                    Type = CategoryType.firmware;
+                    break;
+                case "os":
+                    Type = CategoryType.os;
+                    break;
+                default:
+                    Type = CategoryType.other;
+                    break;
+            }
             Subcategories = new List<Subcategory>();
         }
 
@@ -51,6 +63,13 @@ namespace EasyWP7Updater.Packages.Info
         public override string ToString()
         {
             return Name;
+        }
+
+        public enum CategoryType
+        {
+            os,
+            firmware,
+            other
         }
     }
 }

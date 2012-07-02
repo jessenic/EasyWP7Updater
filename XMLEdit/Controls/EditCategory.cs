@@ -19,7 +19,7 @@ namespace XMLEdit.Controls
             InitializeComponent();
             boundCategory = bc;
             nameTxtbx.Text = boundCategory.BoundCategory.Name;
-            typeTxtbx.Text = boundCategory.BoundCategory.Type;
+            typeTxtbx.Text = boundCategory.BoundCategory.Type.ToString();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)

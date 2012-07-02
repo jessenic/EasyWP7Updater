@@ -152,7 +152,7 @@ namespace EasyWP7Updater.Packages
                 categoryName.InnerText = c.Name;
 
                 XmlNode categoryType = doc.CreateElement("Type");
-                categoryType.InnerText = c.Type;
+                categoryType.InnerText = c.Type.ToString();
 
                 categoryNode.AppendChild(categoryName);
                 categoryNode.AppendChild(categoryType);

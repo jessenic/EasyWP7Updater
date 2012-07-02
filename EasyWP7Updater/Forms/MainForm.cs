@@ -39,7 +39,7 @@ namespace EasyWP7Updater.Forms
             deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
             refreshDevices();
 
-            foreach(KeyValuePair<string, string> s in Helper.LanguageList.Languages)
+            foreach (KeyValuePair<string, string> s in Helper.LanguageList.Languages)
                 selectInstalledLanguagesBox.Items.Add(s.Key);
 
             for (int i = 0; i < selectInstalledLanguagesBox.Items.Count; i++)
@@ -423,43 +423,23 @@ namespace EasyWP7Updater.Forms
                 selectLangBox.Items.Clear();
                 selectLangBox.Items.AddRange(items.ToArray());
 
-                //Check the device OS version
+                //Validate the selected update
                 BindableDeviceInformation d = getSelectedDevice();
                 if (d != null)
                 {
                     try
                     {
-                        string OSversion = d.DeviceInfo.OSVersion;
-                        string[] tmp = OSversion.Split('-');
-                        OSversion = tmp[0];
-
-                        bool warning = false;
-                        bool osUpdate = false;
-
-                        string[] versionsPhone = OSversion.Split('.');
-                        string[] versionsUpdate = selectedVersion.ToVersion.Split('.');
-
-                        if (versionsPhone.Length != versionsUpdate.Length)
-                            throw new Exception("Possible version mismatch");
-                        else
+                        switch ((catSelectBox.SelectedItem as Packages.Info.Category).Type)
                         {
-                            for (int i = 0; i < versionsPhone.Length; i++)
-                            {
-                                int versionPhone = Convert.ToInt32(versionsPhone[i]);
-                                int versionUpdate = Convert.ToInt32(versionsUpdate[i]);
-                                if(versionUpdate < versionPhone)
-                                {
-                                    warning = true;
-                                }
+                            case Packages.Info.Category.CategoryType.os:
+                                if (!Helper.Validator.UpdateToNewerOS(selectedVersion.ToVersion, d.DeviceInfo.OSVersion))
+                                    MessageBox.Show(String.Format("Your phone already has this (or a newer) version installed. Please continue only if you are sure that you want to install the update {0}", selectedVersion.ToString()), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
 
-                                if (i == 0 && versionUpdate == 7)
-                                    osUpdate = true;
-                            }
+                            case Packages.Info.Category.CategoryType.firmware:
+                                //Todo: validate if selected firmware can be applied
+                                break;
                         }
-
-                        if(warning && osUpdate)
-                            MessageBox.Show(String.Format("Your phone already has this (or a newer) version installed. Please continue only if you are sure that you want to install the update {0}", selectedVersion.ToString()), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                     }
                     catch (Exception ex)
                     {
