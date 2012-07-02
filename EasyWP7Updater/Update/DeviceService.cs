@@ -30,6 +30,8 @@ namespace EasyWP7Updater.Update
 
         private EventHandler<DeviceConnectionChangedEventArgs> changedHandler;
 
+        public event EventHandler OnUpdateFinished;
+
         /// <summary>
         /// Contains a list of all present devices. Updated when devices are connected/disconnnected
         /// </summary>
@@ -93,6 +95,10 @@ namespace EasyWP7Updater.Update
                     Helper.Validator.RestoreZuneAutostart();
                 }
             }
+            DeviceManagerSingleton.Cleanup();
+
+            if (OnUpdateFinished != null)
+                OnUpdateFinished(this, null);
         }
 
         private void manager_DeviceConnectionChanged(object sender, DeviceConnectionChangedEventArgs e)
@@ -136,6 +142,12 @@ namespace EasyWP7Updater.Update
         /// <param name="withBackup">True when a backup should be created, otherwise false</param>
         public void UpdateImageUpdate(IDeviceInfo device, List<string> updates, bool withBackup)
         {
+            if (updateThread != null && updateThread.IsAlive)
+            {
+                raiseMessageSent("Update thread is still alive. We will now wait for it to finish. The operation will abort after 2 minutes", UpdateMessageEventArgs.MessageType.Log);
+                updateThread.Join(new TimeSpan(0,2,0));
+            }
+
             if (updateThread == null || !updateThread.IsAlive)
             {
                 updateThread = new Thread(new ParameterizedThreadStart(doUpdate));
@@ -146,6 +158,18 @@ namespace EasyWP7Updater.Update
             {
                 raiseMessageSent("There is already an update in progress. Please wait for it to finish.", UpdateMessageEventArgs.MessageType.Log);
             }
+        }
+
+        /// <summary>
+        /// Updates the device with the given CAB
+        /// </summary>
+        /// <param name="device">The device to update</param>
+        /// <param name="update">The filename of the CAB</param>
+        /// <param name="withBackup">Whether a backup schould be created</param>
+        public void UpdateImageUpdate(IDeviceInfo device, string update, bool withBackup)
+        {
+            List<string> updates = new List<string>() { update };
+            UpdateImageUpdate(device, updates, withBackup);
         }
 
         private void handleProgress(IUpdateProgress progress)

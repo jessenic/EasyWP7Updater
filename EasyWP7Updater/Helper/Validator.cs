@@ -14,7 +14,7 @@ namespace EasyWP7Updater.Helper
 
         public static bool ValidateSystem(bool backUpEnabled = false)
         {
-            bool isValid = false;
+            bool isValid = true;
 
             if (IsZuneRunning())
             {
@@ -55,7 +55,7 @@ namespace EasyWP7Updater.Helper
                 {
                     object value = key.GetValue("AutoLaunchZuneOnConnect");
                     if (value != null)
-                        oldStartupValue = (bool)value;
+                        oldStartupValue = Convert.ToBoolean(value);
                     key.Flush();
                 }
                 oldStartupValueSaved = true;

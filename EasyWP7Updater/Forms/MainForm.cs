@@ -25,7 +25,12 @@ namespace EasyWP7Updater.Forms
         private int currentItem = 0;
         private List<string> cabsToSend = new List<string>();
         private List<string> selectedLanguageIDs = new List<string>();
-        string downloadDir = Directory.GetCurrentDirectory() + @"\download\";
+        private string downloadDir = Directory.GetCurrentDirectory() + @"\download\";
+        private Queue<string> cabsQueue = new Queue<string>();
+        private bool backupTaken = false;
+        private int currentUpdate = 0;
+        private bool takeBackup;
+        private BindableDeviceInformation deviceToUpdate;
         #endregion
         #region Form stuff
         public MainForm()
@@ -37,6 +42,7 @@ namespace EasyWP7Updater.Forms
             deviceService = new DeviceService();
             deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
             deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
+            deviceService.OnUpdateFinished += new EventHandler(updateFinished);
             refreshDevices();
 
             foreach (KeyValuePair<string, string> s in Helper.LanguageList.Languages)
@@ -44,6 +50,19 @@ namespace EasyWP7Updater.Forms
 
             for (int i = 0; i < selectInstalledLanguagesBox.Items.Count; i++)
                 selectInstalledLanguagesBox.SetItemChecked(i, true);
+        }
+
+        //execute sendNextCab on UI thread
+        private void updateFinished(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(sendNextCab));
+            }
+            else
+            {
+                sendNextCab();
+            }
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -327,7 +346,7 @@ namespace EasyWP7Updater.Forms
             BindableDeviceInformation d = getSelectedDevice();
             if (d != null)
             {
-                bool takeBackup = takeBackupCheckbox.Checked;
+                takeBackup = takeBackupCheckbox.Checked;
 
                 bool proceed = takeBackup;
 
@@ -339,7 +358,17 @@ namespace EasyWP7Updater.Forms
                 if (proceed)
                 {
                     AppendLog("Updating");
-                    deviceService.UpdateImageUpdate(d.DeviceInfo, cabsToSend, takeBackup);
+                    backupTaken = false;
+                    currentUpdate = 0;
+                    cabsQueue = new Queue<string>();
+
+                    foreach (string s in cabsToSend)
+                    {
+                        cabsQueue.Enqueue(s);
+                    }
+
+                    deviceToUpdate = getSelectedDevice();
+                    sendNextCab();
                 }
                 else
                 {
@@ -349,6 +378,32 @@ namespace EasyWP7Updater.Forms
             else
             {
                 AppendLog("No device selected");
+            }
+        }
+
+        private void sendNextCab()
+        {
+            if (cabsQueue.Count != 0)
+            {
+                currentUpdate++;
+                AppendLog(String.Format("Applying update {0} of {1}", currentUpdate, cabsToSend.Count));
+                sendCABsButton.Enabled = false;
+
+                string file = cabsQueue.Dequeue();
+                if (!backupTaken && takeBackup)
+                {
+                    deviceService.UpdateImageUpdate(deviceToUpdate.DeviceInfo, file, true);
+                    backupTaken = true;
+                }
+                else
+                {
+                    deviceService.UpdateImageUpdate(deviceToUpdate.DeviceInfo, file, false);
+                }
+            }
+            else
+            {
+                AppendLog("Finished");
+                sendCABsButton.Enabled = true;
             }
         }
 
@@ -484,7 +539,6 @@ namespace EasyWP7Updater.Forms
 
         private void selectLangBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void downloadSelectedCabs_Click(object sender, EventArgs e)
