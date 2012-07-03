@@ -18,7 +18,6 @@ namespace EasyWP7Updater.Controls
         ToolStripDropDownButton parent;
 
         public DeviceMenuItem(Update.BindableDeviceInformation device, ToolStripDropDownButton parent)
-            : base()
         {
             this.parent = parent;
 

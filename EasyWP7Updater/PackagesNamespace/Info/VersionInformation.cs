@@ -25,6 +25,15 @@ namespace EasyWP7Updater.Packages.Info
         public List<Item> Items { get; private set; }
 
         /// <summary>
+        /// True when the Version has at least one language item associated
+        /// </summary>
+        public bool IsLanguageAware
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
         /// Creates a new VersionInformation
         /// </summary>
         /// <param name="toVersion">The target version</param>
@@ -42,6 +51,7 @@ namespace EasyWP7Updater.Packages.Info
             FromVersion = fromVersion;
             ToVersion = toVersion;
             Items = new List<Item>();
+            IsLanguageAware = false;
         }
 
         /// <summary>
@@ -51,6 +61,8 @@ namespace EasyWP7Updater.Packages.Info
         public void AddItem(Item item)
         {
             Items.Add(item);
+            if (item.LangId != "")
+                IsLanguageAware = true;
         }
 
         /// <summary>
@@ -60,6 +72,17 @@ namespace EasyWP7Updater.Packages.Info
         public void AddItems(IEnumerable<Item> items)
         {
             Items.AddRange(items);
+            if (!IsLanguageAware)
+            {
+                foreach (Item i in items)
+                {
+                    if (i.LangId != "")
+                    {
+                        IsLanguageAware = true;
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>

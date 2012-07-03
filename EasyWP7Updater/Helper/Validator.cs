@@ -14,7 +14,7 @@ namespace EasyWP7Updater.Helper
 
         public static bool ValidateSystem(bool backUpEnabled = false)
         {
-            bool isValid = false;
+            bool isValid = true;
 
             if (IsZuneRunning())
             {
@@ -55,7 +55,7 @@ namespace EasyWP7Updater.Helper
                 {
                     object value = key.GetValue("AutoLaunchZuneOnConnect");
                     if (value != null)
-                        oldStartupValue = (bool)value;
+                        oldStartupValue = Convert.ToBoolean(value);
                     key.Flush();
                 }
                 oldStartupValueSaved = true;
@@ -81,6 +81,35 @@ namespace EasyWP7Updater.Helper
             {
                 return Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Zune\\Devices", false);
             }
+        }
+
+        public static bool UpdateToNewerOS(string updateVersion, string phoneVersion)
+        {
+            string OSversion = phoneVersion;
+            string[] tmp = OSversion.Split('-');
+            OSversion = tmp[0];
+
+            bool warning = false;
+
+            string[] versionsPhone = OSversion.Split('.');
+            string[] versionsUpdate = updateVersion.Split('.');
+
+            if (versionsPhone.Length != versionsUpdate.Length)
+                throw new Exception("Possible version mismatch");
+            else
+            {
+                for (int i = 0; i < versionsPhone.Length; i++)
+                {
+                    int versionPhone = Convert.ToInt32(versionsPhone[i]);
+                    int versionUpdate = Convert.ToInt32(versionsUpdate[i]);
+                    if (versionUpdate < versionPhone)
+                    {
+                        warning = true;
+                    }
+                }
+            }
+
+            return !warning;
         }
     }
 }

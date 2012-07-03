@@ -24,7 +24,14 @@ namespace EasyWP7Updater.Forms
         private bool lastDownloaded = false;
         private int currentItem = 0;
         private List<string> cabsToSend = new List<string>();
-        string downloadDir = Directory.GetCurrentDirectory() + @"\download\";
+        private List<string> selectedLanguageIDs = new List<string>();
+        private string downloadDir = Directory.GetCurrentDirectory() + @"\download\";
+        private Queue<string> cabsQueue = new Queue<string>();
+        private bool backupTaken = false;
+        private int currentUpdate = 0;
+        private bool takeBackup;
+        private BindableDeviceInformation deviceToUpdate;
+        private bool closeOnStart = false;
         #endregion
         #region Form stuff
         public MainForm()
@@ -33,23 +40,69 @@ namespace EasyWP7Updater.Forms
             Version ver = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             this.Text = this.Text + " - Version " + ver.Major + "." + ver.Minor;
             webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
-            deviceService = new DeviceService();
-            deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
-            deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
-            refreshDevices();
+            try
+            {
+                deviceService = new DeviceService();
+                deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
+                deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
+                deviceService.OnUpdateFinished += new EventHandler(updateFinished);
+                refreshDevices();
+            }
+            catch (System.Runtime.InteropServices.COMException ex)
+            {
+                bool is64bit = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"));
+
+                if (is64bit)
+                {
+                    if (MessageBox.Show("This application requires the x64 version of the WP Support Tool. Do you want to open the downloadpage?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        Process.Start(@"http://download.microsoft.com/download/6/6/6/666ED30F-15E4-4287-8E73-CE08CCE07AAB/WPSupportToolv2-amd64.msi");
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("This application requires the x84 version of the WP Support Tool. Do you want to open the downloadpage?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        Process.Start(@"http://download.microsoft.com/download/6/6/6/666ED30F-15E4-4287-8E73-CE08CCE07AAB/WPSupportToolv2-x86.msi");
+                    }
+                }
+
+                closeOnStart = true;
+            }
+
+            foreach (KeyValuePair<string, string> s in Helper.LanguageList.Languages)
+                selectInstalledLanguagesBox.Items.Add(s.Key);
+
+            for (int i = 0; i < selectInstalledLanguagesBox.Items.Count; i++)
+                selectInstalledLanguagesBox.SetItemChecked(i, true);
+        }
+
+        //execute sendNextCab on UI thread
+        private void updateFinished(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(sendNextCab));
+            }
+            else
+            {
+                sendNextCab();
+            }
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+            if (closeOnStart)
+                closeMainForm();
 #if !DEBUG
-            if (!Settings.Default.HideWarningOnStartup)
+            else if (!Settings.Default.HideWarningOnStartup)
             {
                 WarningForm wf = new WarningForm();
                 wf.ShowDialog();
                 if (wf.exit)
                 {
                     wf.Dispose();
-                    this.Dispose();
+                    closeMainForm();
                 }
                 else
                 {
@@ -61,9 +114,17 @@ namespace EasyWP7Updater.Forms
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            deviceService.Dispose();
+            closeMainForm();
+        }
+
+        private void closeMainForm()
+        {
+            if (deviceService != null)
+                deviceService.Dispose();
+
             DeviceManagerSingleton.Cleanup();
             deviceService = null;
+            this.Dispose();
         }
         #endregion
         #region Menu Strip
@@ -144,6 +205,18 @@ namespace EasyWP7Updater.Forms
         {
             if (!e.Url.ToString().StartsWith("http://jessenic.github.com/"))
             {
+                WarningForm wf = new WarningForm();
+                wf.ShowDialog();
+                if (wf.exit)
+                {
+                    wf.Dispose();
+                    DeviceManagerSingleton.Cleanup();
+                    this.Dispose();
+                }
+                else
+                {
+                    wf.Dispose();
+                }
                 Process.Start(e.Url.ToString());
                 e.Cancel = true;
             }
@@ -151,8 +224,20 @@ namespace EasyWP7Updater.Forms
 
         private void downloadfromMSbutton_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = downloadPage;
-            UpdateDownloadLists("sources.xml");
+            tabControl1.SelectedTab = selectInstalledLanguagesPage;
+
+#if DEBUG
+            string filename = Directory.GetCurrentDirectory() + @"\sources.xml";
+#else
+            string filename = "http://jessenic.github.com/EasyWP7Updater/updates.xml";
+#endif
+            List<Packages.Info.Category> categories = Packages.Packages.GetFromXml(filename);
+            catSelectBox.Items.Clear();
+            catSelectBox.Items.AddRange(categories.ToArray());
+
+            subCatSelectBox.Items.Clear();
+            versionBox.Items.Clear();
+            selectLangBox.Items.Clear();
         }
 
         private void InstallDownloadedCabsButton_Click(object sender, EventArgs e)
@@ -296,7 +381,7 @@ namespace EasyWP7Updater.Forms
             BindableDeviceInformation d = getSelectedDevice();
             if (d != null)
             {
-                bool takeBackup = takeBackupCheckbox.Checked;
+                takeBackup = takeBackupCheckbox.Checked;
 
                 bool proceed = takeBackup;
 
@@ -308,7 +393,17 @@ namespace EasyWP7Updater.Forms
                 if (proceed)
                 {
                     AppendLog("Updating");
-                    deviceService.UpdateImageUpdate(d.DeviceInfo, cabsToSend, takeBackup);
+                    backupTaken = false;
+                    currentUpdate = 0;
+                    cabsQueue = new Queue<string>();
+
+                    foreach (string s in cabsToSend)
+                    {
+                        cabsQueue.Enqueue(s);
+                    }
+
+                    deviceToUpdate = getSelectedDevice();
+                    sendNextCab();
                 }
                 else
                 {
@@ -318,6 +413,32 @@ namespace EasyWP7Updater.Forms
             else
             {
                 AppendLog("No device selected");
+            }
+        }
+
+        private void sendNextCab()
+        {
+            if (cabsQueue.Count != 0)
+            {
+                currentUpdate++;
+                AppendLog(String.Format("Applying update {0} of {1}", currentUpdate, cabsToSend.Count));
+                sendCABsButton.Enabled = false;
+
+                string file = cabsQueue.Dequeue();
+                if (!backupTaken && takeBackup)
+                {
+                    deviceService.UpdateImageUpdate(deviceToUpdate.DeviceInfo, file, true);
+                    backupTaken = true;
+                }
+                else
+                {
+                    deviceService.UpdateImageUpdate(deviceToUpdate.DeviceInfo, file, false);
+                }
+            }
+            else
+            {
+                AppendLog("Finished");
+                sendCABsButton.Enabled = true;
             }
         }
 
@@ -351,19 +472,6 @@ namespace EasyWP7Updater.Forms
 
             foreach (string u in cabsToSend)
                 AppendLog(u);
-        }
-        #endregion
-        #region Download page
-        private void UpdateDownloadLists(string cablisturl)
-        {
-            string filename = Directory.GetCurrentDirectory() + @"\sources.xml";
-            List<Packages.Info.Category> categories = Packages.Packages.GetFromXml(filename);
-            catSelectBox.Items.Clear();
-            catSelectBox.Items.AddRange(categories.ToArray());
-
-            subCatSelectBox.Items.Clear();
-            versionBox.Items.Clear();
-            selectLangBox.Items.Clear();
         }
 
         private void catSelectBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -404,12 +512,68 @@ namespace EasyWP7Updater.Forms
 
                 selectLangBox.Items.Clear();
                 selectLangBox.Items.AddRange(items.ToArray());
+
+                //Validate the selected update
+                BindableDeviceInformation d = getSelectedDevice();
+                if (d != null)
+                {
+                    try
+                    {
+                        switch ((catSelectBox.SelectedItem as Packages.Info.Category).Type)
+                        {
+                            case Packages.Info.Category.CategoryType.os:
+                                if (!Helper.Validator.UpdateToNewerOS(selectedVersion.ToVersion, d.DeviceInfo.OSVersion))
+                                    MessageBox.Show(String.Format("Your phone already has this (or a newer) version installed. Please continue only if you are sure that you want to install the update {0}", selectedVersion.ToString()), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+
+                            case Packages.Info.Category.CategoryType.firmware:
+                                //Todo: validate if selected firmware can be applied
+                                break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unable to compare OS Versions, " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+
+                //Check istalled languages
+                if (selectedLanguageIDs.Count != 0 && selectedVersion.IsLanguageAware)
+                {
+                    List<string> notFound = new List<string>();
+                    bool everythingFound = true;
+
+                    foreach (string languageId in selectedLanguageIDs)
+                    {
+                        bool currentFound = false;
+                        for (int i = 0; i < selectLangBox.Items.Count; i++)
+                        {
+                            Packages.Info.Item item = selectLangBox.Items[i] as Packages.Info.Item;
+                            if (item.LangId.Trim().ToLower() == languageId.Trim().ToLower())
+                            {
+                                currentFound = true;
+                                selectLangBox.SetItemChecked(i, true);
+                            }
+                        }
+
+                        if (!currentFound)
+                        {
+                            everythingFound = false;
+                            notFound.Add(Helper.LanguageList.LanguagesById[languageId]);
+                        }
+                    }
+
+                    if (!everythingFound)
+                    {
+                        MessageBox.Show(String.Format("At least one language has not been found. You can continue anyway, but note that missing languages can make your device unusable!\r\nMissing languages: {0}", String.Join(", ", notFound)), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    }
+                }
             }
         }
 
         private void selectLangBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void downloadSelectedCabs_Click(object sender, EventArgs e)
@@ -502,6 +666,23 @@ namespace EasyWP7Updater.Forms
 
             logUpdates();
             tabControl1.SelectedTab = sendCabsPage;
+        }
+
+        private void continueWithUpdateSelectionBtn_Click(object sender, EventArgs e)
+        {
+            if ((selectInstalledLanguagesBox.CheckedItems.Count == 0) && (MessageBox.Show("Do you really want to proceed without selecting your installed languages? Missing language packs can make your phone unusable!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes))
+            {
+                tabControl1.SelectedTab = downloadPage;
+            }
+            else
+            {
+                selectedLanguageIDs = new List<string>();
+                foreach (string s in selectInstalledLanguagesBox.CheckedItems)
+                {
+                    selectedLanguageIDs.Add(Helper.LanguageList.Languages[s]);
+                }
+                tabControl1.SelectedTab = downloadPage;
+            }
         }
         #endregion
     }
