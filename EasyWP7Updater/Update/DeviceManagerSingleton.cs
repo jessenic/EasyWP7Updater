@@ -32,7 +32,8 @@ namespace EasyWP7Updater.Update
         /// </summary>
         public static void Cleanup()
         {
-            GC.SuppressFinalize(_manager);
+            if (_manager != null)
+                GC.SuppressFinalize(_manager);
             _manager = null;
         }
     }

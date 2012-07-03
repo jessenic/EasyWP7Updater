@@ -12,6 +12,8 @@
     <AssemblyName>EasyWP7Updater</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,10 +26,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>EasyWP7Updater.Program</StartupObject>
@@ -74,12 +74,41 @@
   <PropertyGroup>
     <ManifestKeyFile>EasyWP7Updater_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release x86|AnyCPU'">
+    <OutputPath>bin\Release x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DocumentationFile>
+    </DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release x86|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release x86\</OutputPath>
+    <Optimize>true</Optimize>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release x64 %28EasyWP7Updater only%29|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\Release x64\</OutputPath>
+    <Optimize>true</Optimize>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.WindowsMobile.DeviceUpdate, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>tools\x64\Microsoft.WindowsMobile.DeviceUpdate.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PacketDotNet, Version=0.12.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\PacketDotNet.dll</HintPath>
@@ -87,6 +116,10 @@
     <Reference Include="SharpPcap, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\SharpPcap.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsMobile.DeviceUpdate">
+      <HintPath>.\tools\x64\Microsoft.WindowsMobile.DeviceUpdate.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -187,86 +220,36 @@
     <Content Include="SharpPcap.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="sources.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\Microsoft.VC90.CRT.manifest">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\Microsoft.VC90.CRT.manifest">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="sources.xml" />
+    <Content Include="tools\x64\Microsoft.VC90.CRT.manifest" />
+    <Content Include="tools\x86\Microsoft.VC90.CRT.manifest" />
     <Content Include="SharpPcap.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="tools\x64\Interop.wm7updatelib.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\Interop.ZuneWmdulib.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\Microsoft.WindowsMobile.DeviceUpdate.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\msvcm90.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\msvcp90.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\msvcr90.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\UpdateWP.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\wm7update.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\wm7updateint.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\wm7updatenet.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x64\zunewmduint.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\Interop.wm7updatelib.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\Interop.ZuneWmdulib.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\Microsoft.WindowsMobile.DeviceUpdate.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\msvcm90.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\msvcp90.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\msvcr90.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\UpdateWP.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\wm7update.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\wm7updateint.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\wm7updatenet.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tools\x86\zunewmduint.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="tools\x64\Interop.wm7updatelib.dll" />
+    <Content Include="tools\x64\Interop.ZuneWmdulib.dll" />
+    <Content Include="tools\x64\Microsoft.WindowsMobile.DeviceUpdate.dll" />
+    <Content Include="tools\x64\msvcm90.dll" />
+    <Content Include="tools\x64\msvcp90.dll" />
+    <Content Include="tools\x64\msvcr90.dll" />
+    <Content Include="tools\x64\UpdateWP.exe" />
+    <Content Include="tools\x64\wm7update.dll" />
+    <Content Include="tools\x64\wm7updateint.dll" />
+    <Content Include="tools\x64\wm7updatenet.dll" />
+    <Content Include="tools\x64\zunewmduint.dll" />
+    <Content Include="tools\x86\Interop.wm7updatelib.dll" />
+    <Content Include="tools\x86\Interop.ZuneWmdulib.dll" />
+    <Content Include="tools\x86\Microsoft.WindowsMobile.DeviceUpdate.dll" />
+    <Content Include="tools\x86\msvcm90.dll" />
+    <Content Include="tools\x86\msvcp90.dll" />
+    <Content Include="tools\x86\msvcr90.dll" />
+    <Content Include="tools\x86\UpdateWP.exe" />
+    <Content Include="tools\x86\wm7update.dll" />
+    <Content Include="tools\x86\wm7updateint.dll" />
+    <Content Include="tools\x86\wm7updatenet.dll" />
+    <Content Include="tools\x86\zunewmduint.dll" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -285,7 +268,15 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(ProjectDir)\tools\$(PlatformName)\Interop.wm7updatelib.dll" "$(TargetDir)" 
+Copy "$(ProjectDir)\tools\$(PlatformName)\Interop.ZuneWmdulib.dll" "$(TargetDir)"
+Copy "$(ProjectDir)\tools\$(PlatformName)\Microsoft.WindowsMobile.DeviceUpdate.dll" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

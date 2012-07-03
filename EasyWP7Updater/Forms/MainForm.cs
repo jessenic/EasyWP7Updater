@@ -31,6 +31,7 @@ namespace EasyWP7Updater.Forms
         private int currentUpdate = 0;
         private bool takeBackup;
         private BindableDeviceInformation deviceToUpdate;
+        private bool closeOnStart = false;
         #endregion
         #region Form stuff
         public MainForm()
@@ -39,11 +40,35 @@ namespace EasyWP7Updater.Forms
             Version ver = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             this.Text = this.Text + " - Version " + ver.Major + "." + ver.Minor;
             webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
-            deviceService = new DeviceService();
-            deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
-            deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
-            deviceService.OnUpdateFinished += new EventHandler(updateFinished);
-            refreshDevices();
+            try
+            {
+                deviceService = new DeviceService();
+                deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
+                deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
+                deviceService.OnUpdateFinished += new EventHandler(updateFinished);
+                refreshDevices();
+            }
+            catch (System.Runtime.InteropServices.COMException ex)
+            {
+                bool is64bit = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"));
+
+                if (is64bit)
+                {
+                    if (MessageBox.Show("This application requires the x64 version of the WP Support Tool. Do you want to open the downloadpage?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        Process.Start(@"http://download.microsoft.com/download/6/6/6/666ED30F-15E4-4287-8E73-CE08CCE07AAB/WPSupportToolv2-amd64.msi");
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("This application requires the x84 version of the WP Support Tool. Do you want to open the downloadpage?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        Process.Start(@"http://download.microsoft.com/download/6/6/6/666ED30F-15E4-4287-8E73-CE08CCE07AAB/WPSupportToolv2-x86.msi");
+                    }
+                }
+
+                closeOnStart = true;
+            }
 
             foreach (KeyValuePair<string, string> s in Helper.LanguageList.Languages)
                 selectInstalledLanguagesBox.Items.Add(s.Key);
@@ -67,15 +92,17 @@ namespace EasyWP7Updater.Forms
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+            if (closeOnStart)
+                closeMainForm();
 #if !DEBUG
-            if (!Settings.Default.HideWarningOnStartup)
+            else if (!Settings.Default.HideWarningOnStartup)
             {
                 WarningForm wf = new WarningForm();
                 wf.ShowDialog();
                 if (wf.exit)
                 {
                     wf.Dispose();
-                    this.Dispose();
+                    closeMainForm();
                 }
                 else
                 {
@@ -87,9 +114,17 @@ namespace EasyWP7Updater.Forms
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            deviceService.Dispose();
+            closeMainForm();
+        }
+
+        private void closeMainForm()
+        {
+            if (deviceService != null)
+                deviceService.Dispose();
+
             DeviceManagerSingleton.Cleanup();
             deviceService = null;
+            this.Dispose();
         }
         #endregion
         #region Menu Strip
