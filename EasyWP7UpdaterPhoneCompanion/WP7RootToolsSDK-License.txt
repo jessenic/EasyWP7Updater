@@ -1,0 +1,12 @@
+WP7 Root Tools SDK License
+--------------------------
+
+WP7 Root Tools and WP7 Root Tools SDK are Copyright by Heathcliff74 / www.wp7roottools.com in 2012
+--------------------------------------------------------------------------------------------------
+
+This license governs use of the "WP7 Root Tools SDK" software. If you use the software, you accept this license. If you do not accept the license, do not use the software.
+
+1. You are free to redistribute the software, as long as the copyright, conditions and disclaimer of this license are present whenever you distribute any portion of the software. This implies that if any portion of the copyrighted software is redistributed in a package without separate readable license description, a visible reference should be made in the software that states: "WP7 Root Tools SDK is copyrighted and licensed under terms of www.wp7roottools.com"
+2. The software is licensed "as-is." You bear the risk of using it. The developer gives no express warranties, guarantees or conditions. To the extent permitted under your local laws, the developer excludes the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
+3. Redistributions of the copyrighted software may not be sold, nor may they be used in a commercial product or activity without first obtaining explicit permission of the developer.
+4. This software is still under development. Future versions may be subject to change andfuture version may not be downward compatible with earlier versions.

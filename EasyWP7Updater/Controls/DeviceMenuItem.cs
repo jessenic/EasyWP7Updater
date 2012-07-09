@@ -29,6 +29,8 @@ namespace EasyWP7Updater.Controls
             this.Device = device;
 
             this.CheckedChanged += new EventHandler(checkedChanged);
+
+            this.ToolTipText = device.DeviceInfo.OSVersion;
 #if DEBUG
             ToolStripMenuItem restart = new ToolStripMenuItem("Boot into SLDR");
             restart.Click += new EventHandler(restart_click);

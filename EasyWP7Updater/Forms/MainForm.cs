@@ -40,13 +40,17 @@ namespace EasyWP7Updater.Forms
             Version ver = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             this.Text = this.Text + " - Version " + ver.Major + "." + ver.Minor;
             webBrowser1.Url = new Uri("http://jessenic.github.com/EasyWP7Updater/news.html#" + ver.ToString());
+            checkForZune();
             try
             {
-                deviceService = new DeviceService();
-                deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
-                deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
-                deviceService.OnUpdateFinished += new EventHandler(updateFinished);
-                refreshDevices();
+                if (!closeOnStart)
+                {
+                    deviceService = new DeviceService();
+                    deviceService.OnServiceMessageSent += new DeviceService.ServiceMessageEventhandler(handleUpdateMessage);
+                    deviceService.OnDevicesChanged += new DeviceService.DevicesChangedEventhandler(updateHelper_OnDevicesChanged);
+                    deviceService.OnUpdateFinished += new EventHandler(updateFinished);
+                    refreshDevices();
+                }
             }
             catch (System.Runtime.InteropServices.COMException)
             {
@@ -76,7 +80,21 @@ namespace EasyWP7Updater.Forms
             for (int i = 0; i < selectInstalledLanguagesBox.Items.Count; i++)
                 selectInstalledLanguagesBox.SetItemChecked(i, true);
         }
-
+        private void checkForZune()
+        {
+           Process[] processesByName = Process.GetProcessesByName("Zune");
+            if ((processesByName != null) && (processesByName.Length > 0))
+            {
+                if (MessageBox.Show("Zune is currently running, please close Zune before using this tool.", "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    closeOnStart = true;
+                }
+                else
+                {
+                    checkForZune();
+                }
+            }
+        }
         //execute sendNextCab on UI thread
         private void updateFinished(object sender, EventArgs e)
         {
@@ -343,6 +361,7 @@ namespace EasyWP7Updater.Forms
 
         private BindableDeviceInformation getSelectedDevice()
         {
+            Console.WriteLine("Getting the selected device...");
             BindableDeviceInformation d = null;
 
             foreach (Controls.DeviceMenuItem i in devicesSelectMenu.DropDownItems)
@@ -350,6 +369,7 @@ namespace EasyWP7Updater.Forms
                 if (i.Checked)
                 {
                     d = i.Device;
+                    Console.WriteLine(d.DeviceInfo.Name + " is the selected device.");
                     break;
                 }
             }
@@ -493,7 +513,41 @@ namespace EasyWP7Updater.Forms
             if (selectedSubcat != null)
             {
                 versionBox.Items.Clear();
-                versionBox.Items.AddRange(selectedSubcat.Versions.ToArray());
+                BindableDeviceInformation d = getSelectedDevice();
+                foreach (EasyWP7Updater.Packages.Info.VersionInformation ver in selectedSubcat.Versions)
+                {
+                    //Validate the selected update
+                    if (d != null)
+                    {
+                        try
+                        {
+                            switch (((Packages.Info.Category)catSelectBox.SelectedItem).Type)
+                            {
+                                case Packages.Info.Category.CategoryType.os:
+                                    if (!Helper.Validator.AreOSVersionsTheSame(ver.FromVersion, d.DeviceInfo.OSVersion))
+                                        ver.IsNotUpdateable = true;
+                                    break;
+
+                                case Packages.Info.Category.CategoryType.firmware:
+                                    //Todo: validate if selected firmware can be applied
+                                    break;
+                                default:
+                                    MessageBox.Show(((Packages.Info.Category)catSelectBox.SelectedItem).Name + " has a wrong type: " + ((Packages.Info.Category)catSelectBox.SelectedItem).Type.ToString());
+                                    break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Unable to compare OS Versions, " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("No device was selected.");
+                    }
+                    versionBox.Items.Add(ver);
+                }
 
                 selectLangBox.Items.Clear();
             }
@@ -514,28 +568,9 @@ namespace EasyWP7Updater.Forms
                 selectLangBox.Items.AddRange(items.ToArray());
 
                 //Validate the selected update
-                BindableDeviceInformation d = getSelectedDevice();
-                if (d != null)
+                if (selectedVersion.IsNotUpdateable)
                 {
-                    try
-                    {
-                        switch ((catSelectBox.SelectedItem as Packages.Info.Category).Type)
-                        {
-                            case Packages.Info.Category.CategoryType.os:
-                                if (!Helper.Validator.UpdateToNewerOS(selectedVersion.ToVersion, d.DeviceInfo.OSVersion))
-                                    MessageBox.Show(String.Format("Your phone already has this (or a newer) version installed. Please continue only if you are sure that you want to install the update {0}", selectedVersion.ToString()), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                break;
-
-                            case Packages.Info.Category.CategoryType.firmware:
-                                //Todo: validate if selected firmware can be applied
-                                break;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Unable to compare OS Versions, " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-
+                    MessageBox.Show(String.Format("Your phone already has this (or a newer) version installed. Please continue only if you are sure that you want to install the update {0}", selectedVersion.ToString()), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 //Check istalled languages

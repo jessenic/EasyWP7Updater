@@ -51,7 +51,7 @@ namespace EasyWP7Updater.Helper
         {
             if (!oldStartupValueSaved)
             {
-                using(RegistryKey key = getAutoLaunchKey(false))
+                using (RegistryKey key = getAutoLaunchKey(false))
                 {
                     object value = key.GetValue("AutoLaunchZuneOnConnect");
                     if (value != null)
@@ -110,6 +110,33 @@ namespace EasyWP7Updater.Helper
             }
 
             return !warning;
+        }
+
+        public static bool AreOSVersionsTheSame(string updateFromVersion, string phoneVersion)
+        {
+            string OSversion = phoneVersion;
+            string[] tmp = OSversion.Split('-');
+            OSversion = tmp[0];
+
+            string[] versionsPhone = OSversion.Split('.');
+            string[] versionsUpdate = updateFromVersion.Split('.');
+
+            if (versionsPhone.Length != versionsUpdate.Length)
+                throw new Exception("Possible version mismatch");
+            else
+            {
+                int versionPhone = Convert.ToInt32(versionsPhone[2]);
+                int versionUpdate = Convert.ToInt32(versionsUpdate[2]);
+                System.Windows.Forms.MessageBox.Show(versionUpdate + " vs " + versionPhone);
+                if (versionUpdate == versionPhone)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }

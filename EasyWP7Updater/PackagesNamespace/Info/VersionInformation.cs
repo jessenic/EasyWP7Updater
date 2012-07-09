@@ -18,6 +18,10 @@ namespace EasyWP7Updater.Packages.Info
         /// The version that the phone will be updated to
         /// </summary>
         public string ToVersion { get; private set; }
+        /// <summary>
+        /// True if phone has a different version than the FromVersion
+        /// </summary>
+        public bool IsNotUpdateable { get; set; }
 
         /// <summary>
         /// A list of all the items associated with this Version
@@ -52,6 +56,7 @@ namespace EasyWP7Updater.Packages.Info
             ToVersion = toVersion;
             Items = new List<Item>();
             IsLanguageAware = false;
+            IsNotUpdateable = false;
         }
 
         /// <summary>

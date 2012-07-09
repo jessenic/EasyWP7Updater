@@ -1,7 +1,7 @@
 <Categories>
   <Category>
     <Name>OS Updates</Name>
-    <Type>other</Type>
+    <Type>os</Type>
     <Subcategory>
       <Name>RTM</Name>
       <Version From="7.0.7004.0" To="7.0.7008.0">
