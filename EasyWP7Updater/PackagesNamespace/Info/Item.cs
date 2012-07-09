@@ -49,7 +49,7 @@ namespace EasyWP7Updater.Packages.Info
                     Type = ItemType.other;
                     break;
             }
-            LangId = lang;
+            LangId = lang.ToUpper();
             Download = download;
         }
 
@@ -59,6 +59,18 @@ namespace EasyWP7Updater.Packages.Info
         /// <returns>The description</returns>
         public override string ToString()
         {
+            if (Type == ItemType.language)
+            {
+                try
+                {
+                    return Helper.LanguageList.LanguagesById[LangId];
+                }
+                catch (Exception)
+                {
+                    return LangId + " - " + Description;
+                }
+            }
+
             if (Description != "")
                 return Description;
 

@@ -566,7 +566,7 @@ namespace EasyWP7Updater.Forms
 
                     if (!everythingFound)
                     {
-                        MessageBox.Show(String.Format("At least one language has not been found. You can continue anyway, but note that missing languages can make your device unusable!\r\nMissing languages: {0}", String.Join(", ", notFound)), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        MessageBox.Show(String.Format("At least one language has not been found. You can continue anyway, but note that missing languages can make your device unusable!\r\nMissing languages: {0}", String.Join(", ", notFound.ToArray())), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     }
                 }
             }
