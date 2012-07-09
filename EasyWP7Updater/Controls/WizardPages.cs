@@ -18,22 +18,5 @@ namespace EasyWP7Updater.Controls
             base.WndProc(ref m);
 #endif
         }
-        public void NextPage()
-        {
-            int nextTab = this.SelectedIndex + 1;
-            if (nextTab < this.TabCount)
-            {
-                this.SelectedIndex = nextTab;
-            }
-        }
-
-        public void PreviousPage()
-        {
-            int nextTab = this.SelectedIndex - 1;
-            if (nextTab < this.TabCount && nextTab >= 0)
-            {
-                this.SelectedIndex = nextTab;
-            }
-        }
     }
 }
