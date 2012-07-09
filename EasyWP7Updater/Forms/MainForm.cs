@@ -48,7 +48,7 @@ namespace EasyWP7Updater.Forms
                 deviceService.OnUpdateFinished += new EventHandler(updateFinished);
                 refreshDevices();
             }
-            catch (System.Runtime.InteropServices.COMException ex)
+            catch (System.Runtime.InteropServices.COMException)
             {
                 bool is64bit = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"));
 
