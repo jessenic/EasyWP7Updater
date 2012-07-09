@@ -61,7 +61,7 @@ namespace EasyWP7Updater.Forms
                 }
                 else
                 {
-                    if (MessageBox.Show("This application requires the x84 version of the WP Support Tool. Do you want to open the downloadpage?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageBox.Show("This application requires the x86 version of the WP Support Tool. Do you want to open the downloadpage?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {
                         Process.Start(@"http://download.microsoft.com/download/6/6/6/666ED30F-15E4-4287-8E73-CE08CCE07AAB/WPSupportToolv2-x86.msi");
                     }
