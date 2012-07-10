@@ -85,9 +85,16 @@ namespace EasyWP7Updater.Forms
            Process[] processesByName = Process.GetProcessesByName("Zune");
             if ((processesByName != null) && (processesByName.Length > 0))
             {
-                if (MessageBox.Show("Zune is currently running, please close Zune before using this tool.", "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == System.Windows.Forms.DialogResult.Cancel)
+                DialogResult dr = MessageBox.Show("Zune is currently running, some features might not be present. Please ignore this if you want to capture Zune updates.", "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                if (dr == System.Windows.Forms.DialogResult.Abort)
                 {
                     closeOnStart = true;
+                }
+                else if(dr == System.Windows.Forms.DialogResult.Ignore)
+                {
+                    closeOnStart = true;
+                    PCapForm pcf = new PCapForm();
+                    pcf.ShowDialog(this);
                 }
                 else
                 {
