@@ -230,18 +230,6 @@ namespace EasyWP7Updater.Forms
         {
             if (!e.Url.ToString().StartsWith("http://jessenic.github.com/"))
             {
-                WarningForm wf = new WarningForm();
-                wf.ShowDialog();
-                if (wf.exit)
-                {
-                    wf.Dispose();
-                    DeviceManagerSingleton.Cleanup();
-                    this.Dispose();
-                }
-                else
-                {
-                    wf.Dispose();
-                }
                 Process.Start(e.Url.ToString());
                 e.Cancel = true;
             }
