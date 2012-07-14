@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyWP7UpdaterLauncher", "E
 		{39BB8BD4-C4EB-4209-A2B1-4E5CE2D576FC} = {39BB8BD4-C4EB-4209-A2B1-4E5CE2D576FC}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyWP7UpdaterLibrary", "EasyWP7UpdaterLibrary\EasyWP7UpdaterLibrary.csproj", "{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -52,6 +54,14 @@ Global
 		{FDCBBECA-6068-435A-9435-5E60E160A489}.Release|x64.Build.0 = Release|Any CPU
 		{FDCBBECA-6068-435A-9435-5E60E160A489}.Release|x86.ActiveCfg = Release|Any CPU
 		{FDCBBECA-6068-435A-9435-5E60E160A489}.Release|x86.Build.0 = Release|Any CPU
+		{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}.Release|x64.Build.0 = Release|Any CPU
+		{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -130,13 +130,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EasyWP7Updater\EasyWP7Updater.csproj">
-      <Project>{39bb8bd4-c4eb-4209-a2b1-4e5ce2d576fc}</Project>
-      <Name>EasyWP7Updater</Name>
-    </ProjectReference>
+    <Content Include="sources.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sources.xml" />
+    <ProjectReference Include="..\EasyWP7UpdaterLibrary\EasyWP7UpdaterLibrary.csproj">
+      <Project>{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}</Project>
+      <Name>EasyWP7UpdaterLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

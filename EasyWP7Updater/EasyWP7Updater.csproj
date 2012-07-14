@@ -107,8 +107,6 @@
     <Compile Include="Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper\LanguageList.cs" />
-    <Compile Include="Helper\Validator.cs" />
     <Compile Include="Forms\PCapForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,11 +120,6 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PackagesNamespace\Info\Category.cs" />
-    <Compile Include="PackagesNamespace\Info\Item.cs" />
-    <Compile Include="PackagesNamespace\Packages.cs" />
-    <Compile Include="PackagesNamespace\Info\Subcategory.cs" />
-    <Compile Include="PackagesNamespace\Info\VersionInformation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Update\BindableDeviceInformation.cs" />
@@ -237,11 +230,17 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyWP7UpdaterLibrary\EasyWP7UpdaterLibrary.csproj">
+      <Project>{CC891C1D-E3DD-44AB-9843-1A84B8A06FA0}</Project>
+      <Name>EasyWP7UpdaterLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Copy "$(ProjectDir)\tools\$(PlatformName)\Interop.wm7updatelib.dll" "$(TargetDir)" 
-Copy "$(ProjectDir)\tools\$(PlatformName)\Interop.ZuneWmdulib.dll" "$(TargetDir)"
-Copy "$(ProjectDir)\tools\$(PlatformName)\Microsoft.WindowsMobile.DeviceUpdate.dll" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>Copy "$(ProjectDir)tools\$(PlatformName)\Interop.wm7updatelib.dll" "$(TargetDir)" 
+Copy "$(ProjectDir)tools\$(PlatformName)\Interop.ZuneWmdulib.dll" "$(TargetDir)"
+Copy "$(ProjectDir)tools\$(PlatformName)\Microsoft.WindowsMobile.DeviceUpdate.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

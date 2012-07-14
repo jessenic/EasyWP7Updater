@@ -127,7 +127,6 @@ namespace EasyWP7Updater.Helper
             {
                 int versionPhone = Convert.ToInt32(versionsPhone[2]);
                 int versionUpdate = Convert.ToInt32(versionsUpdate[2]);
-                System.Windows.Forms.MessageBox.Show(versionUpdate + " vs " + versionPhone);
                 if (versionUpdate == versionPhone)
                 {
                     return true;
