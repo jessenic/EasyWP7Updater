@@ -52,16 +52,24 @@ namespace EasyWP7Updater.Forms
                     refreshDevices();
                 }
             }
-            catch (System.Runtime.InteropServices.COMException)
+            catch (System.Runtime.InteropServices.COMException ex)
             {
                 bool is64bit = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"));
+#if DEBUG
+                MessageBox.Show(ex.ErrorCode.ToString());
+#endif
 
                 if (is64bit)
                 {
+#if X86
+                    MessageBox.Show("You are running the 32bit version of this tool on a 64bit machine. Please use the correct version.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    closeOnStart = true;
+#else
                     if (MessageBox.Show("This application requires the x64 version of the WP Support Tool. Do you want to open the downloadpage?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {
                         Process.Start(@"http://download.microsoft.com/download/6/6/6/666ED30F-15E4-4287-8E73-CE08CCE07AAB/WPSupportToolv2-amd64.msi");
                     }
+#endif
                 }
                 else
                 {
